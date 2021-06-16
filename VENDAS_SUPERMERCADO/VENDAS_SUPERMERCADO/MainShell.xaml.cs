@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace VENDAS_SUPERMERCADO.Views
+namespace VENDAS_SUPERMERCADO
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MenuView : ContentPage
+    public partial class MainShell : Shell
     {
-        public MenuView()
+        public MainShell()
         {
             InitializeComponent();
         }

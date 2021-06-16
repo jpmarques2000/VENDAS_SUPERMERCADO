@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:VENDAS_SUPERMERCADO;assembly=VENDAS_SUPERMERCADO"
+             xmlns:views="clr-namespace:VENDAS_SUPERMERCADO.Views"
+             x:Class="VENDAS_SUPERMERCADO.MainShell">
+
+    <Shell.FlyoutHeader>
+        <pages:HeaderView/>
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem Title="Produtos">
+        <ShellContent ContentTemplate="{DataTemplate views:ProductsPage}"></ShellContent>
+    </FlyoutItem>
+    <FlyoutItem Title="Perfil">
+        <ShellContent ContentTemplate="{DataTemplate views:UserProfile}"></ShellContent>
+    </FlyoutItem>
+    <FlyoutItem Title="Carrinho de Compras">
+        <ShellContent ContentTemplate="{DataTemplate views:MyCartPage}"></ShellContent>
+    </FlyoutItem>
+
+</Shell>

@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace VENDAS_SUPERMERCADO.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MasterPageView : ContentPage
+    public partial class MyCartPage : ContentPage
     {
-        public MasterPageView()
+        public MyCartPage()
         {
             InitializeComponent();
         }
