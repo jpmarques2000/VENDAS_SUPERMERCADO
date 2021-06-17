@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VENDAS_SUPERMERCADO.Models
 {
-    public class Usuario
+    public class User
     {
         public int id { get; set; }
         public string nome { get; set; }
@@ -16,11 +16,13 @@ namespace VENDAS_SUPERMERCADO.Models
         public string rua { get; set; }
         public string bairro { get; set; }
         public string numero { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
 
-        public class ResultadoLogin
-        {
-            public Usuario usuario { get; set; }
+        //public class ResultadoLogin
+        //{
+        //    public User user { get; set; }
 
-        }
+        //}
     }
 }

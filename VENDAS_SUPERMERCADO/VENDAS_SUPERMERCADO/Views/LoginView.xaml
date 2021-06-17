@@ -1,12 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:VENDAS_SUPERMERCADO.ViewModels"
              x:Class="VENDAS_SUPERMERCADO.Views.LoginView">
-    <ContentPage.Content>
+    
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel/>
+    </ContentPage.BindingContext>
+
+    <Grid Padding="10" VerticalOptions="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Login" FontFamily="Verdana"
+               TextColor="Blue" FontSize="30"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"/>
         </StackLayout>
-    </ContentPage.Content>
+
+        <StackLayout Grid.Row="1" Spacing="5">
+            <Entry Placeholder="Nome de usuario" Text="{Binding Username}"/>
+            <Entry Placeholder="Senha do usuario" Text="{Binding Password}" IsPassword="True"/>
+            <Button Text="Login" HorizontalOptions="Center" BackgroundColor="Black"
+                    TextColor="White" WidthRequest="300" HeightRequest="40"
+                    Command="{Binding LoginCommand}"/>
+            <Label Text="Novo usuario ?" FontAttributes="Bold" TextColor="Purple"/>
+
+            <Button Text="Registrar" HorizontalOptions="Center" BackgroundColor="DarkSlateGray"
+                    TextColor="White" WidthRequest="300" HeightRequest="40"
+                    Command="{Binding RegisterCommand}"/>
+        </StackLayout>
+
+    </Grid>
 </ContentPage>

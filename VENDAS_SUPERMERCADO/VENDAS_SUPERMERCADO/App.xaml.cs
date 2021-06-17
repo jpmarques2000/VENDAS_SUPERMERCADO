@@ -1,4 +1,5 @@
 ﻿using System;
+using VENDAS_SUPERMERCADO.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace VENDAS_SUPERMERCADO
         {
             InitializeComponent();
 
-            MainPage = new MainShell();
+            MainPage = new NavigationPage(new LoginView());
         }
 
         protected override void OnStart()
