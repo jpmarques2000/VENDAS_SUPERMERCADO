@@ -109,7 +109,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 if (Result)
                 {
                     Preferences.Set("Username", Username);
-                    await Application.Current.MainPage.Navigation.PushAsync(new ProductsPage());
+                    // await Application.Current.MainPage.Navigation.PushAsync(new MainShell());
+                    Application.Current.MainPage = new MainShell();
                 }
                 else
                 {
