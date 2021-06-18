@@ -18,5 +18,8 @@
     <FlyoutItem Title="Carrinho de Compras">
         <ShellContent ContentTemplate="{DataTemplate views:MyCartPage}"></ShellContent>
     </FlyoutItem>
+    <FlyoutItem Title="Meus Pedidos">
+        <ShellContent ContentTemplate="{DataTemplate views:MyOrderPage}"></ShellContent>
+    </FlyoutItem>
 
 </Shell>

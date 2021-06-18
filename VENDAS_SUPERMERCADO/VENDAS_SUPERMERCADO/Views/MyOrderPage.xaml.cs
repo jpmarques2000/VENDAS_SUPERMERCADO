@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace VENDAS_SUPERMERCADO.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MeusPedidosView : ContentPage
+    public partial class MyOrderPage : ContentPage
     {
-        public MeusPedidosView()
+        public MyOrderPage()
         {
             InitializeComponent();
         }
