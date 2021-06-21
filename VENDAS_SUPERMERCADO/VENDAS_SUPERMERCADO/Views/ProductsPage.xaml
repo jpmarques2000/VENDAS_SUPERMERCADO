@@ -1,12 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:VENDAS_SUPERMERCADO.ViewModels"
              x:Class="VENDAS_SUPERMERCADO.Views.ProductsPage" Title="Produtos">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Listagem de Produtos"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <StackLayout Margin="25">
+
+        
+        <Button Text="TESTE"></Button>
+
+
+
+
+        <Button Text="Meu Carrinho" HorizontalOptions="Center" VerticalOptions="EndAndExpand"></Button>
+
+    </StackLayout>
 </ContentPage>
