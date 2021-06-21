@@ -1,8 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:infra="clr-namespace:VENDAS_SUPERMERCADO.Infraestructure;assembly=VENDAS_SUPERMERCADO"
              x:Class="VENDAS_SUPERMERCADO.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <!-- Data Template Produtos -->
+            <DataTemplate x:Key="ProdutoItemTemplate">
+                <ViewCell>
+                    <Grid Padding="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
 
+                        <Image Source="" VerticalOptions="Start" WidthRequest="100" HeightRequest="100"></Image>
+                        <StackLayout Grid.Column="1">
+                            <Label FontAttributes="Bold" VerticalOptions="Center" Text="{Binding pro_nome}" FontSize="20"></Label>
+                            <Label FontAttributes="Bold" FontSize="14" Text="descriçao do produto ....... " VerticalOptions="Center"></Label>
+                            <Label Text="{Binding Preco}" FontAttributes="Bold" VerticalOptions="Center"></Label>
+
+                        </StackLayout>
+
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+
+            <infra:InstanceLocator x:Key="Locator"></infra:InstanceLocator>
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

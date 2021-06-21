@@ -15,9 +15,17 @@ namespace VENDAS_SUPERMERCADO.Services
             {
 
                 var client = new HttpClient();
-                client.BaseAddress = new Uri("https://products-mart-api.herokuapp.com/products");
-                var url = string.Format("/api/{0}", controller);
-                var response = await client.GetAsync(url);
+                var request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri("https://products-mart-api.herokuapp.com/products"),
+
+                    Headers =
+                    {
+                    { "Authorization", "super-secret" },
+                    },
+                };
+                var response = await client.SendAsync(request);
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -28,8 +36,6 @@ namespace VENDAS_SUPERMERCADO.Services
                 var result = await response.Content.ReadAsStringAsync();
                 var list = JsonConvert.DeserializeObject<List<T>>(result);
                 return list;
-
-
 
             }
             catch

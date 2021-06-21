@@ -7,7 +7,7 @@ namespace VENDAS_SUPERMERCADO.Models
     public class Products
     {
         public int Produtoid { get; set; }
-        public string Nome { get; set; }
+        public string pro_nome { get; set; }
         public string descricaoTecnica { get; set; }
         public string tipoEmbalagem { get; set; }
         public string secao { get; set; }

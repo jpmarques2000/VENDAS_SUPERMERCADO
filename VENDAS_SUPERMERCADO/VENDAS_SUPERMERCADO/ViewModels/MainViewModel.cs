@@ -39,15 +39,16 @@ namespace VENDAS_SUPERMERCADO.ViewModels
            
             var products = new List<Products>();
 
-            if (netService.IsConnected())
-            {
-                products = await apiService.Get<Products>("Products");
+            //if (netService.IsConnected())
+            //{
+            //    products = await apiService.Get<Products>("products");
 
-            }
-            else
-            {
-                // Jogar mensagem "Necessario conexao com a internet para carregar produtos"
-            }
+            //}
+            //else
+            //{
+            //    // Jogar mensagem "Necessario conexao com a internet para carregar produtos"
+            //}
+            products = await apiService.Get<Products>("products");
 
             ReloadProducts(products);
         }
@@ -55,11 +56,11 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         {
             Products.Clear();
 
-            foreach (var product in products.OrderBy(p => p.Nome))
+            foreach (var product in products.OrderBy(p => p.pro_nome))
             {
                 Products.Add(new ProductItemViewModel
                 {
-                    Nome = product.Nome,
+                    pro_nome = product.pro_nome,
                     Preco = product.Preco,
                 });
             }
