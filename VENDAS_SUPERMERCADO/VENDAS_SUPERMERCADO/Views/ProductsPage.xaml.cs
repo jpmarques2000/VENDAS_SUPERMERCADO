@@ -16,42 +16,43 @@ namespace VENDAS_SUPERMERCADO.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProductsPage : ContentPage
     {
-        private NetService netService;
+        //private NetService netService;
 
-        private APIService apiService;
-        public ObservableCollection<ProductItemViewModel> Products { get; set; }
+        //private APIService apiService;
+        //public ObservableCollection<ProductItemViewModel> Products { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
         public ProductsPage()
         {
-            apiService = new APIService();
-            netService = new NetService();
-            Products = new ObservableCollection<ProductItemViewModel>();
-            LoadProducts();
+            //apiService = new APIService();
+            //netService = new NetService();
+            //Products = new ObservableCollection<ProductItemViewModel>();
+            //LoadProducts();
             InitializeComponent();
+            BindingContext = new MainViewModel();
 
         }
-        public async void LoadProducts()
-        {
+        //public async void LoadProducts()
+        //{
 
-            var productsAPI = new List<Products>();
+        //    var productsAPI = new List<Products>();
 
-            productsAPI = await apiService.Get<Products>("products");
+        //    productsAPI = await apiService.Get<Products>("products");
 
-            ReloadProducts(productsAPI);
-        }
-        public void ReloadProducts(List<Products> products)
-        {
-            Products.Clear();
+        //    ReloadProducts(productsAPI);
+        //}
+        //public void ReloadProducts(List<Products> products)
+        //{
+        //    Products.Clear();
 
-            foreach (var product in products.OrderBy(p => p.pro_nome))
-            {
-                Products.Add(new ProductItemViewModel
-                {
-                    pro_nome = product.pro_nome,
-                    Preco = product.Preco,
-                });
-            }
-        }
+        //    foreach (var product in products.OrderBy(p => p.pro_nome))
+        //    {
+        //        Products.Add(new ProductItemViewModel
+        //        {
+        //            pro_nome = product.pro_nome,
+        //            Preco = product.Preco,
+        //        });
+        //    }
+        //}
     }
 }

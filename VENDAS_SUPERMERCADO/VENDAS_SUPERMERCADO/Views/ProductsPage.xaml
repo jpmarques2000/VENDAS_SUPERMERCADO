@@ -4,12 +4,14 @@
              x:Class="VENDAS_SUPERMERCADO.Views.ProductsPage" Title="Produtos">
     <StackLayout Margin="25">
 
+        <SearchBar
+             Placeholder="Buscar..."
+             Text="{Binding ProductFilter, Mode=TwoWay}"
+             SearchCommand="{Binding SearchProductCommand}">
+        </SearchBar>
         <ListView ItemTemplate="{StaticResource ProdutoItemTemplate}" ItemsSource="{Binding Products}" HasUnevenRows="True">
-
         </ListView>
         <Button Text="TESTE"></Button>
-
-
 
 
         <Button Text="Meu Carrinho" HorizontalOptions="Center" VerticalOptions="EndAndExpand"></Button>

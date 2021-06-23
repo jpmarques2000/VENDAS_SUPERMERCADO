@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 using VENDAS_SUPERMERCADO.Models;
 using VENDAS_SUPERMERCADO.Services;
 
@@ -19,6 +20,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         private static MainViewModel instance;
 
         public event PropertyChangedEventHandler PropertyChanged;
+        //public ICommand SearchProductCommand { get { return new RelayCommand(SearchProduct); } }
 
         public MainViewModel()
         {
@@ -64,6 +66,13 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     Preco = product.Preco,
                 });
             }
+        }
+
+        private void SearchProduct()
+        {
+            //var products = dataServices.GetProducts(ProductFilter);
+            //ReloadProducts(products);
+
         }
     }
 }

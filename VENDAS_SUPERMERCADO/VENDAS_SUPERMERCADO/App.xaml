@@ -8,15 +8,15 @@
             <!-- Data Template Produtos -->
             <DataTemplate x:Key="ProdutoItemTemplate">
                 <ViewCell>
-                    <Grid Padding="8">
+                    <Grid Padding="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <Image Source="" VerticalOptions="Start" WidthRequest="100" HeightRequest="100"></Image>
+                        <Image Source="" VerticalOptions="Start" WidthRequest="80" HeightRequest="40"></Image>
                         <StackLayout Grid.Column="1">
-                            <Label FontAttributes="Bold" VerticalOptions="Center" Text="{Binding pro_nome}" FontSize="20"></Label>
+                            <Label FontAttributes="Bold" VerticalOptions="Center" Text="{Binding pro_nome}" FontSize="16"></Label>
                             <Label FontAttributes="Bold" FontSize="14" Text="descriçao do produto ....... " VerticalOptions="Center"></Label>
                             <Label Text="{Binding Preco}" FontAttributes="Bold" VerticalOptions="Center"></Label>
 
