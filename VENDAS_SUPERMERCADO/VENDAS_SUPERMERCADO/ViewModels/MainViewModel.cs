@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -10,7 +11,7 @@ using VENDAS_SUPERMERCADO.Services;
 
 namespace VENDAS_SUPERMERCADO.ViewModels
 {
-    public class MainViewModel
+    public class MainViewModel : INotifyPropertyChanged
     {
         private NetService netService;
 
@@ -20,7 +21,39 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         private static MainViewModel instance;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        //public ICommand SearchProductCommand { get { return new RelayCommand(SearchProduct); } }
+       
+        private string productFilter;
+        public ICommand SearchProductCommand { get { return new RelayCommand(SearchProduct); } }
+        public static MainViewModel GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new MainViewModel();
+            }
+
+            return instance;
+        }
+        public string ProductFilter
+        {
+            set
+            {
+                if (productFilter != value)
+                {
+                    productFilter = value;
+
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ProductFilter"));
+                }
+
+                if (string.IsNullOrEmpty(productFilter))
+                {
+                    LoadProducts();
+                }
+            }
+            get
+            {
+                return productFilter;
+            }
+        }
 
         public MainViewModel()
         {
@@ -70,7 +103,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         private void SearchProduct()
         {
-            //var products = dataServices.GetProducts(ProductFilter);
+            //var products = apiService.GetProducts(ProductFilter);
             //ReloadProducts(products);
 
         }

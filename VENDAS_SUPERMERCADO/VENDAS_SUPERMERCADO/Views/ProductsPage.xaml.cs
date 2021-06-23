@@ -29,7 +29,7 @@ namespace VENDAS_SUPERMERCADO.Views
             //Products = new ObservableCollection<ProductItemViewModel>();
             //LoadProducts();
             InitializeComponent();
-            BindingContext = new MainViewModel();
+            //BindingContext = new MainViewModel();
 
         }
         //public async void LoadProducts()
