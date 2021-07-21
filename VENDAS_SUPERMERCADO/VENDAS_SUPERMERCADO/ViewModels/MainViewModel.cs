@@ -78,6 +78,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             //{
             //    products = await apiService.Get<Products>("products");
 
+            //    ReloadProducts(products);
+
             //}
             //else
             //{
@@ -86,6 +88,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             products = await apiService.Get<Products>("products");
 
             ReloadProducts(products);
+
         }
         public void ReloadProducts(List<Products> products)
         {
@@ -95,17 +98,52 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             {
                 Products.Add(new ProductItemViewModel
                 {
+                    pro_codigo = product.pro_codigo,
                     pro_nome = product.pro_nome,
                     Preco = product.Preco,
+                    Promocao = product.Promocao,
+                    categoria = product.categoria,
+                    Precopromocao = product.Precopromocao,
+                    custo = product.custo,
+                    ean = product.ean,
+                    secao = product.secao,
+                    tipoEmbalagem = product.tipoEmbalagem
                 });
             }
         }
 
-        private void SearchProduct()
+        private async void SearchProduct()
         {
-            //var products = apiService.GetProducts(ProductFilter);
+            var products = new List<Products>();
+            products = await apiService.Get<Products>("products");
+            filterProducts(products, ProductFilter);
+            //var products = dataServices.GetProducts(ProductFilter);
             //ReloadProducts(products);
 
         }
+
+        public void filterProducts(List<Products> products, string filter)
+        {
+            Products.Clear();
+
+            foreach (var product in products.Where(p => p.pro_nome.ToUpper().Contains(filter.ToUpper())) .OrderBy(p => p.pro_nome))
+            {
+                Products.Add(new ProductItemViewModel
+                {
+                    pro_codigo = product.pro_codigo,
+                    pro_nome = product.pro_nome,
+                    Preco = product.Preco,
+                    Promocao = product.Promocao,
+                    categoria = product.categoria,
+                    Precopromocao = product.Precopromocao,
+                    custo = product.custo,
+                    ean = product.ean,
+                    secao = product.secao,
+                    tipoEmbalagem = product.tipoEmbalagem
+                });
+            }
+        }
+
+
     }
 }
