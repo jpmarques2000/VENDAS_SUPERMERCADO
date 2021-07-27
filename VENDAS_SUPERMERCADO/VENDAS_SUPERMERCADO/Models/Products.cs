@@ -12,6 +12,7 @@ namespace VENDAS_SUPERMERCADO.Models
         public string tipoEmbalagem { get; set; }
         public string secao { get; set; }
         public string categoria { get; set; }
+        public string departamento { get; set; }
         public string ncm { get; set; }
         public string ean { get; set; }
         public double custo { get; set; }

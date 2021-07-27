@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Input;
 using VENDAS_SUPERMERCADO.Models;
 using VENDAS_SUPERMERCADO.Services;
+using VENDAS_SUPERMERCADO.Views;
 
 namespace VENDAS_SUPERMERCADO.ViewModels
 {
@@ -21,9 +22,14 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         private static MainViewModel instance;
 
         public event PropertyChangedEventHandler PropertyChanged;
-       
+
+        List<string> Departments = new List<string>();
+
         private string productFilter;
         public ICommand SearchProductCommand { get { return new RelayCommand(SearchProduct); } }
+
+        public ProductsPage productDPT;
+
         public static MainViewModel GetInstance()
         {
             if (instance == null)
@@ -92,7 +98,9 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         }
         public void ReloadProducts(List<Products> products)
         {
+
             Products.Clear();
+            Departments.Clear();
 
             foreach (var product in products.OrderBy(p => p.pro_nome))
             {
@@ -109,16 +117,17 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     secao = product.secao,
                     tipoEmbalagem = product.tipoEmbalagem
                 });
+
+                Departments.Add(product.departamento.ToString());
             }
         }
 
         private async void SearchProduct()
         {
+      //      var dptSelecionado = productDPT.departamentoFiltro();
             var products = new List<Products>();
             products = await apiService.Get<Products>("products");
             filterProducts(products, ProductFilter);
-            //var products = dataServices.GetProducts(ProductFilter);
-            //ReloadProducts(products);
 
         }
 

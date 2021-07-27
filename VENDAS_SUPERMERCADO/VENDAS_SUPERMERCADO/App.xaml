@@ -17,7 +17,6 @@
                         <Image Source="" VerticalOptions="Start" WidthRequest="80" HeightRequest="40"></Image>
                         <StackLayout Grid.Column="1">
                             <Label FontAttributes="Bold" VerticalOptions="Center" Text="{Binding pro_nome}" FontSize="16"></Label>
-                            <Label FontAttributes="Bold" FontSize="14" Text="descriçao do produto ....... " VerticalOptions="Center"></Label>
                             <Label Text="{Binding Preco}" FontAttributes="Bold" VerticalOptions="Center"></Label>
 
                         </StackLayout>

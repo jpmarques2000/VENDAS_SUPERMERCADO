@@ -13,9 +13,19 @@
         <ListView ItemTemplate="{StaticResource ProdutoItemTemplate}" ItemsSource="{Binding Products}" HasUnevenRows="True">
         </ListView>
         <Button Text="TESTE"></Button>
-
-
         <Button Text="Meu Carrinho" HorizontalOptions="Center" VerticalOptions="EndAndExpand"></Button>
+        <Picker x:Name="pckDPT" HorizontalOptions="FillAndExpand"
+            Title="Departamento:"
+            SelectedIndexChanged="pckDPT_SelectedIndexChanged">
+            <Picker.Items>
+                <x:String>ACOUGUE</x:String>
+                <x:String>HORTI FRUTI</x:String>
+                <x:String>BEBIDAS</x:String>
+                <x:String>PADARIA</x:String>
+                <x:String>FRIOS</x:String>
+            </Picker.Items>
+        </Picker>
+        
 
     </StackLayout>
 </ContentPage>
