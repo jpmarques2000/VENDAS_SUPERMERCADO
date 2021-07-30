@@ -30,6 +30,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         public ProductsPage productDPT;
 
+        public UserViewModel UserLoged { get; set; }
+
         public static MainViewModel GetInstance()
         {
             if (instance == null)
@@ -67,6 +69,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             apiService = new APIService();
             netService = new NetService();
             Products = new ObservableCollection<ProductItemViewModel>();
+            UserLoged = new UserViewModel();
             //Customers = new ObservableCollection<CustomerItemViewModel>();
             //CurrentCustomer = new CustomerItemViewModel();
 
@@ -151,6 +154,19 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     tipoEmbalagem = product.tipoEmbalagem
                 });
             }
+        }
+
+        public void LoadUser(User user)
+        {
+            UserLoged.id = user.id;
+            UserLoged.nome = user.nome;
+            UserLoged.bairro = user.bairro;
+            UserLoged.cep = user.cep;
+            UserLoged.dataNascimento = user.dataNascimento;
+            UserLoged.email = user.email;
+            UserLoged.numero = user.numero;
+            UserLoged.rua = user.rua;
+            UserLoged.telefone = user.telefone;
         }
 
 

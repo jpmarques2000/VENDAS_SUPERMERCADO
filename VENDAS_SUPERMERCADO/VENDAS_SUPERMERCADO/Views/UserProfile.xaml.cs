@@ -16,5 +16,11 @@ namespace VENDAS_SUPERMERCADO.Views
         {
             InitializeComponent();
         }
+
+        private void Button_Salvar_Clicked(object sender, EventArgs e)
+        {
+            
+        }
+
     }
 }
