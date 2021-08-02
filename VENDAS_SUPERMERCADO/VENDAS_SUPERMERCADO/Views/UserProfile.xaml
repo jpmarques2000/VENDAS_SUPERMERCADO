@@ -3,36 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VENDAS_SUPERMERCADO.Views.UserProfile" Title="Meu Pefil"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
-    <ContentPage.Content>
-        <Frame OutlineColor ="Silver"
-           VerticalOptions="CenterAndExpand"
-           Margin="15">
-            <StackLayout VerticalOptions="Center" HorizontalOptions="Center" BindingContext ="{Binding UserLoged}">
-                <TableView>
-                    <TableRoot>
-                        <TableSection Title="Dados Pessoais">
-                            <EntryCell x:Name="txtNome" Placeholder="Nome" 
-                                           Text="{Binding nome}"></EntryCell>
-                            <EntryCell x:Name="txtNascimento" Placeholder="Data de Nascimento" 
-                                           Text="{Binding dataNascimento}"></EntryCell>
-                            <EntryCell x:Name="txtTelefone" Placeholder="Telefone" 
-                                           Text="{Binding telefone}"></EntryCell>
-                            <EntryCell x:Name="txtEmail" Placeholder="E-mail" 
-                                           Text="{Binding email}"></EntryCell>
-                            <EntryCell x:Name="txtRua" Placeholder="Rua" 
-                                           Text="{Binding rua}"></EntryCell>
-                            <EntryCell x:Name="txtBairro" Placeholder="Bairro" 
-                                           Text="{Binding bairro}"></EntryCell>
-                            <EntryCell x:Name="txtNumero" Placeholder="Numero" 
-                                           Text="{Binding numero}"></EntryCell>
-                            <EntryCell x:Name="txtCep" Placeholder="Cep" 
-                                           Text="{Binding cep}"></EntryCell>
-                        </TableSection>
-                    </TableRoot>
-                </TableView>
-                <Button Text="Salvar" Clicked="Button_Salvar_Clicked">
-                </Button>
+    <StackLayout>
+        <StackLayout>
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
+                <Label Margin="0,0,0,10" Text="Perfil do Usuário"
+                       FontAttributes="Bold"
+                       FontSize="Large"
+                       TextColor="Black" HorizontalTextAlignment="Center">
+                </Label>
+                <Entry x:Name="txtNome" Placeholder="Nome" Text="{Binding Nome}"></Entry>
+                <Entry x:Name="txtNascimento" Placeholder="Data de Nascimento" Text="{Binding dataNascimento}"></Entry>
+                <Entry x:Name="txtTelefone" Placeholder="Telefone" Text="{Binding Telefone}"></Entry>
+                <Entry x:Name="txtEmail" Placeholder="Email" Text="{Binding Email}"></Entry>
+                <Entry x:Name="txtRua" Placeholder="Rua" Text="{Binding Rua}"></Entry>
+                <Entry x:Name="txtBairro" Placeholder="Bairro" Text="{Binding Bairro}"></Entry>
+                <Entry x:Name="txtNumero" Placeholder="Numero" Text="{Binding Numero}"></Entry>
+                <Entry x:Name="txtCep" Placeholder="Cep" Text="{Binding Cep}"></Entry>
+                <StackLayout>
+                    <Button Text="Salvar" Clicked="Button_Salvar_Clicked">
+                    </Button>
+                </StackLayout>
             </StackLayout>
-        </Frame>
-    </ContentPage.Content>
+        </StackLayout>
+    </StackLayout>
 </ContentPage>

@@ -54,5 +54,43 @@ namespace VENDAS_SUPERMERCADO.Services
                 .FirstOrDefault();
             return (user != null);
         }
+
+        public async Task UpdateUser(string username,string dataNasc, string userTel, string userCEP, string userRua, 
+            string userBairro, string UserNumero)
+        {
+            try
+            {
+                var toUpdateUser = (await client
+                    .Child("Users")
+                    .OnceAsync<User>())
+                    .Where(a => a.Object.Username == username).FirstOrDefault();
+
+                await client
+                    .Child("Users")
+                        .Child(toUpdateUser.Key)
+                           .PutAsync(new User()
+                           {dataNascimento = dataNasc, telefone = userTel, cep = userCEP, 
+                               rua = userRua, bairro = userBairro, numero = UserNumero });
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+
+        }
+
+        //public async Task<User> GetUser(string username)
+        //{
+        //    //return (await client
+        //    //    .Child("Users")
+        //    //    .OnceAsync<User>()).Select(item => new User
+        //    //    {
+        //    //        dataNascimento = item.Object.dataNascimento,
+        //    //        cep = item.Object.cep,
+        //    //        rua = item.Object.rua,
+        //    //        bairro = item.Object.bairro,
+        //    //        numero = item.Object.numero
+        //    //    });
+        //}
     }
 }

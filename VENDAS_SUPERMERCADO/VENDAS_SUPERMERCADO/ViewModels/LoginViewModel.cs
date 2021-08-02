@@ -110,6 +110,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 {
                     Preferences.Set("Username", Username);
                     // await Application.Current.MainPage.Navigation.PushAsync(new MainShell());
+                    var mainViewModel = MainViewModel.GetInstance();
+                   // mainViewModel.LoadUser();
                     Application.Current.MainPage = new MainShell();
                 }
                 else
