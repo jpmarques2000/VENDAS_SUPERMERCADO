@@ -22,8 +22,8 @@
         </StackLayout>
 
         <StackLayout Grid.Row="1" Spacing="5">
-            <Entry Placeholder="Nome de usuario" Text="{Binding Username}"/>
-            <Entry Placeholder="Senha do usuario" Text="{Binding Password}" IsPassword="True"/>
+            <Entry Placeholder="Nome de usuario" Text="{Binding username}"/>
+            <Entry Placeholder="Senha do usuario" Text="{Binding password}" IsPassword="True"/>
             <Button Text="Login" HorizontalOptions="Center" BackgroundColor="Black"
                     TextColor="White" WidthRequest="300" HeightRequest="40"
                     Command="{Binding LoginCommand}"/>

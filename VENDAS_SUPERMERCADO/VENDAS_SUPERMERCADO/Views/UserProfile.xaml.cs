@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VENDAS_SUPERMERCADO.Services;
+using VENDAS_SUPERMERCADO.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,6 +17,7 @@ namespace VENDAS_SUPERMERCADO.Views
         public UserProfile()
         {
             InitializeComponent();
+            this.BindingContext = new UserViewModel();
         }
 
         private async void Button_Salvar_Clicked(object sender, EventArgs e)

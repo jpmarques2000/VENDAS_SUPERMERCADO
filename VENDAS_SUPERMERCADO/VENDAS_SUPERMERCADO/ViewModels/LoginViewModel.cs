@@ -6,69 +6,23 @@ using Xamarin.Forms;
 using VENDAS_SUPERMERCADO.Services;
 using Xamarin.Essentials;
 using VENDAS_SUPERMERCADO.Views;
+using VENDAS_SUPERMERCADO.Models;
 
 namespace VENDAS_SUPERMERCADO.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel : User
     {
-        private string _Username;
-        public string Username
-        {
-            set
-            {
-                this._Username = value;
-                OnPropertyChanged();
-            }
-            get
-            {
-                return this._Username;
-            }
-        }
-        private string _Password;
-        public string Password
-        {
-            set
-            {
-                this._Password = value;
-                OnPropertyChanged();
-            }
-            get
-            {
-                return this._Password;
-            }
-        }
-        private bool _Result;
-        public bool Result
-        {
-            set
-            {
-                this._IsBusy = value;
-                OnPropertyChanged();
-            }
-            get
-            {
-                return this._IsBusy;
-            }
-        }
-        private bool _IsBusy;
-        public bool IsBusy
-        {
-            set
-            {
-                this._Result = value;
-                OnPropertyChanged();
-            }
-            get
-            {
-                return this._Result;
-            }
-        }
+        private readonly IMessageService _messageService;
+        private readonly INavigationService _navigationService;
 
         public Command LoginCommand { get; set; }
         public Command RegisterCommand { get; set; }
 
         public LoginViewModel()
         {
+            _messageService = DependencyService.Get<IMessageService>();
+            _navigationService = DependencyService.Get<INavigationService>();
+
             LoginCommand = new Command(async () => await LoginCommandAsync());
             RegisterCommand = new Command(async () => await RegisterCommandAsync());
         }
@@ -81,7 +35,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             {
                 IsBusy = true;
                 var userService = new UserService();
-                Result = await userService.RegisterUser(Username, Password);
+                Result = await userService.RegisterUser(username, password);
                 if (Result)
                     await Application.Current.MainPage.DisplayAlert("Sucesso", "Usuario Registrado", "Ok");
                 else
@@ -105,14 +59,15 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             {
                 IsBusy = true;
                 var userService = new UserService();
-                Result = await userService.LoginUser(Username, Password);
+                Result = await userService.LoginUser(username, password);
                 if (Result)
                 {
-                    Preferences.Set("Username", Username);
+                    Preferences.Set("Username", username);
                     // await Application.Current.MainPage.Navigation.PushAsync(new MainShell());
                     var mainViewModel = MainViewModel.GetInstance();
                    // mainViewModel.LoadUser();
-                    Application.Current.MainPage = new MainShell();
+                //    Application.Current.MainPage = new MainShell();
+                   await this._navigationService.NavigateToMenu();
                 }
                 else
                 {

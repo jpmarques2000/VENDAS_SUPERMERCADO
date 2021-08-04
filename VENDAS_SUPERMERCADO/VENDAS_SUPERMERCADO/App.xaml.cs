@@ -14,6 +14,9 @@ namespace VENDAS_SUPERMERCADO
         public static User CurrentUser { get; internal set; }
         public App()
         {
+            DependencyService.Register<ViewModels.INavigationService,
+                Views.NavigationService>();
+
             InitializeComponent();
             userService = new UserService();
 

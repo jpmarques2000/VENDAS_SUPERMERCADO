@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VENDAS_SUPERMERCADO.Views.MenuView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Cadastro" Order="Primary" Priority="0"
+                     Command="{Binding RegistroCommand}"/>
+        <ToolbarItem Name="Produtos" Order="Primary" Priority="1" />
+        <ToolbarItem Name="Carrinho" Order="Primary" Priority="2" />
+    </ContentPage.ToolbarItems>
+</ContentPage>

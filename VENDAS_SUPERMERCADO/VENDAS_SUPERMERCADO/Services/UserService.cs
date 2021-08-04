@@ -23,7 +23,7 @@ namespace VENDAS_SUPERMERCADO.Services
         {
             var user = (await client.Child("Users")
                 .OnceAsync<User>())
-                .Where(u => u.Object.Username == name)
+                .Where(u => u.Object.username == name)
                 .FirstOrDefault();
             return (user != null);
         }
@@ -35,8 +35,8 @@ namespace VENDAS_SUPERMERCADO.Services
                 await client.Child("Users")
                     .PostAsync(new User()
                     {
-                        Username = name,
-                        Password = passwd
+                        username = name,
+                        password = passwd
                     });
                 return true;
             }
@@ -49,8 +49,8 @@ namespace VENDAS_SUPERMERCADO.Services
         {
             var user = (await client.Child("Users")
                 .OnceAsync<User>())
-                .Where(u => u.Object.Username == name)
-                .Where(u => u.Object.Password == passwd)
+                .Where(u => u.Object.username == name)
+                .Where(u => u.Object.password == passwd)
                 .FirstOrDefault();
             return (user != null);
         }
@@ -63,7 +63,7 @@ namespace VENDAS_SUPERMERCADO.Services
                 var toUpdateUser = (await client
                     .Child("Users")
                     .OnceAsync<User>())
-                    .Where(a => a.Object.Username == username).FirstOrDefault();
+                    .Where(a => a.Object.username == username).FirstOrDefault();
 
                 await client
                     .Child("Users")
