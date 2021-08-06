@@ -18,6 +18,21 @@ namespace VENDAS_SUPERMERCADO.Views
             await App.Current.MainPage.Navigation.PushAsync(new MenuView());
         }
 
+        public async Task NavigateToMyCart()
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new MyCartPage());
+        }
+
+        public async Task NavigateToMyOrder()
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new MyOrderPage());
+        }
+
+        public async Task NavigateToProducts()
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new ProductsPage());
+        }
+
         public async Task NavigateToRegister()
         {
             await App.Current.MainPage.Navigation.PushAsync(new LoginView());
@@ -26,6 +41,11 @@ namespace VENDAS_SUPERMERCADO.Views
         public async Task NavigateToShell()
         {
             await App.Current.MainPage.Navigation.PushAsync(new MainShell());
+        }
+
+        public async Task NavigateToUserProfile()
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new UserProfile());
         }
     }
 }

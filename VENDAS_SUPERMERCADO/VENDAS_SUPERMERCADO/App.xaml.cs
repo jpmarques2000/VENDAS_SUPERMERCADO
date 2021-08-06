@@ -20,7 +20,7 @@ namespace VENDAS_SUPERMERCADO
             InitializeComponent();
             userService = new UserService();
 
-           // var user = userService.GetUser()
+         //   var user = userService.GetUser()
 
             var mainViewModel = MainViewModel.GetInstance();
           //  mainViewModel.LoadUser(user);

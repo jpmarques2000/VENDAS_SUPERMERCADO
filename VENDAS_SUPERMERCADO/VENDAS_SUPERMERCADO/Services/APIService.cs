@@ -27,6 +27,8 @@ namespace VENDAS_SUPERMERCADO.Services
                 };
                 var response = await client.SendAsync(request);
 
+                response = null;
+
                 if (!response.IsSuccessStatusCode)
                 {
                     return null;

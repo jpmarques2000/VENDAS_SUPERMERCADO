@@ -47,31 +47,6 @@ namespace VENDAS_SUPERMERCADO.Models
                 return this._password;
             }
         }
-        private bool _Result;
-        public bool Result
-        {
-            set
-            {
-                this._IsBusy = value;
-                OnPropertyChanged();
-            }
-            get
-            {
-                return this._IsBusy;
-            }
-        }
-        private bool _IsBusy;
-        public bool IsBusy
-        {
-            set
-            {
-                this._Result = value;
-                OnPropertyChanged();
-            }
-            get
-            {
-                return this._Result;
-            }
-        }
+        
     }
 }

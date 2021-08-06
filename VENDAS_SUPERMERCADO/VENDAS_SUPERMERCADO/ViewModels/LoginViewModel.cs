@@ -18,6 +18,33 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         public Command LoginCommand { get; set; }
         public Command RegisterCommand { get; set; }
 
+        private bool _Result;
+        public bool Result
+        {
+            set
+            {
+                this._IsBusy = value;
+                OnPropertyChanged();
+            }
+            get
+            {
+                return this._IsBusy;
+            }
+        }
+        private bool _IsBusy;
+        public bool IsBusy
+        {
+            set
+            {
+                this._Result = value;
+                OnPropertyChanged();
+            }
+            get
+            {
+                return this._Result;
+            }
+        }
+
         public LoginViewModel()
         {
             _messageService = DependencyService.Get<IMessageService>();
@@ -63,11 +90,10 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 if (Result)
                 {
                     Preferences.Set("Username", username);
-                    // await Application.Current.MainPage.Navigation.PushAsync(new MainShell());
                     var mainViewModel = MainViewModel.GetInstance();
-                   // mainViewModel.LoadUser();
-                //    Application.Current.MainPage = new MainShell();
-                   await this._navigationService.NavigateToMenu();
+                    // mainViewModel.LoadUser();
+                  //  Application.Current.MainPage = new MainShell();
+                       await this._navigationService.NavigateToMenu();
                 }
                 else
                 {
