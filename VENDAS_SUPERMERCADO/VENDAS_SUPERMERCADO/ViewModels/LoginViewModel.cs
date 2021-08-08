@@ -64,7 +64,13 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 var userService = new UserService();
                 Result = await userService.RegisterUser(username, password);
                 if (Result)
+                {
+                    
                     await Application.Current.MainPage.DisplayAlert("Sucesso", "Usuario Registrado", "Ok");
+                   
+
+                }
+                
                 else
                     await Application.Current.MainPage.DisplayAlert("Erro", "Falha ao registrar usuario", "Ok");
             }
@@ -90,7 +96,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 if (Result)
                 {
                     Preferences.Set("Username", username);
-                    var mainViewModel = MainViewModel.GetInstance();
+                    await MainViewModel.GetInstance().LoadProducts();
+                    
                     // mainViewModel.LoadUser();
                   //  Application.Current.MainPage = new MainShell();
                        await this._navigationService.NavigateToMenu();

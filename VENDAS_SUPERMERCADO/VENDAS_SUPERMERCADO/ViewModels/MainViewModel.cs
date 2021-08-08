@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using VENDAS_SUPERMERCADO.Models;
 using VENDAS_SUPERMERCADO.Services;
@@ -75,10 +76,9 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             //NewLogin = new LoginViewModel();
             //UserLoged = new UserViewModel();
-            LoadProducts();
             //LoadCustomers();
         }
-        public async void LoadProducts()
+        public async Task LoadProducts()
         {
            
             var products = new List<Products>();
@@ -96,7 +96,10 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             //}
             products = await apiService.Get<Products>("products");
 
-            ReloadProducts(products);
+            if (products != null)
+            {
+                ReloadProducts(products);
+            }
 
         }
         public void ReloadProducts(List<Products> products)
@@ -130,8 +133,11 @@ namespace VENDAS_SUPERMERCADO.ViewModels
       //      var dptSelecionado = productDPT.departamentoFiltro();
             var products = new List<Products>();
             products = await apiService.Get<Products>("products");
-            filterProducts(products, ProductFilter);
-
+            if (products != null)
+            {
+                filterProducts(products, ProductFilter);
+            }
+            
         }
 
         public void filterProducts(List<Products> products, string filter)

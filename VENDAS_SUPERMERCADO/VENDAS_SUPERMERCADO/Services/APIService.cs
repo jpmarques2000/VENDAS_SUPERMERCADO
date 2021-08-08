@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -14,28 +15,12 @@ namespace VENDAS_SUPERMERCADO.Services
             try
             {
 
-                var client = new HttpClient();
-                var request = new HttpRequestMessage
-                {
-                    Method = HttpMethod.Get,
-                    RequestUri = new Uri("https://products-mart-api.herokuapp.com/products"),
-
-                    Headers =
-                    {
-                    { "Authorization", "super-secret" },
-                    },
-                };
-                var response = await client.SendAsync(request);
-
-                response = null;
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    return null;
-
-                }
-
-                var result = await response.Content.ReadAsStringAsync();
+                var client = new RestClient("https://products-mart-api.herokuapp.com/products");
+                client.Timeout = -1;
+                var request = new RestRequest(Method.GET);
+                request.AddHeader("Authorization", "super-secret");
+                IRestResponse response = await client.ExecuteAsync(request);
+                var result = response.Content;
                 var list = JsonConvert.DeserializeObject<List<T>>(result);
                 return list;
 
