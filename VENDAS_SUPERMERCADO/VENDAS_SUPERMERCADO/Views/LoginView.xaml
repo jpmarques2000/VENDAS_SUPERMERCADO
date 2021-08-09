@@ -16,7 +16,7 @@
 
         <StackLayout>
             <Label Text="Login" FontFamily="Verdana"
-               TextColor="Blue" FontSize="30"
+               TextColor="Black" FontSize="30"
                FontAttributes="Bold"
                HorizontalOptions="Center"/>
         </StackLayout>
@@ -27,9 +27,8 @@
             <Button Text="Login" HorizontalOptions="Center" BackgroundColor="Black"
                     TextColor="White" WidthRequest="300" HeightRequest="40"
                     Command="{Binding LoginCommand}"/>
-            <Label Text="Novo usuario ?" FontAttributes="Bold" TextColor="Purple"/>
 
-            <Button Text="Registrar" HorizontalOptions="Center" BackgroundColor="DarkSlateGray"
+            <Button Text="Registrar" HorizontalOptions="Center" BackgroundColor="Black"
                     TextColor="White" WidthRequest="300" HeightRequest="40"
                     Command="{Binding RegisterCommand}"/>
         </StackLayout>

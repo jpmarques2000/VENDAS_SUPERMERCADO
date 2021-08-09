@@ -17,14 +17,7 @@ namespace VENDAS_SUPERMERCADO.Views
         public UserProfile()
         {
             InitializeComponent();
-            this.BindingContext = new UserViewModel();
-        }
 
-        private async void Button_Salvar_Clicked(object sender, EventArgs e)
-        {
-            await userService
-                .UpdateUser(Convert.ToString(txtEmail), Convert.ToString(txtNascimento), Convert.ToString(txtTelefone)
-                , Convert.ToString(txtCep), Convert.ToString(txtRua), Convert.ToString(txtBairro), Convert.ToString(txtNumero));
         }
 
     }

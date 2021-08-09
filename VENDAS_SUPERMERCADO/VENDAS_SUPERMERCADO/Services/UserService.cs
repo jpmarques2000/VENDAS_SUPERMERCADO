@@ -56,7 +56,7 @@ namespace VENDAS_SUPERMERCADO.Services
         }
 
         public async Task UpdateUser(string username,string dataNasc, string userTel, string userCEP, string userRua, 
-            string userBairro, string UserNumero)
+            string userBairro, string UserNumero, string password)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace VENDAS_SUPERMERCADO.Services
                         .Child(toUpdateUser.Key)
                            .PutAsync(new User()
                            {dataNascimento = dataNasc, telefone = userTel, cep = userCEP, 
-                               rua = userRua, bairro = userBairro, numero = UserNumero });
+                               rua = userRua, bairro = userBairro, numero = UserNumero, username = username, password = password});
             }
             catch (System.Exception)
             {

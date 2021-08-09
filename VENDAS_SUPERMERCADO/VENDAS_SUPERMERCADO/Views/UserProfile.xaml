@@ -1,26 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VENDAS_SUPERMERCADO.Views.UserProfile" Title="Meu Pefil"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+             xmlns:vm="clr-namespace:VENDAS_SUPERMERCADO.ViewModels"
+             x:Class="VENDAS_SUPERMERCADO.Views.UserProfile" Title="Meu Pefil">
+    <ContentPage.BindingContext>
+        <vm:UserViewModel/>
+    </ContentPage.BindingContext>
     <StackLayout>
         <StackLayout>
-            <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
-                <Label Margin="0,0,0,10" Text="Perfil do Usuário"
-                       FontAttributes="Bold"
-                       FontSize="Large"
-                       TextColor="Black" HorizontalTextAlignment="Center">
-                </Label>
-                <Entry x:Name="txtNome" Placeholder="Nome" Text="{Binding Nome}"></Entry>
-                <Entry x:Name="txtNascimento" Placeholder="Data de Nascimento" Text="{Binding dataNascimento}"></Entry>
-                <Entry x:Name="txtTelefone" Placeholder="Telefone" Text="{Binding Telefone}"></Entry>
-                <Entry x:Name="txtEmail" Placeholder="Email" Text="{Binding Email}"></Entry>
-                <Entry x:Name="txtRua" Placeholder="Rua" Text="{Binding Rua}"></Entry>
-                <Entry x:Name="txtBairro" Placeholder="Bairro" Text="{Binding Bairro}"></Entry>
-                <Entry x:Name="txtNumero" Placeholder="Numero" Text="{Binding Numero}"></Entry>
-                <Entry x:Name="txtCep" Placeholder="Cep" Text="{Binding Cep}"></Entry>
+            <StackLayout HorizontalOptions="FillAndExpand"  VerticalOptions="Start" Padding="40,40,40,0">
+                
+                <Entry Placeholder="Nome" Text="{Binding nome}" Keyboard="Default"></Entry>
+                <Entry Placeholder="Data de Nascimento" Text="{Binding dataNascimento}"></Entry>
+                <Entry Placeholder="Telefone" Text="{Binding telefone}" Keyboard="Telephone"></Entry>
+                <Entry Placeholder="Email" Text="{Binding username}" Keyboard="Email"></Entry>
+                <Entry Placeholder="Rua" Text="{Binding rua}" Keyboard="Default"></Entry>
+                <Entry Placeholder="Bairro" Text="{Binding bairro}"></Entry>
+                <Entry Placeholder="Numero" Text="{Binding numero}" Keyboard="Numeric"></Entry>
+                <Entry Placeholder="Cep" Text="{Binding cep}" Keyboard="Numeric"></Entry>
+                <Entry Placeholder="Senha" Text="{Binding password}"></Entry>
                 <StackLayout>
-                    <Button Text="Salvar" Clicked="Button_Salvar_Clicked">
+                    <Button Text="Salvar" Command="{Binding GravarCommand}">
                     </Button>
                 </StackLayout>
             </StackLayout>

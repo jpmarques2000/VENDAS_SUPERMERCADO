@@ -3,15 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VENDAS_SUPERMERCADO.Views.MenuView">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Cad" Order="Primary" Priority="0"
-                     Command="{Binding RegisterCommand}"/>
-        <ToolbarItem Name="Produtos" Order="Primary" Priority="1"
+        <ToolbarItem Name="Produtos" Order="Primary" Priority="0"
                      Command="{Binding ProductCommand}"/>
-        <ToolbarItem Name="Cart" Order="Primary" Priority="2"
+        <ToolbarItem Name="Cart" Order="Primary" Priority="1"
                      Command="{Binding MyCartCommand}"/>
-        <ToolbarItem Name="Pedidos" Order="Primary" Priority="3"
+        <ToolbarItem Name="Pedidos" Order="Primary" Priority="2"
                      Command="{Binding MyOrderCommand}"/>
-        <ToolbarItem Name="Perfil" Order="Primary" Priority="4" 
+        <ToolbarItem Name="Perfil" Order="Primary" Priority="3" 
                      Command="{Binding UserProfileCommand}"/>
     </ContentPage.ToolbarItems>
 </ContentPage>
