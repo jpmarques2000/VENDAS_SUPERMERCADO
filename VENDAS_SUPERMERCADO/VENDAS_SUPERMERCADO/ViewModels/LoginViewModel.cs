@@ -7,6 +7,7 @@ using VENDAS_SUPERMERCADO.Services;
 using Xamarin.Essentials;
 using VENDAS_SUPERMERCADO.Views;
 using VENDAS_SUPERMERCADO.Models;
+using VENDAS_SUPERMERCADO.Interfaces;
 
 namespace VENDAS_SUPERMERCADO.ViewModels
 {
@@ -14,9 +15,13 @@ namespace VENDAS_SUPERMERCADO.ViewModels
     {
         private readonly IMessageService _messageService;
         private readonly INavigationService _navigationService;
+        private readonly IGoogleManager _googleManager;
 
         public Command LoginCommand { get; set; }
         public Command RegisterCommand { get; set; }
+        public Command GoogleLoginCommand { get; set; }
+        public Command GoogleLogoutCommand { get; set; }
+        private NetService netService;
 
         private bool _Result;
         public bool Result
@@ -44,14 +49,22 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 return this._Result;
             }
         }
+        public bool IsLogedIn { get; set; }
+
+        User userGoogle = new User();
 
         public LoginViewModel()
         {
             _messageService = DependencyService.Get<IMessageService>();
             _navigationService = DependencyService.Get<INavigationService>();
+            _googleManager = DependencyService.Get<IGoogleManager>();
 
             LoginCommand = new Command(async () => await LoginCommandAsync());
             RegisterCommand = new Command(async () => await RegisterCommandAsync());
+            GoogleLoginCommand = new Command( async () => await GoogleLoginCommandAsync());
+            GoogleLogoutCommand = new Command( () =>  GoogleLogoutCommandAsync());
+            netService = new NetService();
+            //    CheckUserLoggedIn();
         }
 
         private async Task RegisterCommandAsync()
@@ -86,37 +99,91 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         private async Task LoginCommandAsync()
         {
-            if (IsBusy)
-                return;
-            try
+            if (netService.IsConnected())
             {
-                IsBusy = true;
-                var userService = new UserService();
-                Result = await userService.LoginUser(username, password);
-                if (Result)
+                if (IsBusy)
+                    return;
+                try
                 {
-                    Preferences.Set("Username", username);
-                    await MainViewModel.GetInstance().LoadProducts();
-                    
-                    // mainViewModel.LoadUser();
-                  //  Application.Current.MainPage = new MainShell();
-                       await this._navigationService.NavigateToMenu();
+                    IsBusy = true;
+                    var userService = new UserService();
+                    Result = await userService.LoginUser(username, password);
+                    if (Result)
+                    {
+                        Preferences.Set("Username", username);
+                        await MainViewModel.GetInstance().LoadProducts();
+
+                        // mainViewModel.LoadUser();
+                        //  Application.Current.MainPage = new MainShell();
+                        await this._navigationService.NavigateToMenu();
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Erro", "Usuario/Senha invalido(s)", "Ok");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Erro", "Usuario/Senha invalido(s)", "Ok");
+                    await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "Ok");
+                }
+                finally
+                {
+                    IsBusy = false;
                 }
             }
-            catch (Exception ex)
+            else
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "Ok");
+                await Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
             }
-            finally
+        }
+        private async Task GoogleLoginCommandAsync()
+        {
+            if (netService.IsConnected())
+            { 
+                _googleManager.Login(OnLoginComplete);
+                await MainViewModel.GetInstance().LoadProducts();
+                await this._navigationService.NavigateToMenu();
+            }
+            else
             {
-                IsBusy = false;
+                await Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
             }
         }
 
+        private void OnLoginComplete(User user, string message)
+        {
+            if (user != null)
+            {
+                userGoogle = user;
+                username = userGoogle.email;
+                password = userGoogle.password;
+                IsLogedIn = true;
+
+            }
+            else
+            {
+                Application.Current.MainPage.DisplayAlert("Message", message, "Ok");
+            }
+        }
+
+        private void GoogleLogoutCommandAsync()
+        {
+            _googleManager.Logout();
+            IsLogedIn = false;
+            username = "";
+            password = "";
+        }
+        private void CheckUserLoggedIn()
+        {
+            if (netService.IsConnected())
+            { 
+                _googleManager.Login(OnLoginComplete);
+            }
+            else
+            {
+                Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
+            }
+        }
 
     }
 }

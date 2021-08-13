@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Connectivity;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using VENDAS_SUPERMERCADO.Interfaces;
@@ -10,9 +11,8 @@ namespace VENDAS_SUPERMERCADO.Services
     {
         public bool IsConnected()
         {
-            var networkConnection = DependencyService.Get<INetworkConnection>();
-            networkConnection.CheckNetworkConnection();
-            return networkConnection.IsConnected;
+            var response = CrossConnectivity.Current.IsConnected ? true : false;
+            return response;
         }
     }
 }

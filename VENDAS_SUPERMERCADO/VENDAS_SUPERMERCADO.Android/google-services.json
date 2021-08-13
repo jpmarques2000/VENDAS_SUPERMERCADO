@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "163640266081",
+    "firebase_url": "https://tcc-vendas-supermercado-default-rtdb.firebaseio.com",
+    "project_id": "tcc-vendas-supermercado",
+    "storage_bucket": "tcc-vendas-supermercado.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163640266081:android:1ea61e82a3f170ace9c920",
+        "android_client_info": {
+          "package_name": "com.companyname.vendas_supermercado"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "163640266081-pcgu60occ1saq9gmauimen3c0in9t9ke.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.companyname.vendas_supermercado",
+            "certificate_hash": "52e42312e3aa7ef67923ef4820321e341f06062a"
+          }
+        },
+        {
+          "client_id": "163640266081-900j996qkaeqekhsq8nkdb0rb9cr0n91.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbeS7are71J4pHkcKFWFfgucTweA2mppA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "163640266081-900j996qkaeqekhsq8nkdb0rb9cr0n91.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

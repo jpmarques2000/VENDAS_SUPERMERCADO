@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using VENDAS_SUPERMERCADO.Services;
 using Xamarin.Forms;
 
 namespace VENDAS_SUPERMERCADO.ViewModels
@@ -15,6 +16,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         public ICommand UserProfileCommand { get; private set; }
 
         private readonly INavigationService _navigationService;
+        private NetService netService;
 
         public MenuViewModel()
         {
@@ -24,6 +26,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             MyCartCommand = new Command(MyCartCmd);
             MyOrderCommand = new Command(MyOrderCmd);
             UserProfileCommand = new Command(UserProfileCmd);
+            netService = new NetService();
         }
 
         private void RegisterCmd()
@@ -32,19 +35,47 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         }
         private void ProductCmd()
         {
-            this._navigationService.NavigateToProducts();
+            if (netService.IsConnected())
+            { 
+                this._navigationService.NavigateToProducts();
+            }
+            else
+            {
+                Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
+            }
         }
         private void MyCartCmd()
         {
-            this._navigationService.NavigateToMyCart();
+            if (netService.IsConnected())
+            {
+                this._navigationService.NavigateToMyCart();
+            }
+            else
+            {
+                Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
+            }
         }
         private void MyOrderCmd()
         {
-            this._navigationService.NavigateToMyOrder();
+            if (netService.IsConnected())
+            {
+                this._navigationService.NavigateToMyOrder();
+            }
+            else
+            {
+                Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
+            }
         }
         private void UserProfileCmd()
         {
-            this._navigationService.NavigateToUserProfile();
+            if (netService.IsConnected())
+            {
+                this._navigationService.NavigateToUserProfile();
+            }
+            else
+            {
+                Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
+            }
         }
     }
 }

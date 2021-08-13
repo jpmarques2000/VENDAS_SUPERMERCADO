@@ -17,6 +17,7 @@ namespace VENDAS_SUPERMERCADO.Models
         public string rua { get; set; }
         public string bairro { get; set; }
         public string numero { get; set; }
+        public Uri imagem { get; set; }
      //   public string username { get; set; }
 
      //   public string password { get; set; }
@@ -47,6 +48,13 @@ namespace VENDAS_SUPERMERCADO.Models
                 return this._password;
             }
         }
-        
+
+        public interface IGoogleManager
+        {
+            void Login(Action<User, string> OnLoginComplete);
+
+            void Logout();
+        }
+
     }
 }

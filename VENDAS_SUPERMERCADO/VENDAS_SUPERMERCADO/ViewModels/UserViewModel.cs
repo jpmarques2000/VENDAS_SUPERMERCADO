@@ -15,6 +15,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         private readonly INavigationService _navigationService;
 
         public Command GravarCommand { get; set; }
+        private NetService netService;
 
         private bool _Result;
         public bool Result
@@ -49,27 +50,35 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             _navigationService = DependencyService.Get<INavigationService>();
 
             GravarCommand = new Command(async () => await GravarCommandAsync());
+            netService = new NetService();
         }
 
         private async Task GravarCommandAsync()
         {
-            if (IsBusy)
-                return;
-            try
-            {
-                IsBusy = true;
-                var userService = new UserService();
-                await userService.UpdateUser(username, dataNascimento, telefone, cep, rua, bairro, numero, password );
-                await Application.Current.MainPage.DisplayAlert("Sucesso", "Dados atualizados", "Ok");
+            if (netService.IsConnected())
+            { 
+                if (IsBusy)
+                    return;
+                try
+                {
+                    IsBusy = true;
+                    var userService = new UserService();
+                    await userService.UpdateUser(username, dataNascimento, telefone, cep, rua, bairro, numero, password );
+                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Dados atualizados", "Ok");
 
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Erro ao atualizar dados do usuário", ex.Message, "Ok");
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                await Application.Current.MainPage.DisplayAlert("Erro ao atualizar dados do usuário", ex.Message, "Ok");
-            }
-            finally
-            {
-                IsBusy = false;
+                await Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
             }
         }
 

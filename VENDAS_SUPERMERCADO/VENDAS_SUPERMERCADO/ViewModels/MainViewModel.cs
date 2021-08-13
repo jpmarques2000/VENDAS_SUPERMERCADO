@@ -10,6 +10,7 @@ using System.Windows.Input;
 using VENDAS_SUPERMERCADO.Models;
 using VENDAS_SUPERMERCADO.Services;
 using VENDAS_SUPERMERCADO.Views;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace VENDAS_SUPERMERCADO.ViewModels
 {
@@ -83,23 +84,26 @@ namespace VENDAS_SUPERMERCADO.ViewModels
            
             var products = new List<Products>();
 
-            //if (netService.IsConnected())
-            //{
-            //    products = await apiService.Get<Products>("products");
-
-            //    ReloadProducts(products);
-
-            //}
-            //else
-            //{
-            //    // Jogar mensagem "Necessario conexao com a internet para carregar produtos"
-            //}
-            products = await apiService.Get<Products>("products");
-
-            if (products != null)
+            if (netService.IsConnected())
             {
-                ReloadProducts(products);
+                products = await apiService.Get<Products>("products");
+
+                if (products != null)
+                {
+                    ReloadProducts(products);
+                }
+
             }
+            else
+            {
+                
+            }
+            //products = await apiService.Get<Products>("products");
+
+            //if (products != null)
+            //{
+            //    ReloadProducts(products);
+            //}
 
         }
         public void ReloadProducts(List<Products> products)
