@@ -9,10 +9,10 @@ namespace VENDAS_SUPERMERCADO.ViewModels
     {
         Task NavigateToLogin();
         Task NavigateToMenu();
-        Task NavigateToRegister();
         Task NavigateToProducts();
         Task NavigateToMyCart();
         Task NavigateToMyOrder();
         Task NavigateToUserProfile();
+        Task userLogout();
     }
 }

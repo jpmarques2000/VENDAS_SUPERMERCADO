@@ -18,7 +18,6 @@
                 <Entry Placeholder="Bairro" Text="{Binding bairro}"></Entry>
                 <Entry Placeholder="Numero" Text="{Binding numero}" Keyboard="Numeric"></Entry>
                 <Entry Placeholder="Cep" Text="{Binding cep}" Keyboard="Numeric"></Entry>
-                <Entry Placeholder="Senha" Text="{Binding password}"></Entry>
                 <StackLayout>
                     <Button Text="Salvar" Command="{Binding GravarCommand}">
                     </Button>

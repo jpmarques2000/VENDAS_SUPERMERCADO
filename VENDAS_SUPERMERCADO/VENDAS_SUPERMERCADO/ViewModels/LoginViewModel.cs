@@ -64,7 +64,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             GoogleLoginCommand = new Command( async () => await GoogleLoginCommandAsync());
             GoogleLogoutCommand = new Command( () =>  GoogleLogoutCommandAsync());
             netService = new NetService();
-            //    CheckUserLoggedIn();
+            CheckUserLoggedIn();
         }
 
         private async Task RegisterCommandAsync()
@@ -111,11 +111,11 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     if (Result)
                     {
                         Preferences.Set("Username", username);
-                        await MainViewModel.GetInstance().LoadProducts();
+                        UserLoggedIn.UserName = username;
 
-                        // mainViewModel.LoadUser();
-                        //  Application.Current.MainPage = new MainShell();
-                        await this._navigationService.NavigateToMenu();
+                        await MainViewModel.GetInstance().LoadProducts();
+                        // await this._navigationService.NavigateToMenu();
+                        Application.Current.MainPage = new NavigationPage(new MenuView());
                     }
                     else
                     {
@@ -139,10 +139,10 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         private async Task GoogleLoginCommandAsync()
         {
             if (netService.IsConnected())
-            { 
+            {
                 _googleManager.Login(OnLoginComplete);
-                await MainViewModel.GetInstance().LoadProducts();
-                await this._navigationService.NavigateToMenu();
+                
+                
             }
             else
             {
@@ -154,16 +154,30 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         {
             if (user != null)
             {
+                var userService = new UserService();
                 userGoogle = user;
+                UserLoggedIn.UserName = userGoogle.email;
                 username = userGoogle.email;
-                password = userGoogle.password;
+                imagem = userGoogle.imagem;
                 IsLogedIn = true;
 
+                Task.Run(async () =>
+                {
+                    await userService.RegisterUserGoogle(username);
+                    await loadMenu();
+                }).Wait();
+                
             }
             else
             {
                 Application.Current.MainPage.DisplayAlert("Message", message, "Ok");
             }
+        }
+
+        private async Task loadMenu()
+        {
+            await MainViewModel.GetInstance().LoadProducts();
+            Application.Current.MainPage =  new NavigationPage( new MenuView());
         }
 
         private void GoogleLogoutCommandAsync()

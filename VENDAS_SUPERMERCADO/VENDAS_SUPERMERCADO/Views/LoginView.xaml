@@ -23,22 +23,13 @@
 
         <StackLayout Grid.Row="1" Spacing="5">
             <Entry Placeholder="Nome de usuario" Text="{Binding username}"/>
-            <Entry Placeholder="Senha do usuario" Text="{Binding password}" IsPassword="True"/>
-
+            <Image Source="{Binding imagem}" WidthRequest="150" HeightRequest="150"/>
 
             <Button Text="Login with Gmail" CornerRadius="6" BackgroundColor="CornflowerBlue" TextColor="White" 
                         FontAttributes="Bold" FontSize="20" Margin="0,8,0,0" x:Name="btnLogin" Command="{Binding GoogleLoginCommand}"/>
 
             <Button Text="Logout" CornerRadius="6" BackgroundColor="CornflowerBlue" TextColor="White" 
                         FontAttributes="Bold" FontSize="20" Margin="0,8,0,0" x:Name="btnLogout" Command="{Binding GoogleLogoutCommand}"/>
-            
-            <Button Text="Login" HorizontalOptions="Center" BackgroundColor="Black"
-                    TextColor="White" WidthRequest="300" HeightRequest="40"
-                    Command="{Binding LoginCommand}"/>
-
-            <Button Text="Registrar" HorizontalOptions="Center" BackgroundColor="Black"
-                    TextColor="White" WidthRequest="300" HeightRequest="40"
-                    Command="{Binding RegisterCommand}"/>
         </StackLayout>
 
     </Grid>

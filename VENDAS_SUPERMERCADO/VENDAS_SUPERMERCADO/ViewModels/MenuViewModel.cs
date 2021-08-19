@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using VENDAS_SUPERMERCADO.Models;
 using VENDAS_SUPERMERCADO.Services;
 using Xamarin.Forms;
 
@@ -14,25 +15,23 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         public ICommand MyCartCommand { get; private set; }
         public ICommand MyOrderCommand { get; private set; }
         public ICommand UserProfileCommand { get; private set; }
+        public ICommand LogoutCommand { get; private set; }
 
         private readonly INavigationService _navigationService;
         private NetService netService;
 
         public MenuViewModel()
         {
+            var usuarioLogado = UserLoggedIn.UserName;
             _navigationService = DependencyService.Get<INavigationService>();
-            RegisterCommand = new Command(RegisterCmd);
             ProductCommand = new Command(ProductCmd);
             MyCartCommand = new Command(MyCartCmd);
             MyOrderCommand = new Command(MyOrderCmd);
             UserProfileCommand = new Command(UserProfileCmd);
+            LogoutCommand = new Command(LogoutCmd);
             netService = new NetService();
         }
 
-        private void RegisterCmd()
-        {
-            this._navigationService.NavigateToRegister();
-        }
         private void ProductCmd()
         {
             if (netService.IsConnected())
@@ -71,6 +70,17 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             if (netService.IsConnected())
             {
                 this._navigationService.NavigateToUserProfile();
+            }
+            else
+            {
+                Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
+            }
+        }
+        private void LogoutCmd()
+        {
+            if (netService.IsConnected())
+            {
+                this._navigationService.userLogout();
             }
             else
             {

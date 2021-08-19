@@ -11,5 +11,7 @@
                      Command="{Binding MyOrderCommand}"/>
         <ToolbarItem Name="Perfil" Order="Primary" Priority="3" 
                      Command="{Binding UserProfileCommand}"/>
+        <ToolbarItem Name="Sair" Order="Primary" Priority="4" 
+                     Command="{Binding LogoutCommand}"/>
     </ContentPage.ToolbarItems>
 </ContentPage>

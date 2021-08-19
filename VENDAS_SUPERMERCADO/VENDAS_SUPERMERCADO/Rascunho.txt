@@ -1,0 +1,9 @@
+﻿LoginView.xaml
+<Entry Placeholder="Senha do usuario" Text="{Binding password}" IsPassword="True"/>
+<Button Text="Login" HorizontalOptions="Center" BackgroundColor="Black"
+                    TextColor="White" WidthRequest="300" HeightRequest="40"
+                    Command="{Binding LoginCommand}"/>
+
+            <Button Text="Registrar" HorizontalOptions="Center" BackgroundColor="Black"
+                    TextColor="White" WidthRequest="300" HeightRequest="40"
+                    Command="{Binding RegisterCommand}"/>

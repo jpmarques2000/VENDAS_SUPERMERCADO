@@ -12,11 +12,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using VENDAS_SUPERMERCADO.Droid;
 using VENDAS_SUPERMERCADO.Interfaces;
 using VENDAS_SUPERMERCADO.Models;
 using Xamarin.Forms;
 using static VENDAS_SUPERMERCADO.Models.User;
 
+[assembly: Dependency(typeof(GoogleManager))]
 namespace VENDAS_SUPERMERCADO.Droid
 {
 	public class GoogleManager : Java.Lang.Object, IGoogleManager, GoogleApiClient.IConnectionCallbacks, GoogleApiClient.IOnConnectionFailedListener
@@ -44,7 +46,7 @@ namespace VENDAS_SUPERMERCADO.Droid
 				.AddScope(new Scope(Scopes.Profile))
 				.Build();
 
-		//	_onLoginComplete = onLoginComplete;
+			_onLoginComplete = onLoginComplete;
 			Intent signInIntent = Auth.GoogleSignInApi.GetSignInIntent(_googleApiClient);
 			((MainActivity)Forms.Context).StartActivityForResult(signInIntent, 1);
 			_googleApiClient.Connect();
