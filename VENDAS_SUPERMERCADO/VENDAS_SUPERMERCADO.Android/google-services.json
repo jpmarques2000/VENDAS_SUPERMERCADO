@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "163640266081-t8th70q22b7gt3qfijamsskn79lns1vg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.companyname.vendas_supermercado",
+            "certificate_hash": "af8abad2615b6b40f9f6e18daa62cb777e8d168d"
+          }
+        },
+        {
           "client_id": "163640266081-900j996qkaeqekhsq8nkdb0rb9cr0n91.apps.googleusercontent.com",
           "client_type": 3
         }

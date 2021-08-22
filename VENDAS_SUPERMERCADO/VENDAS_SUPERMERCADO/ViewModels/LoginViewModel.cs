@@ -170,7 +170,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             }
             else
             {
-                Application.Current.MainPage.DisplayAlert("Message", message, "Ok");
+                // Application.Current.MainPage.DisplayAlert("Usuário não selecionado ou ocorreu um erro", message, "Ok");
             }
         }
 
@@ -185,7 +185,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             _googleManager.Logout();
             IsLogedIn = false;
             username = "";
-            password = "";
+            UserLoggedIn.UserName = "";
         }
         private void CheckUserLoggedIn()
         {
