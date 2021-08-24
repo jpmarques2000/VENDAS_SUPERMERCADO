@@ -20,6 +20,7 @@ namespace VENDAS_SUPERMERCADO.Models
         public bool Promocao { get; set; }
         public double Precopromocao { get; set; }
         public decimal Estoque { get; set; }
+        public double quantidade { get; set; }
 
         ////public Produto(int Produtoid, string Nome, double Preco, int Codigo, bool Promocao, double Precopromocao, decimal Estoque)
         ////{

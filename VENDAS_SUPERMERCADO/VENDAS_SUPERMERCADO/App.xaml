@@ -16,14 +16,22 @@
 
                         <Image Source="" VerticalOptions="Start" WidthRequest="80" HeightRequest="40"></Image>
                         <StackLayout Grid.Column="1">
-                            <Label FontAttributes="Bold" VerticalOptions="Center" Text="{Binding pro_nome}" FontSize="16"></Label>
-                            <Label Text="{Binding Preco}" FontAttributes="Bold" VerticalOptions="Center"></Label>
+                            <Grid Grid.Row="1" RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,*">
+                            <Label Grid.Row="0" Grid.Column="0" FontAttributes="Bold" VerticalOptions="Center" Text="{Binding pro_nome}" FontSize="16"></Label>
+                            <Label Grid.Row="1" Grid.Column="3" Text="{Binding Preco}" FontAttributes="Bold" VerticalOptions="Center"></Label>
+                            <Button Grid.Row="1" Grid.Column="0" Text="-" FontAttributes="Bold" BackgroundColor="#c12b0d" HorizontalOptions="Start" 
+                                    TextColor="White" WidthRequest="28" HeightRequest="28" FontSize="9" CornerRadius="5" Margin="0,10,0,0"/>
+                            <Button Grid.Row="1" Grid.Column="1" Text="+" FontAttributes="Bold" BackgroundColor="#c12b0d" HorizontalOptions="Start" 
+                                    TextColor="White" WidthRequest="28" HeightRequest="28" FontSize="9" CornerRadius="5" Margin="0,10,0,0"/>
+                            </Grid>
 
                         </StackLayout>
 
                     </Grid>
                 </ViewCell>
             </DataTemplate>
+
+
 
             <infra:InstanceLocator x:Key="Locator"></infra:InstanceLocator>
 
