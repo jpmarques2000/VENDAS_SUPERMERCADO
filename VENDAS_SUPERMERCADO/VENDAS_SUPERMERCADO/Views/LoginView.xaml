@@ -8,29 +8,53 @@
         <vm:LoginViewModel/>
     </ContentPage.BindingContext>
 
-    <Grid Padding="10" VerticalOptions="Center">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <StackLayout Padding="0" BackgroundColor="#ADD8E6">
 
-        <StackLayout>
-            <Label Text="Login" FontFamily="Verdana"
-               TextColor="Black" FontSize="30"
-               FontAttributes="Bold"
-               HorizontalOptions="Center"/>
-        </StackLayout>
+        <Grid>
+            <StackLayout Padding="0" Margin="0">
+                <Frame BackgroundColor="LightPink" HeightRequest="130" HorizontalOptions="FillAndExpand" Padding="0">
+                    <Image Source="https://image.freepik.com/vetores-gratis/conceito-de-pessoas-de-coronavirus-e-supermercado_23-2148498009.jpg" Aspect="Fill" Margin="0">
+                        
+                    </Image>
 
-        <StackLayout Grid.Row="1" Spacing="5">
-            <Entry Placeholder="Nome de usuario" Text="{Binding username}"/>
-            <Image Source="{Binding imagem}" WidthRequest="70" HeightRequest="70"/>
+                </Frame>
 
-            <Button Text="Login with Gmail" CornerRadius="6" BackgroundColor="CornflowerBlue" TextColor="White" 
-                        FontAttributes="Bold" FontSize="20" Margin="0,8,0,0" x:Name="btnLogin" Command="{Binding GoogleLoginCommand}"/>
+            </StackLayout>
 
-            <Button Text="Logout" CornerRadius="6" BackgroundColor="CornflowerBlue" TextColor="White" 
-                        FontAttributes="Bold" FontSize="20" Margin="0,8,0,0" x:Name="btnLogout" Command="{Binding GoogleLogoutCommand}"/>
-        </StackLayout>
+            <StackLayout Margin="15,110,15,0">
 
-    </Grid>
+                <Frame BackgroundColor="#DCDCDC" HasShadow="True" HeightRequest="220" Margin="0,10,0,0">
+                    <StackLayout HorizontalOptions="CenterAndExpand">
+                        <Label Text="Bem vindo!" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center"></Label>
+                        <Label Text="Por favor, identifique-se" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center"></Label>
+                        <Label Text="-" TextColor="#DCDCDC" FontSize="Subtitle"  FontAttributes="Bold" HorizontalOptions="Center"></Label>
+
+
+                        <Grid HeightRequest="45" WidthRequest="280" HorizontalOptions="StartAndExpand" Padding="10,0" Background="#DCDCDC">
+                            <Button Text="Fazer Login com Google" BorderWidth="1" BorderColor="Black" CornerRadius="30" BackgroundColor="#ADD8E6" TextColor="Black" 
+                        FontAttributes="Bold" FontSize="12" Margin="0,8,0,0" x:Name="btnLogin" Command="{Binding GoogleLoginCommand}"/>
+                        </Grid>
+
+                        <Grid HeightRequest="45" WidthRequest="280" Padding="10,0" Background="#DCDCDC" HorizontalOptions="Start">
+                            <Button Text="Desconectar" CornerRadius="30" BorderWidth="1" BorderColor="Black" BackgroundColor="#ADD8E6"  TextColor="Black" 
+                        FontAttributes="Bold" FontSize="12" Margin="0,8,0,0" x:Name="btnLogout" Command="{Binding GoogleLogoutCommand}"/>
+                        </Grid>
+
+                       
+
+                    </StackLayout>
+                    
+
+                </Frame>
+
+            </StackLayout>
+
+            
+        </Grid>
+        
+        
+        
+        
+    </StackLayout>
+    
 </ContentPage>
