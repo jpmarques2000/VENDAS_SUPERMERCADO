@@ -3,15 +3,62 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VENDAS_SUPERMERCADO.Views.MenuView">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Produtos" Order="Primary" Priority="0"
+        <ToolbarItem Name="Produtos" IconImageSource="https://image.flaticon.com/icons/png/512/44/44766.png"  Order="Primary" Priority="0"
                      Command="{Binding ProductCommand}"/>
-        <ToolbarItem Name="Cart" Order="Primary" Priority="1"
+        <ToolbarItem Name="Cart" IconImageSource="https://imagensemoldes.com.br/wp-content/uploads/2020/07/%C3%8Dcone-Carrinho-de-Compras-PNG.png" Order="Primary" Priority="1"
                      Command="{Binding MyCartCommand}"/>
-        <ToolbarItem Name="Pedidos" Order="Primary" Priority="2"
+        <ToolbarItem Name="Pedidos" IconImageSource="https://image.flaticon.com/icons/png/512/14/14856.png" Order="Primary" Priority="2"
                      Command="{Binding MyOrderCommand}"/>
-        <ToolbarItem Name="Perfil" Order="Primary" Priority="3" 
+        <ToolbarItem Name="Perfil" IconImageSource="https://cdn.pixabay.com/photo/2016/08/31/11/54/user-1633249_960_720.png" Order="Primary" Priority="3" 
                      Command="{Binding UserProfileCommand}"/>
-        <ToolbarItem Name="Sair" Order="Primary" Priority="4" 
+        <ToolbarItem Name="Sair" IconImageSource="https://cdn.pixabay.com/photo/2014/04/10/17/59/exit-321143_960_720.png" Order="Primary" Priority="4" 
                      Command="{Binding LogoutCommand}"/>
     </ContentPage.ToolbarItems>
+
+
+    <StackLayout Padding="0" BackgroundColor="#ADD8E6">
+
+        <Grid>
+            
+
+            <StackLayout Margin="15,110,15,0">
+
+                <Frame BackgroundColor="#DCDCDC" HasShadow="True" HeightRequest="580" Margin="-20,-120,-20,0">
+                    <StackLayout HorizontalOptions="CenterAndExpand">
+                        <Label Text="SUPERMERCADO BIG BOM" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center"></Label>
+                        <Label Text="Sobre nós" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center"></Label>
+                        <Label Text="Há mais de três décadas, o Big Bom trabalha para oferecer aos seus clientes a melhor experiência de compras da região. Os seus valores garantem um ambiente agradável, limpo, com atendimento de qualidade e produtos selecionados. Tais qualidades fazem do Big Bom uma marca próxima e confiável. Essa proximidade é estratégica porque reforça uma característica essencial da empresa: o laço familiar. Seja no trato com os colaboradores ou com os clientes, existe um profundo respeito a todos que formam a família Big Bom. " TextColor="Black" FontSize="Small"  FontAttributes="Bold" HorizontalOptions="Center"></Label>
+                        <Label Text="Atualmente, a rede possui duas unidades em Mogi Guaçu e uma em São João da Boa Vista, todas com um centro de compras e serviços (Boulevard Bandeirantes, Boulevard Shopping e Boulevard Vista) com centenas de colaboradores, sempre prontos para ajudar, e diversas marcas à disposição dos clientes." TextColor="Black" FontSize="Small" HorizontalOptions="Center"></Label>
+                        <Label Text="Fornecedores e consumidores reconhecem a credibilidade que a empresa construiu ao longo da sua história. O Big Bom tem como objetivo principal a inovação em todos os processos, aprimorando o relacionamento com a sociedade, funcionários e clientes, além de firmar as melhores parcerias para surpreender sempre." TextColor="Black" FontSize="Small" HorizontalOptions="Center"></Label>
+
+                       
+
+
+
+                    </StackLayout>
+
+
+                </Frame>
+
+            </StackLayout>
+            
+            
+
+
+        </Grid>
+
+
+
+
+    </StackLayout>
+
+
+
+
+
+
+
+
+
+
 </ContentPage>
