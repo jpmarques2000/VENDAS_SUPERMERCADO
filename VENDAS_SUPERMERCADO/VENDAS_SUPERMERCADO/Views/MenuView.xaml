@@ -19,19 +19,23 @@
     <StackLayout Padding="0" BackgroundColor="#ADD8E6">
 
         <Grid>
-            
+
 
             <StackLayout Margin="15,110,15,0">
 
                 <Frame BackgroundColor="#DCDCDC" HasShadow="True" HeightRequest="580" Margin="-20,-120,-20,0">
                     <StackLayout HorizontalOptions="CenterAndExpand">
-                        <Label Text="SUPERMERCADO BIG BOM" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center"></Label>
-                        <Label Text="Sobre nós" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center"></Label>
-                        <Label Text="Há mais de três décadas, o Big Bom trabalha para oferecer aos seus clientes a melhor experiência de compras da região. Os seus valores garantem um ambiente agradável, limpo, com atendimento de qualidade e produtos selecionados. Tais qualidades fazem do Big Bom uma marca próxima e confiável. Essa proximidade é estratégica porque reforça uma característica essencial da empresa: o laço familiar. Seja no trato com os colaboradores ou com os clientes, existe um profundo respeito a todos que formam a família Big Bom. " TextColor="Black" FontSize="Small"  FontAttributes="Bold" HorizontalOptions="Center"></Label>
-                        <Label Text="Atualmente, a rede possui duas unidades em Mogi Guaçu e uma em São João da Boa Vista, todas com um centro de compras e serviços (Boulevard Bandeirantes, Boulevard Shopping e Boulevard Vista) com centenas de colaboradores, sempre prontos para ajudar, e diversas marcas à disposição dos clientes." TextColor="Black" FontSize="Small" HorizontalOptions="Center"></Label>
-                        <Label Text="Fornecedores e consumidores reconhecem a credibilidade que a empresa construiu ao longo da sua história. O Big Bom tem como objetivo principal a inovação em todos os processos, aprimorando o relacionamento com a sociedade, funcionários e clientes, além de firmar as melhores parcerias para surpreender sempre." TextColor="Black" FontSize="Small" HorizontalOptions="Center"></Label>
 
-                       
+                        <Label Text="Sobre nós" TextColor="Black" FontSize="Title" FontAttributes="Bold" HorizontalOptions="Center"></Label>
+                        <Label Text="Há mais de três décadas, o Big Bom trabalha para oferecer aos seus clientes a melhor experiência de compras da região. Os seus valores garantem um ambiente agradável, limpo, com atendimento de qualidade e produtos selecionados. Tais qualidades fazem do Big Bom uma marca próxima e confiável. Essa proximidade é estratégica porque reforça uma característica essencial da empresa: o laço familiar. Seja no trato com os colaboradores ou com os clientes, existe um profundo respeito a todos que formam a família Big Bom. " TextColor="Black" FontSize="Small"  FontAttributes="Italic" HorizontalOptions="Center"></Label>
+                        <Label Text="Atualmente, a rede possui duas unidades em Mogi Guaçu e uma em São João da Boa Vista, todas com um centro de compras e serviços (Boulevard Bandeirantes, Boulevard Shopping e Boulevard Vista) com centenas de colaboradores, sempre prontos para ajudar, e diversas marcas à disposição dos clientes." TextColor="Black" FontSize="Small" FontAttributes="Italic" HorizontalOptions="Center"></Label>
+                        <Label Text="Fornecedores e consumidores reconhecem a credibilidade que a empresa construiu ao longo da sua história. O Big Bom tem como objetivo principal a inovação em todos os processos, aprimorando o relacionamento com a sociedade, funcionários e clientes, além de firmar as melhores parcerias para surpreender sempre." TextColor="Black" FontAttributes="Italic" FontSize="Small" HorizontalOptions="Center"></Label>
+
+                        <Label Text="-" TextColor="White"></Label>
+                        <Label Text="-" TextColor="White"></Label>
+                        <Label Text="-" TextColor="White"></Label>
+                        <Label Text="Telefone: (19) 3861-9000" TextColor="Black" HorizontalOptions="CenterAndExpand"></Label>
+                        <Label Text=" Email: sac@bigbom.com.br" TextColor="Black" HorizontalOptions="CenterAndExpand"></Label>
 
 
 
@@ -41,8 +45,8 @@
                 </Frame>
 
             </StackLayout>
-            
-            
+
+
 
 
         </Grid>
