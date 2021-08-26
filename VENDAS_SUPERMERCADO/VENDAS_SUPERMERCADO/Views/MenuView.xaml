@@ -3,15 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VENDAS_SUPERMERCADO.Views.MenuView">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Produtos" IconImageSource="https://image.flaticon.com/icons/png/512/44/44766.png"  Order="Primary" Priority="0"
+        <ToolbarItem Name="Produtos" IconImageSource="image_Produto.png"  Order="Primary" Priority="0"
                      Command="{Binding ProductCommand}"/>
-        <ToolbarItem Name="Cart" IconImageSource="https://imagensemoldes.com.br/wp-content/uploads/2020/07/%C3%8Dcone-Carrinho-de-Compras-PNG.png" Order="Primary" Priority="1"
+        <ToolbarItem Name="Cart" IconImageSource="image.Carrinho.png" Order="Primary" Priority="1"
                      Command="{Binding MyCartCommand}"/>
-        <ToolbarItem Name="Pedidos" IconImageSource="https://image.flaticon.com/icons/png/512/14/14856.png" Order="Primary" Priority="2"
+        <ToolbarItem Name="Pedidos" IconImageSource="image_Pedidos.png" Order="Primary" Priority="2"
                      Command="{Binding MyOrderCommand}"/>
-        <ToolbarItem Name="Perfil" IconImageSource="https://cdn.pixabay.com/photo/2016/08/31/11/54/user-1633249_960_720.png" Order="Primary" Priority="3" 
+        <ToolbarItem Name="Perfil" IconImageSource="image_Perfil" Order="Primary" Priority="3" 
                      Command="{Binding UserProfileCommand}"/>
-        <ToolbarItem Name="Sair" IconImageSource="https://cdn.pixabay.com/photo/2014/04/10/17/59/exit-321143_960_720.png" Order="Primary" Priority="4" 
+        <ToolbarItem Name="Sair" IconImageSource="image_Logout.png" Order="Primary" Priority="4" 
                      Command="{Binding LogoutCommand}"/>
     </ContentPage.ToolbarItems>
 

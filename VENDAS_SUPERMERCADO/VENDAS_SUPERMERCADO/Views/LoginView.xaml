@@ -13,7 +13,7 @@
         <Grid>
             <StackLayout Padding="0" Margin="0">
                 <Frame BackgroundColor="LightPink" HeightRequest="130" HorizontalOptions="FillAndExpand" Padding="0">
-                    <Image Source="https://image.freepik.com/vetores-gratis/conceito-de-pessoas-de-coronavirus-e-supermercado_23-2148498009.jpg" Aspect="Fill" Margin="0">
+                    <Image Source="image_Login.jpg" Aspect="Fill" Margin="0">
                         
                     </Image>
 
