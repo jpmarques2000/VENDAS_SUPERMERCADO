@@ -16,7 +16,7 @@ namespace VENDAS_SUPERMERCADO.Models
         public string cep { get; set; }
         public string rua { get; set; }
         public string bairro { get; set; }
-        public string numero { get; set; }
+        public int numero { get; set; }
         public Uri imagem { get; set; }
      //   public string username { get; set; }
 
@@ -35,19 +35,19 @@ namespace VENDAS_SUPERMERCADO.Models
                 return this._username;
             }
         }
-        private string _password;
-        public string password
-        {
-            set
-            {
-                this._password = value;
-                OnPropertyChanged();
-            }
-            get
-            {
-                return this._password;
-            }
-        }
+        //private string _password;
+        //public string password
+        //{
+        //    set
+        //    {
+        //        this._password = value;
+        //        OnPropertyChanged();
+        //    }
+        //    get
+        //    {
+        //        return this._password;
+        //    }
+        //}
 
         public interface IGoogleManager
         {

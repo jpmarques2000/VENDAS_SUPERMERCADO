@@ -59,83 +59,83 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             _navigationService = DependencyService.Get<INavigationService>();
             _googleManager = DependencyService.Get<IGoogleManager>();
 
-            LoginCommand = new Command(async () => await LoginCommandAsync());
-            RegisterCommand = new Command(async () => await RegisterCommandAsync());
+            //LoginCommand = new Command(async () => await LoginCommandAsync());
+            //RegisterCommand = new Command(async () => await RegisterCommandAsync());
             GoogleLoginCommand = new Command( async () => await GoogleLoginCommandAsync());
             GoogleLogoutCommand = new Command( () =>  GoogleLogoutCommandAsync());
             netService = new NetService();
             CheckUserLoggedIn();
         }
 
-        private async Task RegisterCommandAsync()
-        {
-            if (IsBusy)
-                return;
-            try
-            {
-                IsBusy = true;
-                var userService = new UserService();
-                Result = await userService.RegisterUser(username, password);
-                if (Result)
-                {
+        //private async Task RegisterCommandAsync()
+        //{
+        //    if (IsBusy)
+        //        return;
+        //    try
+        //    {
+        //        IsBusy = true;
+        //        var userService = new UserService();
+        //        Result = await userService.RegisterUser(username, password);
+        //        if (Result)
+        //        {
                     
-                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Usuario Registrado", "Ok");
+        //            await Application.Current.MainPage.DisplayAlert("Sucesso", "Usuario Registrado", "Ok");
                    
 
-                }
+        //        }
                 
-                else
-                    await Application.Current.MainPage.DisplayAlert("Erro", "Falha ao registrar usuario", "Ok");
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "Ok");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
+        //        else
+        //            await Application.Current.MainPage.DisplayAlert("Erro", "Falha ao registrar usuario", "Ok");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "Ok");
+        //    }
+        //    finally
+        //    {
+        //        IsBusy = false;
+        //    }
+        //}
 
-        private async Task LoginCommandAsync()
-        {
-            if (netService.IsConnected())
-            {
-                if (IsBusy)
-                    return;
-                try
-                {
-                    IsBusy = true;
-                    var userService = new UserService();
-                    Result = await userService.LoginUser(username, password);
-                    if (Result)
-                    {
-                        Preferences.Set("Username", username);
-                        UserLoggedIn.UserName = username;
+        //private async Task LoginCommandAsync()
+        //{
+        //    if (netService.IsConnected())
+        //    {
+        //        if (IsBusy)
+        //            return;
+        //        try
+        //        {
+        //            IsBusy = true;
+        //            var userService = new UserService();
+        //            Result = await userService.LoginUser(username, password);
+        //            if (Result)
+        //            {
+        //                Preferences.Set("Username", username);
+        //                UserLoggedIn.UserName = username;
 
-                        await MainViewModel.GetInstance().LoadProducts();
-                        // await this._navigationService.NavigateToMenu();
-                        Application.Current.MainPage = new NavigationPage(new MenuView());
-                    }
-                    else
-                    {
-                        await Application.Current.MainPage.DisplayAlert("Erro", "Usuario/Senha invalido(s)", "Ok");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "Ok");
-                }
-                finally
-                {
-                    IsBusy = false;
-                }
-            }
-            else
-            {
-                await Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
-            }
-        }
+        //                await MainViewModel.GetInstance().LoadProducts();
+        //                // await this._navigationService.NavigateToMenu();
+        //                Application.Current.MainPage = new NavigationPage(new MenuView());
+        //            }
+        //            else
+        //            {
+        //                await Application.Current.MainPage.DisplayAlert("Erro", "Usuario/Senha invalido(s)", "Ok");
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            await Application.Current.MainPage.DisplayAlert("Erro", ex.Message, "Ok");
+        //        }
+        //        finally
+        //        {
+        //            IsBusy = false;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        await Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
+        //    }
+        //}
         private async Task GoogleLoginCommandAsync()
         {
             if (netService.IsConnected())

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VENDAS_SUPERMERCADO.Models
 {
-    public class ItensPedido
+    public class ItemsOrder
     {
         public int id { get; set; }
         public string numeroPedido { get; set; }

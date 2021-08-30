@@ -36,7 +36,7 @@ namespace VENDAS_SUPERMERCADO.Services
                     .PostAsync(new User()
                     {
                         username = name,
-                        password = passwd
+                        //password = passwd
                     });
                 return true;
             }
@@ -67,13 +67,13 @@ namespace VENDAS_SUPERMERCADO.Services
             var user = (await client.Child("Users")
                 .OnceAsync<User>())
                 .Where(u => u.Object.username == name)
-                .Where(u => u.Object.password == passwd)
+                //.Where(u => u.Object.password == passwd)
                 .FirstOrDefault();
             return (user != null);
         }
 
         public async Task UpdateUser(string username, string dataNasc, string userTel, string userCEP, string userRua,
-            string userBairro, string UserNumero, string nome)
+            string userBairro, int UserNumero, string nome)
         {
             try
             {
@@ -109,7 +109,7 @@ namespace VENDAS_SUPERMERCADO.Services
                   cep = item.Object.cep,
                   rua = item.Object.rua,
                   bairro = item.Object.bairro,
-                  numero = item.Object.bairro,
+                  numero = item.Object.numero,
                   nome = item.Object.nome
               }).ToList();
         }

@@ -1,12 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:VENDAS_SUPERMERCADO.ViewModels"
              x:Class="VENDAS_SUPERMERCADO.Views.MyCartPage" Title="Meu Carrinho">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <ContentPage.BindingContext>
+        <vm:ItemsOrderViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <Grid>
+            <StackLayout>
+                <Frame>
+                    <StackLayout>
+                        <Label Text="Dados de entrega" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center"></Label>
+                        <Label Text="{Binding UserLoged.nome}" TextColor="Black" HorizontalOptions="Start"></Label>
+                        <Label Text="{Binding UserLoged.rua}" TextColor="Black" HorizontalOptions="Start"></Label>
+                        <Label Text="{Binding UserLoged.bairro}" TextColor="Black" HorizontalOptions="Start"></Label>
+                        <Label Text="{Binding UserLoged.cep}" TextColor="Black" HorizontalOptions="Start"></Label>
+                        <Button Text="Alterar Dados" Command="{Binding AlterarDadosCommand}">
+                        </Button>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </Grid>
+    </StackLayout>
 </ContentPage>
