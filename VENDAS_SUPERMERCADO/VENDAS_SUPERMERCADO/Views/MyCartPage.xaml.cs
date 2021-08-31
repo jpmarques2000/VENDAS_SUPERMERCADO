@@ -16,5 +16,10 @@ namespace VENDAS_SUPERMERCADO.Views
         {
             InitializeComponent();
         }
+
+        private void pckPagto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

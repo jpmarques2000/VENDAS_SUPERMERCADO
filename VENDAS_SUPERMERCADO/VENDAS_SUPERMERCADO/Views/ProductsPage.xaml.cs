@@ -22,7 +22,8 @@ namespace VENDAS_SUPERMERCADO.Views
         {
             
             InitializeComponent();
-          
+            
+
         }
 
         private void pckDPT_SelectedIndexChanged(object sender, EventArgs e)
@@ -31,5 +32,30 @@ namespace VENDAS_SUPERMERCADO.Views
             DisplayAlert(departamentoFiltro, "Departamento selecionado", "OK");
         }
 
+        private void OnButtonClicked(object sender, EventArgs e)
+        {
+           int.TryParse(((Button)sender).BindingContext.ToString(), out var codigo);
+
+            if (codigo == 0)
+                return;
+            if (MeuCarrinho.Lista == null) 
+                MeuCarrinho.Lista = new List<ItemsOrder>();
+            var produto = MeuCarrinho.Lista.Find(x => x.codigoProduto == codigo);
+            if (produto == null)
+            {
+                var novoProduto = new ItemsOrder();
+                novoProduto.codigoProduto = codigo;
+                novoProduto.qtde = 1;
+                MeuCarrinho.Lista.Add(novoProduto);
+                return;
+            }
+            MeuCarrinho.Lista.Find(x => x.codigoProduto == codigo).qtde++;
+        }
+
+        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+          
+
+        }
     }
 }

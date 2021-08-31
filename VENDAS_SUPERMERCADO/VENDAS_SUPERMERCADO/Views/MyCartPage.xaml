@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:VENDAS_SUPERMERCADO.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:vm="clr-namespace:VENDAS_SUPERMERCADO.ViewModels" xmlns:control="clr-namespace:VENDAS_SUPERMERCADO.Controls"
              x:Class="VENDAS_SUPERMERCADO.Views.MyCartPage" Title="Meu Carrinho">
     <ContentPage.BindingContext>
         <vm:ItemsOrderViewModel/>
@@ -18,9 +19,23 @@
                         <Label Text="{Binding UserLoged.cep}" TextColor="Black" HorizontalOptions="Start"></Label>
                         <Button Text="Alterar Dados" Command="{Binding AlterarDadosCommand}">
                         </Button>
+                        <control:BindablePicker  x:Name="pckPayments" Title="Selecione a forma de pagamento:" 
+                            ItemsSource="{Binding ListPayments}" 
+                            SelectedItem="{Binding Payments, Mode=TwoWay}" />
+                        <control:BindablePicker  x:Name="pckSchedules" Title="Selecione a previsão de entrega:" 
+                            ItemsSource="{Binding ListSchedule}" 
+                            SelectedItem="{Binding Schedule, Mode=TwoWay}" />
+                        <Button x:Name="btnItem" Text="Confirmar Pedido" Command="{Binding SelectCommand}" />
                     </StackLayout>
                 </Frame>
+                <StackLayout>
+                    <Frame>
+                        <Label Text="Items do Pedido" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center"></Label>
+                    </Frame>
+                </StackLayout>
             </StackLayout>
+
+            
         </Grid>
     </StackLayout>
 </ContentPage>
