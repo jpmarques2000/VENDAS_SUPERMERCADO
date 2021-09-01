@@ -2,27 +2,54 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:VENDAS_SUPERMERCADO.ViewModels"
-             x:Class="VENDAS_SUPERMERCADO.Views.UserProfile" Title="Meu Pefil">
+             x:Class="VENDAS_SUPERMERCADO.Views.UserProfile" Title="Meu Perfil">
     <ContentPage.BindingContext>
         <vm:UserViewModel/>
     </ContentPage.BindingContext>
-    <StackLayout>
-        <StackLayout>
-            <StackLayout HorizontalOptions="FillAndExpand"  VerticalOptions="Start" Padding="40,40,40,0">
-                
-                <Entry Placeholder="Nome" Text="{Binding nome}" Keyboard="Default"></Entry>
-                <Entry Placeholder="Data de Nascimento" Text="{Binding dataNascimento}"></Entry>
-                <Entry Placeholder="Telefone" Text="{Binding telefone}" Keyboard="Telephone"></Entry>
-                <Entry Placeholder="Email" Text="{Binding username}" Keyboard="Email"></Entry>
-                <Entry Placeholder="Rua" Text="{Binding rua}" Keyboard="Default"></Entry>
-                <Entry Placeholder="Bairro" Text="{Binding bairro}"></Entry>
-                <Entry Placeholder="Numero" Text="{Binding numero}" Keyboard="Numeric"></Entry>
-                <Entry Placeholder="Cep" Text="{Binding cep}" Keyboard="Numeric"></Entry>
-                <StackLayout>
-                    <Button Text="Salvar" Command="{Binding GravarCommand}">
+
+    <StackLayout BackgroundColor="LightGray">  
+            <ScrollView>
+                <Grid Margin="0,30,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="45"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"></ColumnDefinition>
+                        <ColumnDefinition Width="270"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                        
+                 <Label Text="Nome: " FontSize="15" FontAttributes="Bold" Grid.Column="0" Grid.Row="0" TextColor="Black"></Label>
+                <Entry Placeholder="Nome" Text="{Binding nome}" Keyboard="Default" Grid.Column="1" Grid.Row="0"></Entry>
+                <Label Text="Data Nascimento: " FontSize="15" FontAttributes="Bold" Grid.Column="0" Grid.Row="1" TextColor="Black"></Label>
+
+                <Entry Placeholder="Data de Nascimento" Text="{Binding dataNascimento}" Grid.Column="1" Grid.Row="1"></Entry>
+                <Label Text="Telefone: " FontSize="15" FontAttributes="Bold" Grid.Column="0" Grid.Row="2" TextColor="Black"></Label>    
+                <Entry Placeholder="Telefone" Text="{Binding telefone}" Keyboard="Telephone" Grid.Column="1" Grid.Row="2"></Entry>
+                <Label Text="Email: " FontSize="15" FontAttributes="Bold" Grid.Column="0" Grid.Row="3" TextColor="Black"></Label>    
+                <Entry Placeholder="Email" Text="{Binding username}" Keyboard="Email" Grid.Column="1" Grid.Row="3"></Entry>
+                <Label Text="Rua: " FontSize="15" FontAttributes="Bold" Grid.Column="0" Grid.Row="4" TextColor="Black"></Label>    
+                <Entry Placeholder="Rua" Text="{Binding rua}" Keyboard="Default" Grid.Column="1" Grid.Row="4"></Entry>
+                <Label Text="Bairro: " FontSize="15" FontAttributes="Bold" Grid.Column="0" Grid.Row="5" TextColor="Black"></Label>
+                <Entry Placeholder="Bairro" Text="{Binding bairro}" Grid.Column="1" Grid.Row="5"></Entry>
+                <Label Text="Numero: " FontSize="15" FontAttributes="Bold" Grid.Column="0" Grid.Row="6" TextColor="Black"></Label>    
+                <Entry Placeholder="Numero" Text="{Binding numero}" Keyboard="Numeric" Grid.Column="1" Grid.Row="6"></Entry>
+                <Label Text="CEP: " FontSize="15" FontAttributes="Bold" Grid.Column="0" Grid.Row="7" TextColor="Black"></Label>    
+                <Entry Placeholder="Cep" Text="{Binding cep}" Keyboard="Numeric" Grid.Column="1" Grid.Row="7"></Entry>
+
+                <Button Text="Salvar" CornerRadius="30" BorderWidth="2" BorderColor="Black" BackgroundColor="#ADD8E6"  TextColor="Black" 
+                        FontAttributes="Bold" FontSize="13" Margin="0,8,0,0" Command="{Binding GravarCommand}" Grid.Column="1" Grid.Row="8">
                     </Button>
-                </StackLayout>
-            </StackLayout>
-        </StackLayout>
+                </Grid>
+                
+            </ScrollView>
     </StackLayout>
+
 </ContentPage>
