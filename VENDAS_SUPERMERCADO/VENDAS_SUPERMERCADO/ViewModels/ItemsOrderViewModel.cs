@@ -28,7 +28,9 @@ namespace VENDAS_SUPERMERCADO.ViewModels
      
         public ICommand SelectCommand { get; set; }
 
-        public ObservableCollection<ItemsOrder> ItemsOrderList { get; set; }
+        public List<ItemsOrder> MyCartList { get; set; }
+
+        //   public ObservableCollection<ItemsOrder> MyCartList { get; set; }
 
         public ItemsOrderViewModel()
         {
@@ -45,9 +47,11 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             SelectCommand = new Command(SelectCmd);
 
-            ItemsOrderList = new ObservableCollection<ItemsOrder>();
+            MyCartList = MeuCarrinho.Lista;
 
-            ReloadItems();
+            netService = new NetService();
+
+         //   ReloadItems();
 
             LoadPayments();
 
@@ -75,22 +79,29 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         private void SelectCmd()
         {
-            if (!string.IsNullOrEmpty(Schedule))
-            {
-                ScheduleSelected = Schedule;
-            }
-            else
-            {
-                ScheduleSelected = "Selecione uma previsao de entrega";
-            }
+            if (netService.IsConnected())
+            { 
+                if (!string.IsNullOrEmpty(Schedule))
+                {
+                    ScheduleSelected = Schedule;
+                }
+                else
+                {
+                    ScheduleSelected = "Selecione uma previsao de entrega";
+                }
 
-            if (!string.IsNullOrEmpty(Payments))
-            {
-                PaymentSelected = Payments;
+                if (!string.IsNullOrEmpty(Payments))
+                {
+                    PaymentSelected = Payments;
+                }
+                else
+                {
+                    ScheduleSelected = "Selecione uma forma de pagamento";
+                }
             }
             else
             {
-                ScheduleSelected = "Selecione uma forma de pagamento";
+                Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
             }
         }
 
@@ -134,27 +145,27 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         public void ReloadItems()
         {
-            ItemsOrderList.Add(new ItemsOrder
-            {
-                numeroPedido = ("1"),
-                codigoProduto = (00055555),
-                qtde = (2.00),
-                unitario = (6.99),
-                valorTotal = (13.98),
-                custo = (4.99),
-                desconto = (0.00)
-            });
+            //ItemsOrderList.Add(new ItemsOrder
+            //{
+            //    numeroPedido = ("1"),
+            //    codigoProduto = (00055555),
+            //    qtde = (2.00),
+            //    unitario = (6.99),
+            //    valorTotal = (13.98),
+            //    custo = (4.99),
+            //    desconto = (0.00)
+            //});
 
-            ItemsOrderList.Add(new ItemsOrder
-            {
-                numeroPedido = ("1"),
-                codigoProduto = (00054555),
-                qtde = (3.00),
-                unitario = (7.99),
-                valorTotal = (13.98),
-                custo = (4.99),
-                desconto = (0.00)
-            });
+            //ItemsOrderList.Add(new ItemsOrder
+            //{
+            //    numeroPedido = ("1"),
+            //    codigoProduto = (00054555),
+            //    qtde = (3.00),
+            //    unitario = (7.99),
+            //    valorTotal = (13.98),
+            //    custo = (4.99),
+            //    desconto = (0.00)
+            //});
         }
 
         ObservableCollection<string> _listSchedule;

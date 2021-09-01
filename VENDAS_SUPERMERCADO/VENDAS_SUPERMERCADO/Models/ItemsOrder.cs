@@ -15,5 +15,6 @@ namespace VENDAS_SUPERMERCADO.Models
         public DateTime data { get; set; }
         public double custo { get; set; }
         public double desconto { get; set; }
+        public string pro_nome { get; set; }
     }
 }

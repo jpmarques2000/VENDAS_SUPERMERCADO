@@ -96,7 +96,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             }
             else
             {
-                
+               
             }
             //products = await apiService.Get<Products>("products");
 

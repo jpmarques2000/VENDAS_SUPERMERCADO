@@ -25,14 +25,48 @@
                         <control:BindablePicker  x:Name="pckSchedules" Title="Selecione a previsão de entrega:" 
                             ItemsSource="{Binding ListSchedule}" 
                             SelectedItem="{Binding Schedule, Mode=TwoWay}" />
-                        <Button x:Name="btnItem" Text="Confirmar Pedido" Command="{Binding SelectCommand}" />
+                        
                     </StackLayout>
                 </Frame>
                 <StackLayout>
+                    <Label Text="Items do Pedido" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center"></Label>
+                    <ListView
+                            HorizontalScrollBarVisibility="Never"
+                            HorizontalOptions="Start"
+                            ItemSelected="ListView_ItemSelected"
+                            ItemsSource="{Binding MyCartList}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding pro_nome}" FontSize="8" FontAttributes="Bold"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding qtde}" FontAttributes="Bold" VerticalOptions="Center"  Padding="50,10,0,0"/>
+                                            <Label Text="{Binding unitario}" FontAttributes="Bold" VerticalOptions="Center" Padding="120,10,0,0"/>
+                                            <Label Text="{Binding valorTotal}" FontAttributes="Bold" VerticalOptions="Center" Padding="110,10,0,0"/>
+                                        </StackLayout>
+                                        <Button x:Name="BtnAdicionar" Text="+" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked" 
+                                    FontAttributes="Bold" BackgroundColor="#c12b0d" HorizontalOptions="Start" TextColor="White" 
+                                    WidthRequest="26" HeightRequest="26" FontSize="9" CornerRadius="4" Margin="0,10,0,0"/>
+                                        <Button x:Name="BtnRemover" Text="-" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked2" 
+                                    FontAttributes="Bold" BackgroundColor="#c12b0d" HorizontalOptions="Center" TextColor="White" 
+                                    WidthRequest="26" HeightRequest="26" FontSize="9" CornerRadius="4" Margin="0,10,0,0" />
+                                        <Button x:Name="BtnExcluir" Text="Remover" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked3" 
+                                    FontAttributes="Bold" BackgroundColor="#c12b0d" HorizontalOptions="Center" TextColor="White" 
+                                    WidthRequest="26" HeightRequest="26" FontSize="9" CornerRadius="4" Margin="0,10,0,0" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                     <Frame>
-                        <Label Text="Items do Pedido" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center"></Label>
+                        <Label Text="Dados Extras a serem adicionados futuramente" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center"></Label>
                     </Frame>
+                    <Button x:Name="btnItem" Text="Confirmar Pedido" Command="{Binding SelectCommand}" />
                 </StackLayout>
+                
             </StackLayout>
 
             
