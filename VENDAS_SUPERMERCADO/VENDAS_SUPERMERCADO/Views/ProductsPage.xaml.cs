@@ -37,16 +37,24 @@ namespace VENDAS_SUPERMERCADO.Views
         {
            int.TryParse(((Button)sender).BindingContext.ToString(), out var codigo);
 
+            
             if (codigo == 0)
                 return;
             if (MeuCarrinho.Lista == null) 
                 MeuCarrinho.Lista = new List<ItemsOrder>();
+            
+            var produtoVM = MainViewModel.GetInstance().Products.AsQueryable().Where(x => x.pro_codigo == codigo).FirstOrDefault();
+
             var produto = MeuCarrinho.Lista.Find(x => x.codigoProduto == codigo);
             if (produto == null)
             {
                 var novoProduto = new ItemsOrder();
                 novoProduto.codigoProduto = codigo;
                 novoProduto.qtde = 1;
+                novoProduto.pro_nome = produtoVM.pro_nome;
+                novoProduto.unitario = produtoVM.Preco;
+                novoProduto.valorTotal = produtoVM.Preco;
+                novoProduto.custo = produtoVM.custo;
                 MeuCarrinho.Lista.Add(novoProduto);
                 return;
             }
