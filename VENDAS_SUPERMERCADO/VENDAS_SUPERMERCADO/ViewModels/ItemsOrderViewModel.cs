@@ -30,6 +30,12 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         public List<ItemsOrder> MyCartList { get; set; }
 
+        public User UserLogedDelivery { get; set; }
+
+        public Order order;
+
+        public double somaPedido;
+
         //   public ObservableCollection<ItemsOrder> MyCartList { get; set; }
 
         public ItemsOrderViewModel()
@@ -39,7 +45,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             var userService = new UserService();
 
-            AlterarDadosCommand = new Command(async () => await AlterarDadosAsync());
+            AlterarDadosCommand = new Command( () =>  AlterarDadosAsync());
 
             ListSchedule = new ObservableCollection<string>();
 
@@ -51,7 +57,11 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             netService = new NetService();
 
-         //   ReloadItems();
+            order = new Order();
+
+            order.valorTotal = GetOrderTotal();
+
+            //   ReloadItems();
 
             LoadPayments();
 
@@ -88,6 +98,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 else
                 {
                     ScheduleSelected = "Selecione uma previsao de entrega";
+                    return;
                 }
 
                 if (!string.IsNullOrEmpty(Payments))
@@ -97,7 +108,9 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 else
                 {
                     ScheduleSelected = "Selecione uma forma de pagamento";
+                    return;
                 }
+                MontarPedido(ScheduleSelected, PaymentSelected);
             }
             else
             {
@@ -109,22 +122,51 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         {
             var userService = new UserService();
             UserLoged = await userService.GetUser(UserLoggedIn.UserName);
+            UserLogedDelivery = await userService.GetUser(UserLoggedIn.UserName);
+        }
+
+        private void MontarPedido(string schedule, string payment)
+        {
+            order.bairro = UserLogedDelivery.bairro;
+            order.cep = UserLogedDelivery.cep;
+            //   order.numeroPedido = Verificar futuramente seqpedido
+            order.data = DateTime.Now;
+            order.email = UserLoggedIn.UserName;
+            order.nome = UserLogedDelivery.nome;
+            order.observacao = "adicionar obs";
+            order.rua = UserLogedDelivery.rua;
+            order.valorTotal = GetOrderTotal();
+            order.telefone = UserLogedDelivery.telefone;
+            order.pagamento = payment;
+            order.dataEntrega = schedule;
+
+        }
+
+
+        private double GetOrderTotal()
+        {
+            if (MeuCarrinho.Lista == null)
+                return somaPedido = 0.00;
+            foreach (var s in MeuCarrinho.Lista)
+            {
+                var somaTotal = + +(s.qtde * s.unitario);
+                somaPedido = somaTotal;
+            }
+            return somaPedido;
 
         }
 
         public void LoadUser()
         {
-            UserLoged.nome = UserLoged.nome;
-            UserLoged.telefone = UserLoged.telefone;
             UserLoged.cep = "Cep:  " + UserLoged.cep;
             UserLoged.rua = "Rua:  " + UserLoged.rua + "  Num." + UserLoged.numero;
             UserLoged.bairro = "Bairro:  " + UserLoged.bairro;
-          //  UserLoged.numero = UserLoged.numero;
+
         }
 
-        private async Task AlterarDadosAsync()
+        private void AlterarDadosAsync()
         {
-             this._navigationService.NavigateToUserProfile();
+              this._navigationService.NavigateToUserProfile();
         }
 
         public async Task LoadSchedules()
