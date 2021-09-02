@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VENDAS_SUPERMERCADO.Views.ProductsPage" Title="Produtos"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
-    <StackLayout Margin="25">
+    <StackLayout Margin="15">
 
         <SearchBar
              Placeholder="Buscar..."
@@ -11,34 +11,40 @@
              SearchCommand="{Binding SearchProductCommand}">
         </SearchBar>
         <ListView
-                HorizontalScrollBarVisibility="Never"
-                HorizontalOptions="Start"
+                HasUnevenRows="True"
                 ItemSelected="ListView_ItemSelected"
                 ItemsSource="{Binding Products}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding pro_nome}" FontSize="14" FontAttributes="Bold"/>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding quantidade}" FontAttributes="Bold" VerticalOptions="End"  Padding="50,10,0,0"/>
-                                <Label Text="{Binding Preco}" FontAttributes="Bold" VerticalOptions="Center" Padding="150,10,0,0"/>
-                            </StackLayout>
-                            <Button x:Name="BtnAdicionar" Text="+" BindingContext="{Binding pro_codigo}" Clicked="OnButtonClicked" 
-                                    FontAttributes="Bold" BackgroundColor="#c12b0d" HorizontalOptions="Start" TextColor="White" 
-                                    WidthRequest="28" HeightRequest="28" FontSize="9" CornerRadius="5" Margin="0,10,0,0"/>
-                            <Button x:Name="BtnRemover" Text="-" BindingContext="{Binding pro_codigo}" Clicked="OnButtonClicked2" 
-                                    FontAttributes="Bold" BackgroundColor="#c12b0d" HorizontalOptions="Center" TextColor="White" 
-                                    WidthRequest="28" HeightRequest="28" FontSize="9" CornerRadius="5" Margin="0,10,0,0" />
-                        </StackLayout>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.RowSpan="2" Source="image_Login.jpg" Aspect="Fill" HeightRequest="80" WidthRequest="80"></Image>
+                            <Label Grid.Column="1" HeightRequest="35" FontSize="15" Margin="0,10,0,0" LineBreakMode="WordWrap" WidthRequest="300"  Text="{Binding pro_nome}"></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Margin="30,-40,0,0" Text="{Binding PrecoFormatado}" HorizontalOptions="End" FontAttributes="Bold" VerticalOptions="Center"></Label>
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding quantidade}" VerticalOptions="End"></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding departamentoFormatado}" VerticalOptions="Start" FontAttributes="Bold" Margin="0,-15,0,0" HorizontalOptions="Start"></Label>
+                            <Button Grid.Row="2" Grid.Column="0" x:Name="BtnAdicionar" Margin="15,0,0,0" Text="+" BindingContext="{Binding pro_codigo}" Clicked="OnButtonClicked" 
+                                    FontAttributes="Bold" HorizontalOptions="Start" BackgroundColor="#ADD8E6"  TextColor="Black" 
+                                    WidthRequest="50" HeightRequest="28" FontSize="10" CornerRadius="30"/>
+                            <Button Grid.Row="2" Grid.Column="1" Margin="15,0,0,0" x:Name="BtnRemover" Text="-" BindingContext="{Binding pro_codigo}" Clicked="OnButtonClicked2" 
+                                    FontAttributes="Bold" BackgroundColor="#ADD8E6" TextColor="Black" 
+                                    WidthRequest="50" HorizontalOptions="Start" HeightRequest="28" FontSize="10" CornerRadius="30"/>
+                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="TESTE"></Button>
-        <Button Text="Meu Carrinho" HorizontalOptions="Center" VerticalOptions="EndAndExpand"></Button>
         <Picker x:Name="pckDPT" HorizontalOptions="FillAndExpand"
             Title="Departamento:"
             SelectedIndexChanged="pckDPT_SelectedIndexChanged">
@@ -50,7 +56,6 @@
                 <x:String>FRIOS</x:String>
             </Picker.Items>
         </Picker>
-        
 
     </StackLayout>
 </ContentPage>
