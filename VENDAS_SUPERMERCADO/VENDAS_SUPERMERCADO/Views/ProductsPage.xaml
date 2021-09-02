@@ -31,8 +31,9 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.RowSpan="2" Source="image_Login.jpg" Aspect="Fill" HeightRequest="80" WidthRequest="80"></Image>
                             <Label Grid.Column="1" HeightRequest="35" FontSize="15" Margin="0,10,0,0" LineBreakMode="WordWrap" WidthRequest="300"  Text="{Binding pro_nome}"></Label>
-                            <Label Grid.Row="1" Grid.Column="1" Margin="30,-40,0,0" Text="{Binding Preco}" VerticalOptions="Center"></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Margin="30,-40,0,0" Text="{Binding PrecoFormatado}" HorizontalOptions="End" FontAttributes="Bold" VerticalOptions="Center"></Label>
                             <Label Grid.Row="2" Grid.Column="1" Text="{Binding quantidade}" VerticalOptions="End"></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding departamentoFormatado}" VerticalOptions="Start" FontAttributes="Bold" Margin="0,-15,0,0" HorizontalOptions="Start"></Label>
                             <Button Grid.Row="2" Grid.Column="0" x:Name="BtnAdicionar" Margin="15,0,0,0" Text="+" BindingContext="{Binding pro_codigo}" Clicked="OnButtonClicked" 
                                     FontAttributes="Bold" HorizontalOptions="Start" BackgroundColor="#ADD8E6"  TextColor="Black" 
                                     WidthRequest="50" HeightRequest="28" FontSize="10" CornerRadius="30"/>
