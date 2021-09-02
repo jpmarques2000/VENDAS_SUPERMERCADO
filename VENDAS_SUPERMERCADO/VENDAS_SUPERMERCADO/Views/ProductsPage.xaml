@@ -34,10 +34,10 @@
                             <Label Grid.Row="1" Grid.Column="1" Margin="30,-40,0,0" Text="{Binding Preco}" VerticalOptions="Center"></Label>
                             <Label Grid.Row="2" Grid.Column="1" Text="{Binding quantidade}" VerticalOptions="End"></Label>
                             <Button Grid.Row="2" Grid.Column="0" x:Name="BtnAdicionar" Margin="15,0,0,0" Text="+" BindingContext="{Binding pro_codigo}" Clicked="OnButtonClicked" 
-                                    FontAttributes="Bold" HorizontalOptions="Start" BackgroundColor="#ADD8E6"  TextColor="White" 
+                                    FontAttributes="Bold" HorizontalOptions="Start" BackgroundColor="#ADD8E6"  TextColor="Black" 
                                     WidthRequest="50" HeightRequest="28" FontSize="10" CornerRadius="30"/>
                             <Button Grid.Row="2" Grid.Column="1" Margin="15,0,0,0" x:Name="BtnRemover" Text="-" BindingContext="{Binding pro_codigo}" Clicked="OnButtonClicked2" 
-                                    FontAttributes="Bold" BackgroundColor="##ADD8E6" TextColor="White" 
+                                    FontAttributes="Bold" BackgroundColor="#ADD8E6" TextColor="Black" 
                                     WidthRequest="50" HorizontalOptions="Start" HeightRequest="28" FontSize="10" CornerRadius="30"/>
                         </Grid>
                     </ViewCell>
