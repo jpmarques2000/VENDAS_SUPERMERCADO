@@ -27,5 +27,14 @@ namespace VENDAS_SUPERMERCADO.Models
         {
             get; set;
         }
+
+
+        public string valorTotalFormatado
+        {
+            get
+            {
+                return string.Format("Valor Total do pedido: R$ {0:F2}", valorTotal);
+            }
+        }
     }
 }
