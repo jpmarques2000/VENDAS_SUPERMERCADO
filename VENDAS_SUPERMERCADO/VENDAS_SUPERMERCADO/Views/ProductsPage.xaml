@@ -3,6 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VENDAS_SUPERMERCADO.Views.ProductsPage" Title="Produtos"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Produtos" IconImageSource="image_Departamento.png"  Order="Primary" Priority="1"
+                     Command="{Binding DepartamentoCommand}"/>
+        <ToolbarItem Name="Cart" IconImageSource="image_Carrinho.png" Order="Primary" Priority="0"
+                     Command="{Binding MyCartCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    
+    
     <StackLayout Margin="15">
 
         <SearchBar
