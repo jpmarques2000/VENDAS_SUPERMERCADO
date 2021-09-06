@@ -13,6 +13,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         Task NavigateToMyCart();
         Task NavigateToMyOrder();
         Task NavigateToUserProfile();
+        Task NavigateToFilterView();
         Task userLogout();
     }
 }

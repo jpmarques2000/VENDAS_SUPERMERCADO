@@ -10,6 +10,7 @@ using System.Windows.Input;
 using VENDAS_SUPERMERCADO.Models;
 using VENDAS_SUPERMERCADO.Services;
 using VENDAS_SUPERMERCADO.Views;
+using Xamarin.Forms;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace VENDAS_SUPERMERCADO.ViewModels
@@ -17,6 +18,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
     public class MainViewModel : INotifyPropertyChanged
     {
         private NetService netService;
+
+        private readonly INavigationService _navigationService;
 
         private APIService apiService;
         public ObservableCollection<ProductItemViewModel> Products { get; set; }
@@ -29,6 +32,9 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         private string productFilter;
         public ICommand SearchProductCommand { get { return new RelayCommand(SearchProduct); } }
+        public ICommand MyCartCommand { get; private set; }
+
+        public ICommand DepartamentCommand { get; private set; }
 
         public ProductsPage productDPT;
 
@@ -72,6 +78,9 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             netService = new NetService();
             Products = new ObservableCollection<ProductItemViewModel>();
             UserLoged = new UserViewModel();
+            _navigationService = DependencyService.Get<INavigationService>();
+            MyCartCommand = new Command(MyCartCmd);
+            DepartamentCommand = new Command(DepartamentsCmd);
             //Customers = new ObservableCollection<CustomerItemViewModel>();
             //CurrentCustomer = new CustomerItemViewModel();
 
@@ -177,6 +186,20 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             UserLoged.numero = user.numero;
             UserLoged.rua = user.rua;
             UserLoged.telefone = user.telefone;
+        }
+
+        private void MyCartCmd()
+        {
+
+            this._navigationService.NavigateToMyCart();
+
+        }
+
+        private void DepartamentsCmd()
+        {
+
+            this._navigationService.NavigateToFilterView();
+
         }
 
 

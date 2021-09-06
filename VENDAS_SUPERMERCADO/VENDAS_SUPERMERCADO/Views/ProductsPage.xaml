@@ -6,7 +6,7 @@
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="Produtos" IconImageSource="image_Departamento.png"  Order="Primary" Priority="1"
-                     Command="{Binding DepartamentoCommand}"/>
+                     Command="{Binding DepartamentCommand}"/>
         <ToolbarItem Name="Cart" IconImageSource="image_Carrinho.png" Order="Primary" Priority="0"
                      Command="{Binding MyCartCommand}"/>
     </ContentPage.ToolbarItems>

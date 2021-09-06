@@ -6,91 +6,88 @@
     <ContentPage.BindingContext>
         <vm:ItemsOrderViewModel/>
     </ContentPage.BindingContext>
-
-
+    
     <ScrollView>
-    <StackLayout>
+        <StackLayout>
 
+            <StackLayout Padding="0" HeightRequest="170" Margin="20,0,20,10">
+                <Label Text="Dados de entrega" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center"></Label>
+                <Label Text="{Binding UserLoged.nome}" TextColor="Black" HorizontalOptions="Start"></Label>
+                <Label Text="{Binding UserLoged.rua}" TextColor="Black" HorizontalOptions="Start"></Label>
+                <Label Text="{Binding UserLoged.bairro}" TextColor="Black" HorizontalOptions="Start"></Label>
+                <Label Text="{Binding UserLoged.cep}" TextColor="Black" HorizontalOptions="Start"></Label>
+                <Button Text="Alterar Dados" Command="{Binding AlterarDadosCommand}">
+                </Button>
 
-        <StackLayout Padding="0" HeightRequest="170" Margin="20,0,20,10">
-            <Label Text="Dados de entrega" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center"></Label>
-            <Label Text="{Binding UserLoged.nome}" TextColor="Black" HorizontalOptions="Start"></Label>
-            <Label Text="{Binding UserLoged.rua}" TextColor="Black" HorizontalOptions="Start"></Label>
-            <Label Text="{Binding UserLoged.bairro}" TextColor="Black" HorizontalOptions="Start"></Label>
-            <Label Text="{Binding UserLoged.cep}" TextColor="Black" HorizontalOptions="Start"></Label>
-            <Button Text="Alterar Dados" Command="{Binding AlterarDadosCommand}">
-            </Button>
-
-        </StackLayout>
+            </StackLayout>
 
             <StackLayout BackgroundColor="LightGray" Margin="10,0,10,-5">
                 <Label Text="Items do Pedido" TextColor="Black" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center"></Label>
             </StackLayout>
-        
-        <ListView
+
+            <ListView
             Margin="10,0,10,0"
              HeightRequest="303"
             BackgroundColor="LightGray"
                 HasUnevenRows="True"
                 ItemSelected="ListView_ItemSelected"
-                ItemsSource="{Binding MyCartList}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="20"></RowDefinition>
-                                <RowDefinition Height="15"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="65"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="1" Grid.Row="2" FontSize="15" Margin="155,5,0,0" LineBreakMode="WordWrap" Text="{Binding totalFormatado}" FontAttributes="Bold"></Label>
-                            <Label Grid.Column="1" Grid.Row="1" HeightRequest="35" FontSize="15" Margin="-60,-20,0,0" LineBreakMode="WordWrap" WidthRequest="300"  Text="{Binding pro_nome}"></Label>
-                            <Label Grid.Row="1" Grid.Column="1" Margin="155,0,-8,0" Text="{Binding unitarioFormatado}"  FontAttributes="Bold" VerticalOptions="Center"></Label>
-                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding qtde}" Margin="-25,0,0,0" VerticalOptions="End"></Label>
+                ItemsSource="{Binding MyCartList}"
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding RefreshCommand}"
+                IsRefreshing="{Binding IsRefreshing}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                    <RowDefinition Height="15"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="65"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="1" Grid.Row="2" FontSize="15" Margin="155,5,0,0" LineBreakMode="WordWrap" Text="{Binding totalFormatado}" FontAttributes="Bold"></Label>
+                                <Label Grid.Column="1" Grid.Row="1" HeightRequest="35" FontSize="15" Margin="-60,-20,0,0" LineBreakMode="WordWrap" WidthRequest="300"  Text="{Binding pro_nome}"></Label>
+                                <Label Grid.Row="1" Grid.Column="1" Margin="155,0,-8,0" Text="{Binding unitarioFormatado}"  FontAttributes="Bold" VerticalOptions="Center"></Label>
+                                <Label Grid.Row="2" Grid.Column="1" Text="{Binding qtde}" Margin="-25,0,0,0" VerticalOptions="End"></Label>
 
-                            <Button Grid.Row="2" Grid.Column="0" x:Name="BtnAdicionar" Margin="3,0,0,0" Text="+" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked" 
+                                <Button Grid.Row="2" Grid.Column="0" x:Name="BtnAdicionar" Margin="3,0,0,0" Text="+" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked" 
                                     FontAttributes="Bold" HorizontalOptions="Start" BackgroundColor="#ADD8E6"  TextColor="Black" 
                                     WidthRequest="40" HeightRequest="28" FontSize="10" CornerRadius="30"/>
-                            <Button Grid.Row="2" Grid.Column="1" Margin="-6,0,0,0" x:Name="BtnRemover" Text="-" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked2" 
+                                <Button Grid.Row="2" Grid.Column="1" Margin="-6,0,0,0" x:Name="BtnRemover" Text="-" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked2" 
                                     FontAttributes="Bold" BackgroundColor="#ADD8E6" TextColor="Black" 
                                     WidthRequest="40" HorizontalOptions="Start" HeightRequest="28" FontSize="10" CornerRadius="30"/>
-                            <Button x:Name="BtnExcluir" Grid.Row="2" Grid.Column="1" Text="Excluir" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked3" 
+                                <Button x:Name="BtnExcluir" Grid.Row="2" Grid.Column="1" Text="Excluir" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked3" 
                                     FontAttributes="Bold" BackgroundColor="Red" HorizontalOptions="Center" TextColor="White" 
                                     WidthRequest="70" HeightRequest="26" FontSize="8" CornerRadius="30" Margin="-150,0,0,0" />
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
 
 
-        <StackLayout HeightRequest="190" Margin="10,10,10,10">
-            <Label Text="Valor Total do Pedido: R$" TextColor="Black" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center"></Label>
 
-            <control:BindablePicker  x:Name="pckPayments" Title="Selecione a forma de pagamento:" 
+            <StackLayout HeightRequest="190" Margin="10,10,10,10">
+                <Label Text="Valor Total do Pedido: R$" TextColor="Black" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center"></Label>
+
+                <control:BindablePicker  x:Name="pckPayments" Title="Selecione a forma de pagamento:" 
                             ItemsSource="{Binding ListPayments}" 
                             SelectedItem="{Binding Payments, Mode=TwoWay}" />
-            <control:BindablePicker  x:Name="pckSchedules" Title="Selecione a previsão de entrega:" 
+                <control:BindablePicker  x:Name="pckSchedules" Title="Selecione a previsão de entrega:" 
                             ItemsSource="{Binding ListSchedule}" 
                             SelectedItem="{Binding Schedule, Mode=TwoWay}" />
 
-            <Button x:Name="btnItem" Text="Confirmar Pedido" Command="{Binding SelectCommand}" />
+                <Button x:Name="btnItem" Text="Confirmar Pedido" Command="{Binding SelectCommand}" />
+
+            </StackLayout>
 
         </StackLayout>
-
-
-
-
-
-    </StackLayout>
     </ScrollView>
 
 </ContentPage>

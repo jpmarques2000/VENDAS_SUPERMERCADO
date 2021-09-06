@@ -14,6 +14,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 {
     public class ItemsOrderViewModel : INotifyPropertyChanged
     {
+        bool isRefreshing;
+        const int RefreshDuration = 2;
         public User UserLoged { get; set; }
 
         private readonly IMessageService _messageService;
@@ -35,6 +37,9 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         public Order order;
 
         public double somaPedido;
+
+        private OrderService orderService;
+        public ICommand RefreshCommand => new Command(async () => await RefreshItemsAsync());
 
         //   public ObservableCollection<ItemsOrder> MyCartList { get; set; }
 
@@ -58,6 +63,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             netService = new NetService();
 
             order = new Order();
+
+            orderService = new OrderService();
 
             order.valorTotal = GetOrderTotal();
 
@@ -107,7 +114,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 }
                 else
                 {
-                    ScheduleSelected = "Selecione uma forma de pagamento";
+                    PaymentSelected = "Selecione uma forma de pagamento";
                     return;
                 }
                 MontarPedido(ScheduleSelected, PaymentSelected);
@@ -125,6 +132,16 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             UserLogedDelivery = await userService.GetUser(UserLoggedIn.UserName);
         }
 
+        private void ClearPage()
+        {
+            MeuCarrinho.Lista.Clear();
+            MyCartList.Clear();
+            ScheduleSelected = "Selecione uma previsao de entrega";
+            PaymentSelected = "Selecione uma forma de pagamento";
+            
+
+        }
+
         private void MontarPedido(string schedule, string payment)
         {
             order.bairro = UserLogedDelivery.bairro;
@@ -135,10 +152,20 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             order.nome = UserLogedDelivery.nome;
             order.observacao = "adicionar obs";
             order.rua = UserLogedDelivery.rua;
-            order.valorTotal = GetOrderTotal();
+            order.valorTotalDB = GetOrderTotal();
             order.telefone = UserLogedDelivery.telefone;
             order.pagamento = payment;
             order.dataEntrega = schedule;
+
+            Task.Run(async () =>
+            {
+                await orderService.CreateNewOrder(order.email, order.bairro, order.cep, order.data, order.nome,
+                    order.observacao, order.rua, order.valorTotalDB, order.telefone, order.pagamento, order.dataEntrega); 
+
+            }).Wait();
+
+            Application.Current.MainPage.DisplayAlert("Sucesso", "Seu pedido foi agendado", "Ok");
+            ClearPage();
 
         }
 
@@ -289,6 +316,29 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 _paymentSelected = value;
                 OnPropertyChanged();
             }
+        }
+
+        public bool IsRefreshing
+        {
+            get { return isRefreshing; }
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private async Task RefreshItemsAsync()
+        {
+            IsRefreshing = true;
+            await Task.Delay(TimeSpan.FromSeconds(RefreshDuration));
+            UpdateList();
+            IsRefreshing = false;
+        }
+
+        private void UpdateList()
+        {
+            MyCartList.Clear();
         }
 
     }
