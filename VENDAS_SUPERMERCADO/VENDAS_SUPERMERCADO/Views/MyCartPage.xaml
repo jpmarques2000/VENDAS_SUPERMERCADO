@@ -31,10 +31,7 @@
             BackgroundColor="LightGray"
                 HasUnevenRows="True"
                 ItemSelected="ListView_ItemSelected"
-                ItemsSource="{Binding MyCartList}"
-                IsPullToRefreshEnabled="True"
-                RefreshCommand="{Binding RefreshCommand}"
-                IsRefreshing="{Binding IsRefreshing}">
+                ItemsSource="{Binding MyCartList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

@@ -30,13 +30,37 @@ namespace VENDAS_SUPERMERCADO.ViewModels
      
         public ICommand SelectCommand { get; set; }
 
-        public List<ItemsOrder> MyCartList { get; set; }
+        private ObservableCollection<ItemsOrder> _myCartList;
+        public ObservableCollection<ItemsOrder> MyCartList
+        {
+            get
+            {
+                return _myCartList;
+            }
+            set
+            {
+                _myCartList = value;
+                OnPropertyChanged();
+            }
+        }
 
         public User UserLogedDelivery { get; set; }
 
         public Order order;
 
         public double somaPedido;
+
+        private static ItemsOrderViewModel instance;
+        public static ItemsOrderViewModel GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new ItemsOrderViewModel();
+            }
+
+            return instance;
+        }
+
 
         private OrderService orderService;
         public ICommand RefreshCommand => new Command(async () => await RefreshItemsAsync());
@@ -45,6 +69,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         public ItemsOrderViewModel()
         {
+            instance = this;
             _messageService = DependencyService.Get<IMessageService>();
             _navigationService = DependencyService.Get<INavigationService>();
 
@@ -58,7 +83,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             SelectCommand = new Command(SelectCmd);
 
-            MyCartList = MeuCarrinho.Lista;
+            MyCartList = new ObservableCollection<ItemsOrder>(MeuCarrinho.Lista);
 
             netService = new NetService();
 
@@ -135,7 +160,14 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         private void ClearPage()
         {
             MeuCarrinho.Lista.Clear();
+
+            //  for (int i = 0; i < MyCartList.Count; i++)
+            //  {
+            //     MyCartList[i] = null;
+            // }
             MyCartList.Clear();
+
+            
             ScheduleSelected = "Selecione uma previsao de entrega";
             PaymentSelected = "Selecione uma forma de pagamento";
             

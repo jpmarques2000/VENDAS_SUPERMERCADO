@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VENDAS_SUPERMERCADO.Models;
+using VENDAS_SUPERMERCADO.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -22,8 +24,23 @@ namespace VENDAS_SUPERMERCADO.Views
 
         }
 
+        private void RefreshList(int qtd, int codigo)
+        {
+            var produtoVM = ItemsOrderViewModel
+                .GetInstance().MyCartList
+                    .AsQueryable().Where(x => x.codigoProduto == codigo).FirstOrDefault();
+
+            produtoVM.qtde = qtd;
+            var itens = ItemsOrderViewModel.GetInstance().MyCartList;
+            var index = itens.IndexOf(produtoVM);
+            ItemsOrderViewModel.GetInstance().MyCartList[index] = produtoVM;
+            ItemsOrderViewModel.GetInstance().OnPropertyChanged("MyCartList");
+        }
+
         private void OnButtonClicked(object sender, EventArgs e)
         {
+            
+
             int.TryParse(((Button)sender).BindingContext.ToString(), out var codigo);
 
             if (codigo == 0)
@@ -39,7 +56,9 @@ namespace VENDAS_SUPERMERCADO.Views
                 MeuCarrinho.Lista.Add(novoProduto);
                 return;
             }
-            MeuCarrinho.Lista.Find(x => x.codigoProduto == codigo).qtde++;
+            var qtd = MeuCarrinho.Lista.Find(x => x.codigoProduto == codigo).qtde + 1;
+            RefreshList(qtd, codigo);
+            MeuCarrinho.Lista.Find(x => x.codigoProduto == codigo).qtde = qtd;
         }
 
         private void OnButtonClicked2(object sender, EventArgs e)
@@ -58,11 +77,15 @@ namespace VENDAS_SUPERMERCADO.Views
             var item = MeuCarrinho.Lista.FindIndex(x => x.codigoProduto == codigo);
             if (produto.qtde == 1)
             {
+                RefreshList(0, codigo);
                 MeuCarrinho.Lista.RemoveAt(item);
             }
             else
             {
+                var qtd = MeuCarrinho.Lista.Find(x => x.codigoProduto == codigo).qtde - 1;
+
                 MeuCarrinho.Lista.Find(x => x.codigoProduto == codigo).qtde--;
+                RefreshList(qtd, codigo);
             }
         }
 

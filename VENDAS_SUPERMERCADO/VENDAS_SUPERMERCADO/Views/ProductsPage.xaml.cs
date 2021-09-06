@@ -33,12 +33,20 @@ namespace VENDAS_SUPERMERCADO.Views
             DisplayAlert(departamentoFiltro, "Departamento selecionado", "OK");
         }
 
+        private void RefreshList(int qtd, ProductItemViewModel produtoVM)
+        {
+            produtoVM.quantidade = qtd;
+            var itens = MainViewModel.GetInstance().Products;
+            var index = itens.IndexOf(produtoVM);
+            MainViewModel.GetInstance().Products[index] = produtoVM;
+        }
+
+
         private void OnButtonClicked(object sender, EventArgs e)
         {
            int.TryParse(((Button)sender).BindingContext.ToString(), out var codigo);
 
-            
-            if (codigo == 0)
+             if (codigo == 0)
                 return;
             if (MeuCarrinho.Lista == null) 
                 MeuCarrinho.Lista = new List<ItemsOrder>();
@@ -56,9 +64,15 @@ namespace VENDAS_SUPERMERCADO.Views
                 novoProduto.valorTotal = produtoVM.Preco;
                 novoProduto.custo = produtoVM.custo;
                 MeuCarrinho.Lista.Add(novoProduto);
+
+                RefreshList(1, produtoVM);
                 return;
             }
-            MeuCarrinho.Lista.Find(x => x.codigoProduto == codigo).qtde++;
+            var qtd = MeuCarrinho.Lista.Find(x => x.codigoProduto == codigo).qtde + 1;
+
+            MeuCarrinho.Lista.Find(x => x.codigoProduto == codigo).qtde = qtd;
+            produtoVM.quantidade = qtd;
+            RefreshList(qtd, produtoVM);
         }
 
         private void OnButtonClicked2(object sender, EventArgs e)
@@ -74,14 +88,19 @@ namespace VENDAS_SUPERMERCADO.Views
             var produto = MeuCarrinho.Lista.Find(x => x.codigoProduto == codigo);
             if (produto == null)
                 return;
+            var produtoVM = MainViewModel.GetInstance().Products.AsQueryable().Where(x => x.pro_codigo == codigo).FirstOrDefault();
             var item = MeuCarrinho.Lista.FindIndex(x => x.codigoProduto == codigo);
             if (produto.qtde == 1 )
             {
+                RefreshList(0, produtoVM);
                 MeuCarrinho.Lista.RemoveAt(item);
             }
             else
             {
-                MeuCarrinho.Lista.Find(x => x.codigoProduto == codigo).qtde--;
+                var qtd = MeuCarrinho.Lista.Find(x => x.codigoProduto == codigo).qtde - 1;
+
+                MeuCarrinho.Lista.Find(x => x.codigoProduto == codigo).qtde = qtd;
+                RefreshList(qtd, produtoVM);
             }
         }
 

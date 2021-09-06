@@ -9,7 +9,7 @@ namespace VENDAS_SUPERMERCADO.Models
         public int id { get; set; }
         public string numeroPedido { get; set; }
         public int codigoProduto { get; set; }
-        public double qtde { get; set; }
+        public int qtde { get; set; }
         public double unitario { get; set; }
         public double valorTotal { get; set; }
         public DateTime data { get; set; }
