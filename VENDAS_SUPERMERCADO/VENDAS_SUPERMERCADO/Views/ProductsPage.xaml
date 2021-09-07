@@ -46,10 +46,10 @@
                             <Label Grid.Row="1" Grid.Column="1" Text="{Binding departamentoFormatado}" VerticalOptions="Start" FontAttributes="Bold" Margin="0,-15,0,0" HorizontalOptions="Start"></Label>
                             <Button Grid.Row="2" Grid.Column="0" x:Name="BtnAdicionar" Margin="15,0,0,0" Text="+" BindingContext="{Binding pro_codigo}" Clicked="OnButtonClicked" 
                                     FontAttributes="Bold" HorizontalOptions="Start" BackgroundColor="#ADD8E6"  TextColor="Black" 
-                                    WidthRequest="50" HeightRequest="28" FontSize="10" CornerRadius="30"/>
+                                    WidthRequest="50" HeightRequest="28" FontSize="10" CornerRadius="9"/>
                             <Button Grid.Row="2" Grid.Column="1" Margin="15,0,0,0" x:Name="BtnRemover" Text="-" BindingContext="{Binding pro_codigo}" Clicked="OnButtonClicked2" 
                                     FontAttributes="Bold" BackgroundColor="#ADD8E6" TextColor="Black" 
-                                    WidthRequest="50" HorizontalOptions="Start" HeightRequest="28" FontSize="10" CornerRadius="30"/>
+                                    WidthRequest="50" HorizontalOptions="Start" HeightRequest="28" FontSize="10" CornerRadius="9"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
