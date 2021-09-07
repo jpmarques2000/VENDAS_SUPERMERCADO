@@ -204,12 +204,13 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         private double GetOrderTotal()
         {
+            somaPedido = 0.00;
             if (MeuCarrinho.Lista == null)
                 return somaPedido = 0.00;
             foreach (var s in MeuCarrinho.Lista)
             {
-                var somaTotal = + +(s.qtde * s.unitario);
-                somaPedido = somaTotal;
+                var somaTotal = (s.qtde * s.unitario);
+                somaPedido = somaPedido + somaTotal;
             }
             return somaPedido;
 
