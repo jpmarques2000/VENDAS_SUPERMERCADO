@@ -7,7 +7,7 @@ namespace VENDAS_SUPERMERCADO.Models
     public class Order
     {
         public int numeroPedido { get; set; }
-        public DateTime data { get; set; }
+        public string data { get; set; }
         public string telefone { get; set; }
         public string telefone2 { get; set; }
         public string pagamento { get; set; }

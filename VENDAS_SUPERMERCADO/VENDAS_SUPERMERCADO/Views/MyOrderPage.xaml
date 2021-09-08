@@ -1,12 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:VENDAS_SUPERMERCADO.ViewModels"
              x:Class="VENDAS_SUPERMERCADO.Views.MyOrderPage" Title="Meus Pedidos">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <ContentPage.BindingContext>
+        <vm:ItemsOrderViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <ListView
+            Margin="10,0,10,0"
+             HeightRequest="303"
+            BackgroundColor="LightGray"
+                HasUnevenRows="True"
+                ItemsSource="{Binding AllOrdersList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"></RowDefinition>
+                                <RowDefinition Height="15"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="1" Grid.Row="2" FontSize="15" Margin="155,5,0,0" LineBreakMode="WordWrap" Text="{Binding nome}" FontAttributes="Bold"></Label>
+                            <Label Grid.Column="1" Grid.Row="1" HeightRequest="35" FontSize="15" Margin="-60,-20,0,0" LineBreakMode="WordWrap" WidthRequest="300"  Text="{Binding AllOrdersList.data}"></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Margin="155,0,-8,0" Text="{Binding valorTotalDB}"  FontAttributes="Bold" VerticalOptions="Center"></Label>
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding pagamento}" Margin="-25,0,0,0" VerticalOptions="End"></Label>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>

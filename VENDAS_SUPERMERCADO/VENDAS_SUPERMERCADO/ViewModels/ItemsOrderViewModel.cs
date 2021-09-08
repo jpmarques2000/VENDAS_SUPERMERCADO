@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 OnPropertyChanged();
             }
         }
+        
 
         public User UserLogedDelivery { get; set; }
 
@@ -67,6 +69,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         //   public ObservableCollection<ItemsOrder> MyCartList { get; set; }
 
+        public ObservableCollection<Order> AllOrdersList { get; set; }
         public ItemsOrderViewModel()
         {
             instance = this;
@@ -83,7 +86,10 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             SelectCommand = new Command(SelectCmd);
 
-            MyCartList = new ObservableCollection<ItemsOrder>(MeuCarrinho.Lista);
+            if(MeuCarrinho.Lista != null)
+                MyCartList = new ObservableCollection<ItemsOrder>(MeuCarrinho.Lista);
+
+            AllOrdersList = new ObservableCollection<Order>();
 
             netService = new NetService();
 
@@ -113,7 +119,18 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             {
                 LoadUser();
             }
+
+            Task.Run(async () =>
+            {
+
+                var ordersList = new List<Order>();
+                ordersList = await orderService.GetAllOrders();
+                filterOrders(ordersList, UserLoggedIn.UserName);
+
+            }).Wait();
+
         }
+
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -130,6 +147,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 else
                 {
                     ScheduleSelected = "Selecione uma previsao de entrega";
+                    Application.Current.MainPage.DisplayAlert("Erro", "Selecione uma previsao de entrega", "Ok");
                     return;
                 }
 
@@ -140,6 +158,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 else
                 {
                     PaymentSelected = "Selecione uma forma de pagamento";
+                    Application.Current.MainPage.DisplayAlert("Erro", "Selecione uma forma de pagamento", "Ok");
                     return;
                 }
                 MontarPedido(ScheduleSelected, PaymentSelected);
@@ -179,7 +198,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             order.bairro = UserLogedDelivery.bairro;
             order.cep = UserLogedDelivery.cep;
             //   order.numeroPedido = Verificar futuramente seqpedido
-            order.data = DateTime.Now;
+            order.data = DateTime.Now.ToString();
             order.email = UserLoggedIn.UserName;
             order.nome = UserLogedDelivery.nome;
             order.observacao = "adicionar obs";
@@ -193,6 +212,12 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             {
                 await orderService.CreateNewOrder(order.email, order.bairro, order.cep, order.data, order.nome,
                     order.observacao, order.rua, order.valorTotalDB, order.telefone, order.pagamento, order.dataEntrega); 
+
+            }).Wait();
+
+            Task.Run(async () =>
+            {
+                await orderService.SaveItemsOrder(MeuCarrinho.Lista);
 
             }).Wait();
 
@@ -372,6 +397,26 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         private void UpdateList()
         {
             MyCartList.Clear();
+        }
+
+        public void filterOrders(List<Order> orders, string username)
+        {
+            AllOrdersList.Clear();
+
+            foreach (var order in orders.Where(o => o.email.ToUpper().Contains(username.ToUpper())))
+            {
+                AllOrdersList.Add(new Order
+                {
+                    dataEntrega = order.dataEntrega,
+                    nome = order.nome,
+                    numeroPedido = order.numeroPedido,
+                    observacao = order.observacao,
+                    pagamento = order.pagamento,
+                    valorTotalDB = order.valorTotalDB,
+                    data = order.data,
+                    email = order.email
+                });
+            }
         }
 
     }
