@@ -29,7 +29,7 @@ namespace VENDAS_SUPERMERCADO.Views
 
         public async Task NavigateToMyCart()
         {
-            App.Current.MainPage.Navigation.PushAsync(new MyCartPage());
+            await App.Current.MainPage.Navigation.PushAsync(new MyCartPage());
         }
 
         public async Task NavigateToMyOrder()
