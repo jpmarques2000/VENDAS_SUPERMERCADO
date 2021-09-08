@@ -6,10 +6,11 @@
     <ContentPage.BindingContext>
         <vm:UserViewModel/>
     </ContentPage.BindingContext>
-
-    <StackLayout BackgroundColor="LightGray">  
+    
+    <StackLayout BackgroundColor="LightBlue">
+        <Frame OutlineColor="Black" BackgroundColor="LightGray" HeightRequest="540"  Margin="5,15,5,10">
             <ScrollView>
-                <Grid Margin="0,30,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15">
+                <Grid Margin="0,30,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
@@ -44,12 +45,13 @@
                 <Label Text="CEP: " FontSize="15" FontAttributes="Bold" Grid.Column="0" Grid.Row="7" TextColor="Black"></Label>    
                 <Entry Placeholder="Cep" Text="{Binding cep}" Keyboard="Numeric" Grid.Column="1" Grid.Row="7"></Entry>
 
-                <Button Text="Salvar" CornerRadius="30" BorderWidth="2" BorderColor="Black" BackgroundColor="#ADD8E6"  TextColor="Black" 
-                        FontAttributes="Bold" FontSize="13" Margin="0,8,0,0" Command="{Binding GravarCommand}" Grid.Column="1" Grid.Row="8">
+                    <Button Text="Salvar" CornerRadius="30" BorderWidth="2" BorderColor="Black" BackgroundColor="#708090"  TextColor="White" 
+                        FontAttributes="Bold" FontSize="13" Margin="0,8,14,0" Command="{Binding GravarCommand}" Grid.Column="1" Grid.Row="8">
                     </Button>
                 </Grid>
                 
             </ScrollView>
+        </Frame>
     </StackLayout>
 
 </ContentPage>

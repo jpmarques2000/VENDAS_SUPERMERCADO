@@ -17,7 +17,7 @@
                 <Label Margin="10,0,0,0" Text="{Binding UserLoged.rua}" TextColor="Black" HorizontalOptions="Start"></Label>
                 <Label Margin="10,0,0,0" Text="{Binding UserLoged.bairro}" TextColor="Black" HorizontalOptions="Start"></Label>
                 <Label Margin="10,0,0,0" Text="{Binding UserLoged.cep}" TextColor="Black" HorizontalOptions="Start"></Label>
-                <Button HeightRequest="40" BackgroundColor="#708090"  TextColor="White" BorderColor="Black" BorderWidth="2" CornerRadius="15" Margin="0,0,0,0" Text="Alterar Dados" Command="{Binding AlterarDadosCommand}">
+                <Button HeightRequest="40" BackgroundColor="#708090"  TextColor="White" BorderColor="Black" BorderWidth="2" CornerRadius="0" Margin="0,0,0,0" Text="Alterar Dados" Command="{Binding AlterarDadosCommand}">
                 </Button>
             </StackLayout>
             
@@ -58,10 +58,10 @@
                                 <Label Grid.Row="2" Grid.Column="1" Text="{Binding qtde}" Margin="-25,0,0,0" VerticalOptions="End"></Label>
 
                                 <Button Grid.Row="2" Grid.Column="0" x:Name="BtnAdicionar" Margin="3,0,0,0" Text="+" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked" 
-                                    FontAttributes="Bold" HorizontalOptions="Start" BackgroundColor="#ADD8E6"  TextColor="Black" 
+                                    FontAttributes="Bold" HorizontalOptions="Start" BackgroundColor="#708090"  TextColor="White" 
                                     WidthRequest="40" HeightRequest="28" FontSize="10" CornerRadius="9"/>
                                 <Button Grid.Row="2" Grid.Column="1" Margin="-6,0,0,0" x:Name="BtnRemover" Text="-" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked2" 
-                                    FontAttributes="Bold" BackgroundColor="#ADD8E6" TextColor="Black" 
+                                    FontAttributes="Bold" BackgroundColor="#708090" TextColor="White" 
                                     WidthRequest="40" HorizontalOptions="Start" HeightRequest="28" FontSize="10" CornerRadius="9"/>
                                 <Button x:Name="BtnExcluir" Grid.Row="2" Grid.Column="1" Text="Excluir" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked3" 
                                     FontAttributes="Bold" BackgroundColor="Red" HorizontalOptions="Center" TextColor="White" 

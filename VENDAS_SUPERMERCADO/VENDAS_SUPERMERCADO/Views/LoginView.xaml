@@ -23,13 +23,13 @@
 
             <StackLayout Margin="15,110,15,0">
 
-                <Frame BackgroundColor="#DCDCDC" HasShadow="True" HeightRequest="220" Margin="0,10,0,0">
+                <Frame BackgroundColor="#DCDCDC" HasShadow="True" OutlineColor="Black"  HeightRequest="220" Margin="0,10,0,0">
                     <StackLayout HorizontalOptions="CenterAndExpand">
                         <Label Text="Bem vindo!" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center"></Label>
                         <Label Text="Por favor, identifique-se" TextColor="Black" FontSize="Medium" FontAttributes="Italic" HorizontalOptions="Center"></Label>
                         <Label Text="-" TextColor="#DCDCDC" FontSize="Subtitle"  FontAttributes="Bold" HorizontalOptions="Center"></Label>
 
-
+                    
                         <Grid HeightRequest="45" WidthRequest="280" HorizontalOptions="StartAndExpand" Padding="10,0" Background="#DCDCDC">
                             <Button Text="Fazer Login com Google" BorderWidth="1" BorderColor="Black" CornerRadius="30" BackgroundColor="#ADD8E6" TextColor="Black" 
                         FontAttributes="Bold" FontSize="12" Margin="0,8,0,0" x:Name="btnLogin" Command="{Binding GoogleLoginCommand}"/>
