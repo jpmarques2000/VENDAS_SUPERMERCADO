@@ -27,12 +27,6 @@ namespace VENDAS_SUPERMERCADO.Views
 
         }
 
-        private void pckDPT_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            departamentoFiltro = pckDPT.Items[pckDPT.SelectedIndex];
-            DisplayAlert(departamentoFiltro, "Departamento selecionado", "OK");
-        }
-
         private void RefreshList(int qtd, ProductItemViewModel produtoVM)
         {
             produtoVM.quantidade = qtd;

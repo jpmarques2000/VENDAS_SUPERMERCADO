@@ -110,8 +110,8 @@
 
             <StackLayout>
                 <Frame BackgroundColor="White" HeightRequest="50" OutlineColor="Black" Margin="10,0,10,-5">
-                    
-                    <Entry HeightRequest="100" PlaceholderColor="Black" Margin="-10,-79,0,-28" Placeholder="Adicionar observação: "></Entry>
+
+                    <Entry HeightRequest="100" PlaceholderColor="Black" Margin="-10,-79,0,-28" Placeholder="Adicionar observação: " Text="{Binding Observacao}"></Entry>
                 </Frame>
             </StackLayout>
 

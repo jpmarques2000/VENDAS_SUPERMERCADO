@@ -23,6 +23,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         private readonly INavigationService _navigationService;
 
         private APIService apiService;
+
+     //   ListDepartaments = new ObservableCollection<string>();
         public ObservableCollection<ProductItemViewModel> Products { get; set; }
 
         private static MainViewModel instance;
@@ -32,8 +34,6 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        List<string> Departments = new List<string>();
 
         private string productFilter;
         public ICommand SearchProductCommand { get { return new RelayCommand(SearchProduct); } }
@@ -53,6 +53,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             }
 
             return instance;
+
         }
         public string ProductFilter
         {
@@ -86,6 +87,9 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             _navigationService = DependencyService.Get<INavigationService>();
             MyCartCommand = new Command(MyCartCmd);
             DepartamentCommand = new Command(DepartamentsCmd);
+            ListDepartaments = new ObservableCollection<string>();
+            ListOrderBy = new ObservableCollection<string>();
+            loadFilter();
             //Customers = new ObservableCollection<CustomerItemViewModel>();
             //CurrentCustomer = new CustomerItemViewModel();
 
@@ -124,7 +128,6 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         {
 
             Products.Clear();
-            Departments.Clear();
 
             foreach (var product in products.OrderBy(p => p.pro_nome))
             {
@@ -142,7 +145,6 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     tipoEmbalagem = product.tipoEmbalagem
                 });
 
-                Departments.Add(product.departamento.ToString());
             }
         }
 
@@ -205,6 +207,97 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             this._navigationService.NavigateToFilterView();
 
+        }
+
+        ObservableCollection<string> _listDepartaments;
+        public ObservableCollection<string> ListDepartaments
+        {
+            get
+            {
+                return _listDepartaments;
+            }
+            set
+            {
+                _listDepartaments = value;
+                OnPropertyChanged();
+            }
+        }
+        string _departaments;
+        public string Departaments
+        {
+            get
+            {
+                return _departaments;
+            }
+            set
+            {
+                _departaments = value;
+                OnPropertyChanged();
+            }
+        }
+        string _departamentSelected;
+        public string DepartamentSelected
+        {
+            get
+            {
+                return _departamentSelected;
+            }
+            set
+            {
+                _departamentSelected = value;
+                OnPropertyChanged();
+            }
+        }
+
+        ObservableCollection<string> _listOrderBy;
+        public ObservableCollection<string> ListOrderBy
+        {
+            get
+            {
+                return _listOrderBy;
+            }
+            set
+            {
+                _listOrderBy = value;
+                OnPropertyChanged();
+            }
+        }
+        string _orderBy;
+        public string OrderBy
+        {
+            get
+            {
+                return _orderBy;
+            }
+            set
+            {
+                _orderBy = value;
+                OnPropertyChanged();
+            }
+        }
+        string _orderBySelected;
+        public string OrderBySelected
+        {
+            get
+            {
+                return _orderBySelected;
+            }
+            set
+            {
+                _orderBySelected = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private void loadFilter()
+        {
+            ListDepartaments.Add("HORTI FRUTI");
+            ListDepartaments.Add("BEBIDAS");
+            ListDepartaments.Add("PADARIA");
+            ListDepartaments.Add("FRIOS");
+            ListOrderBy.Add("NOME");
+            ListOrderBy.Add("MAIOR VALOR");
+            ListOrderBy.Add("MENOR VALOR");
         }
 
 

@@ -32,7 +32,7 @@ namespace VENDAS_SUPERMERCADO.Services
                      nome = nome,
                      observacao = observacao,
                      rua = rua,
-                     valorTotalDB = valorTotal,
+                     valorTotal = valorTotal,
                      telefone = telefone,
                      pagamento = pagamento,
                      dataEntrega = dataEntrega,
@@ -68,7 +68,7 @@ namespace VENDAS_SUPERMERCADO.Services
                     numeroPedido = item.Object.numeroPedido,
                     observacao = item.Object.observacao,
                     pagamento = item.Object.pagamento,
-                    valorTotalDB = item.Object.valorTotalDB,
+                    valorTotal = item.Object.valorTotal,
                     data = item.Object.data,
                     email = item.Object.email
                 }).ToList();

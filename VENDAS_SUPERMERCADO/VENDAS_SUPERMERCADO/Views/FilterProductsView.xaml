@@ -1,12 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VENDAS_SUPERMERCADO.Views.FilterProductsView">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:control="clr-namespace:VENDAS_SUPERMERCADO.Controls"
+             x:Class="VENDAS_SUPERMERCADO.Views.FilterProductsView"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <StackLayout>
+        <Frame Margin="0,0,0,5" OutlineColor="Black" BackgroundColor="LightGray" HeightRequest="10">
+            <control:BindablePicker Margin="0,-29,0,-28"  x:Name="pckDepartaments" TitleColor="Black" Title="Selecione o departamento:" 
+                            ItemsSource="{Binding ListDepartaments}" 
+                            SelectedItem="{Binding Departaments, Mode=TwoWay}" />
+        </Frame>
+        <Frame Margin="0,0,0,5" OutlineColor="Black" BackgroundColor="LightGray" HeightRequest="10">
+            <control:BindablePicker Margin="0,-29,0,-28"  x:Name="pckOrders" TitleColor="Black" Title="Selecione a ordenação:" 
+                            ItemsSource="{Binding ListOrderBy}" 
+                            SelectedItem="{Binding OrderBy, Mode=TwoWay}" />
+        </Frame>
+    </StackLayout>
+    
 </ContentPage>

@@ -27,6 +27,10 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         public Command AlterarDadosCommand { get; set; }
 
+        public Command ProductCommand { get; set; }
+
+        public Command MyOrderCommand { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
      
         public ICommand SelectCommand { get; set; }
@@ -79,6 +83,10 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             var userService = new UserService();
 
             AlterarDadosCommand = new Command( () =>  AlterarDadosAsync());
+
+            ProductCommand = new Command(() => ProductPageAsync());
+
+            MyOrderCommand = new Command(() => OrderPageAsync());
 
             ListSchedule = new ObservableCollection<string>();
 
@@ -161,7 +169,15 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     Application.Current.MainPage.DisplayAlert("Erro", "Selecione uma forma de pagamento", "Ok");
                     return;
                 }
-                MontarPedido(ScheduleSelected, PaymentSelected);
+                if (MeuCarrinho.Lista!= null)
+                {
+                    MontarPedido(ScheduleSelected, PaymentSelected);
+                }
+                else
+                {
+                    Application.Current.MainPage.DisplayAlert("Erro", "Adicione algum item ao pedido antes de finalizar o agendamento", "Ok");
+                }
+                
             }
             else
             {
@@ -201,9 +217,9 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             order.data = DateTime.Now.ToString();
             order.email = UserLoggedIn.UserName;
             order.nome = UserLogedDelivery.nome;
-            order.observacao = "adicionar obs";
+            order.observacao = Observacao;
             order.rua = UserLogedDelivery.rua;
-            order.valorTotalDB = GetOrderTotal();
+            order.valorTotal = GetOrderTotal();
             order.telefone = UserLogedDelivery.telefone;
             order.pagamento = payment;
             order.dataEntrega = schedule;
@@ -211,7 +227,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             Task.Run(async () =>
             {
                 await orderService.CreateNewOrder(order.email, order.bairro, order.cep, order.data, order.nome,
-                    order.observacao, order.rua, order.valorTotalDB, order.telefone, order.pagamento, order.dataEntrega); 
+                    order.observacao, order.rua, order.valorTotal, order.telefone, order.pagamento, order.dataEntrega); 
 
             }).Wait();
 
@@ -252,6 +268,16 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         private void AlterarDadosAsync()
         {
               this._navigationService.NavigateToUserProfile();
+        }
+
+        private void ProductPageAsync()
+        {
+            this._navigationService.NavigateToProducts();
+        }
+
+        private void OrderPageAsync()
+        {
+            this._navigationService.NavigateToMyOrder();
         }
 
         public async Task LoadSchedules()
@@ -386,6 +412,20 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             }
         }
 
+        string _observacao;
+        public string Observacao
+        {
+            get
+            {
+                return _observacao;
+            }
+            set
+            {
+                _observacao = value;
+                OnPropertyChanged();
+            }
+        }
+
         private async Task RefreshItemsAsync()
         {
             IsRefreshing = true;
@@ -412,12 +452,12 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     numeroPedido = order.numeroPedido,
                     observacao = order.observacao,
                     pagamento = order.pagamento,
-                    valorTotalDB = order.valorTotalDB,
+                    valorTotal = order.valorTotal,
                     data = order.data,
                     email = order.email
+                    
                 });
             }
         }
-
     }
 }
