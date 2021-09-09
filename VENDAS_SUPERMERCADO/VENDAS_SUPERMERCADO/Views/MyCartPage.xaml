@@ -6,7 +6,14 @@
     <ContentPage.BindingContext>
         <vm:ItemsOrderViewModel/>
     </ContentPage.BindingContext>
-    
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Produtos" IconImageSource="image_Produto.png"  Order="Primary" Priority="0"
+                     Command="{Binding ProductCommand}"/>
+        <ToolbarItem Name="Pedidos" IconImageSource="image_Pedidos.png" Order="Primary" Priority="1"
+                     Command="{Binding MyOrderCommand}"/>
+    </ContentPage.ToolbarItems>
+
     <ScrollView>
         <StackLayout BackgroundColor="LightBlue">
 
@@ -52,9 +59,9 @@
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Column="1" Grid.Row="2" FontSize="15" Margin="155,5,0,0" LineBreakMode="WordWrap" Text="{Binding totalFormatado}" FontAttributes="Bold"></Label>
+                                <Label Grid.Column="1" Grid.Row="2" FontSize="15" Margin="155,5,0,0" LineBreakMode="WordWrap" Text="{Binding valorTotal, StringFormat='Valor total: R${0:F2}'}" FontAttributes="Bold"></Label>
                                 <Label Grid.Column="1" Grid.Row="1" HeightRequest="35" FontSize="15" Margin="-60,-20,0,0" LineBreakMode="WordWrap" WidthRequest="300"  Text="{Binding pro_nome}"></Label>
-                                <Label Grid.Row="1" Grid.Column="1" Margin="155,0,-8,0" Text="{Binding unitarioFormatado}"  FontAttributes="Bold" VerticalOptions="Center"></Label>
+                                <Label Grid.Row="1" Grid.Column="1" Margin="155,0,-8,0" Text="{Binding unitario, StringFormat='Valor unitário: R${0:F2}'}"  FontAttributes="Bold" VerticalOptions="Center"></Label>
                                 <Label Grid.Row="2" Grid.Column="1" Text="{Binding qtde}" Margin="-25,0,0,0" VerticalOptions="End"></Label>
 
                                 <Button Grid.Row="2" Grid.Column="0" x:Name="BtnAdicionar" Margin="3,0,0,0" Text="+" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked" 

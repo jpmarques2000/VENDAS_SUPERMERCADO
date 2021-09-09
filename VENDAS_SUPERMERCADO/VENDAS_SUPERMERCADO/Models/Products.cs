@@ -37,21 +37,21 @@ namespace VENDAS_SUPERMERCADO.Models
 
 
 
-        public string PrecoFormatado
-        {
-            get
-            {
-                return string.Format("Valor: R$ {0:F2}", Preco);
-            }
-        }
+        ///public string PrecoFormatado
+        ///{
+            ///get
+            ///{
+               /// return string.Format("Valor: R$ {0:F2}", Preco);
+            ///}
+        ///}
 
-        public string departamentoFormatado
-        {
-            get
-            {
-                return string.Format("Departamento: {0}", departamento);
-            }
-        }
+       /// public string departamentoFormatado
+        ///{
+           /// get
+            ///{
+               /// return string.Format("Departamento: {0}", departamento);
+            ///}
+        ///}
 
     }
 }

@@ -21,21 +21,21 @@ namespace VENDAS_SUPERMERCADO.Models
 
 
 
-        public string unitarioFormatado
-        {
-            get
-            {
-                return string.Format("Valor unidade: R$ {0:F2}", unitario);
-            }
-        }
+        ///public string unitarioFormatado
+        ///{
+            ///get
+            ///{
+               /// return string.Format("Valor unidade: R$ {0:F2}", unitario);
+            ///}
+        ///}
 
-        public string totalFormatado
-        {
-            get
-            {
-                return string.Format("Valor Total: R$ {0:F2}", valorTotal);
-            }
-        }
+        ///public string totalFormatado
+        ///{
+            ///get
+           /// {
+               /// return string.Format("Valor Total: R$ {0:F2}", valorTotal);
+            ///}
+        ///}
 
     }
 
