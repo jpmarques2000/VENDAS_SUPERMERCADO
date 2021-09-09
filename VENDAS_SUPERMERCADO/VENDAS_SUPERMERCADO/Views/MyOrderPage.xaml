@@ -5,8 +5,14 @@
     <ContentPage.BindingContext>
         <vm:ItemsOrderViewModel/>
     </ContentPage.BindingContext>
-    <StackLayout>
-        <ListView
+    <StackLayout BackgroundColor="LightBlue">
+
+        <StackLayout BackgroundColor="LightGray" Margin="10,10,10,-5">
+            <Frame BackgroundColor="#708090" HeightRequest="10" OutlineColor="Black">
+            <Label Margin="0,-5,0,-5" Text="Pedidos Realizados" TextColor="White" FontSize="Medium" HorizontalOptions="Center"></Label>
+            </Frame>
+        </StackLayout>
+    <ListView
             Margin="10,0,10,0"
              HeightRequest="303"
             BackgroundColor="LightGray"
@@ -17,7 +23,7 @@
                     <ViewCell>
                         <Grid Padding="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="20"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
                                 <RowDefinition Height="15"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
@@ -27,10 +33,10 @@
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="1" Grid.Row="2" FontSize="15" Margin="155,5,0,0" LineBreakMode="WordWrap" Text="{Binding nome}" FontAttributes="Bold"></Label>
-                            <Label Grid.Column="1" Grid.Row="1" HeightRequest="35" FontSize="15" Margin="-60,-20,0,0" LineBreakMode="WordWrap" WidthRequest="300"  Text="{Binding AllOrdersList.data}"></Label>
-                            <Label Grid.Row="1" Grid.Column="1" Margin="155,0,-8,0" Text="{Binding valorTotalDB}"  FontAttributes="Bold" VerticalOptions="Center"></Label>
-                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding pagamento}" Margin="-25,0,0,0" VerticalOptions="End"></Label>
+                            <Label Grid.Column="1" Grid.Row="2" FontSize="18" Margin="-60,-50,0,0" LineBreakMode="WordWrap" TextColor="Black" Text="{Binding numeroPedido, StringFormat='Numero do Pedido: {0}'}" FontAttributes="Bold"></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Margin="-60,0,-8,0" FontSize="14" Text="{Binding valorTotalDB, StringFormat='Valor Total: R${0:F2}'}" TextColor="Red" VerticalOptions="Center"></Label>
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding pagamento, StringFormat='Forma de Pagamento: {0}'}" Margin="-60,0,0,0" FontSize="14" TextColor="Black" VerticalOptions="End"></Label>
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding dataEntrega, StringFormat='Data de Entrega: {0}'}" Margin="200,-50,0,0" TextColor="Green"></Label>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

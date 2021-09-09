@@ -41,9 +41,9 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.RowSpan="2" Source="image_Lista.jpg" Aspect="Fill" HeightRequest="80" WidthRequest="80"></Image>
                             <Label Grid.Column="1" HeightRequest="35" FontSize="15" Margin="5,10,0,0" LineBreakMode="WordWrap" WidthRequest="300"  Text="{Binding pro_nome}"></Label>
-                            <Label Grid.Row="1" Grid.Column="1" Margin="30,-40,0,0" Text="{Binding PrecoFormatado}" HorizontalOptions="End" FontAttributes="Bold" VerticalOptions="Center"></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Margin="30,-40,0,0" Text="{Binding Preco, StringFormat='Valor: R${0:F2}'}" HorizontalOptions="End" FontAttributes="Bold" VerticalOptions="Center"></Label>
                             <Label Grid.Row="2" Grid.Column="1" Text="{Binding quantidade}" VerticalOptions="End"></Label>
-                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding departamentoFormatado}" VerticalOptions="Start" FontAttributes="Bold" Margin="5,-15,0,0" HorizontalOptions="Start"></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding departamento, StringFormat='Departamento:{0}'}" VerticalOptions="Start" FontAttributes="Bold" Margin="5,-15,0,0" HorizontalOptions="Start"></Label>
                             <Button Grid.Row="2" Grid.Column="0" x:Name="BtnAdicionar" Margin="15,0,0,0" Text="+" BindingContext="{Binding pro_codigo}" Clicked="OnButtonClicked" 
                                     FontAttributes="Bold" HorizontalOptions="Start" BackgroundColor="#708090"  TextColor="White" 
                                     WidthRequest="50" HeightRequest="28" FontSize="10" CornerRadius="9"/>
