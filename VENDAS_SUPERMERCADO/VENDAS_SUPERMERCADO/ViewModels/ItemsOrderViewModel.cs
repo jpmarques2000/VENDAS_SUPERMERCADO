@@ -54,8 +54,6 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         public Order order;
 
-        public double somaPedido;
-
         private static ItemsOrderViewModel instance;
         public static ItemsOrderViewModel GetInstance()
         {
@@ -105,7 +103,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             orderService = new OrderService();
 
-            order.valorTotal = GetOrderTotal();
+            somaPedido = GetOrderTotal();
 
             //   ReloadItems();
 
@@ -422,6 +420,20 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             set
             {
                 _observacao = value;
+                OnPropertyChanged();
+            }
+        }
+
+        double _somaPedido;
+        public double somaPedido
+        {
+            get
+            {
+                return _somaPedido;
+            }
+            set
+            {
+                _somaPedido = value;
                 OnPropertyChanged();
             }
         }

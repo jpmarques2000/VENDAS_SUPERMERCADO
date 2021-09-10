@@ -80,12 +80,11 @@
             </ListView>
 
 
-
-
             <StackLayout HeightRequest="190" Margin="10,0,10,10">
                 <Frame BackgroundColor="#708090" OutlineColor="Black" Margin="0,0,0,0" HeightRequest="8">
                 <Label Margin="0,-15,0,0" Text="VALOR TOTAL DO PEDIDO: R$" TextColor="White" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center"></Label>
                 </Frame>
+                <Label Text="{Binding somaPedido}" TextColor="White" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center"></Label>
             </StackLayout>
 
 
