@@ -41,6 +41,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         public ICommand DepartamentCommand { get; private set; }
 
+        public ICommand FilterCommand { get; set; }
+
         public ProductsPage productDPT;
 
         public UserViewModel UserLoged { get; set; }
@@ -87,6 +89,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             _navigationService = DependencyService.Get<INavigationService>();
             MyCartCommand = new Command(MyCartCmd);
             DepartamentCommand = new Command(DepartamentsCmd);
+            FilterCommand = new Command(MyFilterCmd);
             ListDepartaments = new ObservableCollection<string>();
             ListOrderBy = new ObservableCollection<string>();
             loadFilter();
@@ -97,6 +100,34 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             //UserLoged = new UserViewModel();
             //LoadCustomers();
         }
+
+        private async void MyFilterCmd()
+        {
+            Filter.filterDepartament = Departaments;
+            Filter.filterOrder = OrderBy;
+            if (Filter.filterDepartament != null)
+            {
+                if(Filter.filterDepartament != "TODOS")
+                {
+                    var products = new List<Products>();
+                    products = await apiService.Get<Products>("products");
+                    filterDepartaments(products, Filter.filterDepartament);
+                    await this._navigationService.NavitaToProductFilter();
+                }
+                else
+                {
+                    await LoadProducts();
+                    await this._navigationService.NavitaToProductFilter();
+                }
+                
+            }
+            else
+            {
+                await this._navigationService.NavitaToProductFilter();
+            }
+            
+        }
+
         public async Task LoadProducts()
         {
            
@@ -116,12 +147,6 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             {
                
             }
-            //products = await apiService.Get<Products>("products");
-
-            //if (products != null)
-            //{
-            //    ReloadProducts(products);
-            //}
 
         }
         public void ReloadProducts(List<Products> products)
@@ -142,7 +167,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     custo = product.custo,
                     ean = product.ean,
                     secao = product.secao,
-                    tipoEmbalagem = product.tipoEmbalagem
+                    tipoEmbalagem = product.tipoEmbalagem,
+                    departamento = product.departamento
                 });
 
             }
@@ -150,7 +176,6 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         private async void SearchProduct()
         {
-      //      var dptSelecionado = productDPT.departamentoFiltro();
             var products = new List<Products>();
             products = await apiService.Get<Products>("products");
             if (products != null)
@@ -177,7 +202,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     custo = product.custo,
                     ean = product.ean,
                     secao = product.secao,
-                    tipoEmbalagem = product.tipoEmbalagem
+                    tipoEmbalagem = product.tipoEmbalagem,
+                    departamento = product.departamento
                 });
             }
         }
@@ -291,6 +317,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         private void loadFilter()
         {
+            ListDepartaments.Add("TODOS");
             ListDepartaments.Add("HORTI FRUTI");
             ListDepartaments.Add("BEBIDAS");
             ListDepartaments.Add("PADARIA");
@@ -298,6 +325,28 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             ListOrderBy.Add("NOME");
             ListOrderBy.Add("MAIOR VALOR");
             ListOrderBy.Add("MENOR VALOR");
+        }
+
+        public void filterDepartaments(List<Products> products, string filter)
+        {
+            Products.Clear();
+            foreach (var product in products.Where(p => p.departamento.ToUpper().Contains(filter.ToUpper())).OrderBy(p => p.pro_nome))
+            {
+                Products.Add(new ProductItemViewModel
+                {
+                    pro_codigo = product.pro_codigo,
+                    pro_nome = product.pro_nome,
+                    Preco = product.Preco,
+                    Promocao = product.Promocao,
+                    categoria = product.categoria,
+                    Precopromocao = product.Precopromocao,
+                    custo = product.custo,
+                    ean = product.ean,
+                    secao = product.secao,
+                    tipoEmbalagem = product.tipoEmbalagem,
+                    departamento = product.departamento
+                });
+            }
         }
 
 

@@ -210,11 +210,13 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         private void CheckUserLoggedIn()
         {
             if (netService.IsConnected())
-            { 
+            {
+                Aguarde = true;
                 _googleManager.Login(OnLoginComplete);
             }
             else
             {
+                Aguarde = false;
                 Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
             }
         }

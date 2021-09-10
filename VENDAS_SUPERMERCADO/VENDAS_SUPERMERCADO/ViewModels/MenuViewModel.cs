@@ -80,7 +80,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         {
             if (netService.IsConnected())
             {
-                MeuCarrinho.Lista.Clear();
+             //   MeuCarrinho.Lista.Clear();
                 this._navigationService.userLogout();
             }
             else
