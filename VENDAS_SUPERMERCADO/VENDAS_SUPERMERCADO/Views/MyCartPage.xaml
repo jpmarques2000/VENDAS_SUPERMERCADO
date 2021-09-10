@@ -16,8 +16,6 @@
 
     <ScrollView>
         <StackLayout BackgroundColor="LightBlue">
-
-
             <StackLayout Padding="0" HeightRequest="170" Margin="10,10,10,8" BackgroundColor="LightGray">
                 <Label Margin="0,0,0,0" Text="Dados de entrega" TextColor="Black" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center"></Label>
                 <Label Margin="10,0,0,0" Text="{Binding UserLoged.nome}" TextColor="Black" HorizontalOptions="Start"></Label>
@@ -27,9 +25,8 @@
                 <Button HeightRequest="40" BackgroundColor="#708090"  TextColor="White" BorderColor="Black" BorderWidth="2" CornerRadius="0" Margin="0,0,0,0" Text="Alterar Dados" Command="{Binding AlterarDadosCommand}">
                 </Button>
             </StackLayout>
-            
-            
-        
+           
+
             <StackLayout BackgroundColor="LightGray" Margin="10,10,10,-5">
                 <Frame BackgroundColor="#708090" HeightRequest="-10" OutlineColor="Black">
                 <Label Margin="0,-19,0,0" Text="Items do Pedido" TextColor="White" FontSize="Medium"  HorizontalOptions="Center"></Label>
@@ -82,9 +79,8 @@
 
             <StackLayout HeightRequest="190" Margin="10,0,10,10">
                 <Frame BackgroundColor="#708090" OutlineColor="Black" Margin="0,0,0,0" HeightRequest="8">
-                <Label Margin="0,-15,0,0" Text="VALOR TOTAL DO PEDIDO: R$" TextColor="White" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center"></Label>
+                    <Label Margin="0,-15,0,0" Text="{Binding somaPedido, StringFormat='Valor Total do Pedido: R${0:F2}'}" TextColor="White" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center"></Label>
                 </Frame>
-                <Label Text="{Binding somaPedido}" TextColor="White" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center"></Label>
             </StackLayout>
 
 

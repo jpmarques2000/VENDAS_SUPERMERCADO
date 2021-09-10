@@ -49,6 +49,20 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 return this._Result;
             }
         }
+
+        private bool aguarde;
+
+        public bool Aguarde
+        {
+            get { return aguarde;}
+            set
+            {
+                aguarde = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public bool IsLogedIn { get; set; }
 
         User userGoogle = new User();
@@ -138,16 +152,20 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         //}
         private async Task GoogleLoginCommandAsync()
         {
+            Aguarde = true;
+
             if (netService.IsConnected())
             {
                 _googleManager.Login(OnLoginComplete);
-                
-                
+               
+
+
             }
             else
             {
                 await Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
             }
+            
         }
 
         private void OnLoginComplete(User user, string message)
@@ -172,12 +190,14 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             {
                 // Application.Current.MainPage.DisplayAlert("Usuário não selecionado ou ocorreu um erro", message, "Ok");
             }
+            Aguarde = false;
         }
 
         private async Task loadMenu()
         {
             await MainViewModel.GetInstance().LoadProducts();
             Application.Current.MainPage =  new NavigationPage( new MenuView());
+            
         }
 
         private void GoogleLogoutCommandAsync()

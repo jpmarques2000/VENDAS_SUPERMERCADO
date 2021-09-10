@@ -4,17 +4,35 @@
              x:Class="VENDAS_SUPERMERCADO.Views.FilterProductsView"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
-    <StackLayout>
-        <Frame Margin="0,0,0,5" OutlineColor="Black" BackgroundColor="LightGray" HeightRequest="10">
-            <control:BindablePicker Margin="0,-29,0,-28"  x:Name="pckDepartaments" TitleColor="Black" Title="Selecione o departamento:" 
+
+   
+    <StackLayout BackgroundColor="LightBlue">
+        <Frame Margin="10,30,10,0" HeightRequest="500" BackgroundColor="LightGray" OutlineColor="Black">
+
+            <StackLayout>
+
+                <Frame Margin="-20,-20,-20,15" OutlineColor="Black" BackgroundColor="#708090" HeightRequest="30">
+                    <Label Margin="0,-8,0,0" Text="Filtrar Produtos" TextColor="White" FontAttributes="Bold" FontSize="30" HorizontalOptions="Center"></Label>
+                </Frame>
+                
+                <Frame Margin="-10,15,-10,15" OutlineColor="Black" BackgroundColor="LightGray" HeightRequest="10">
+                    <control:BindablePicker Margin="0,-29,0,-28"  x:Name="pckDepartaments" TitleColor="Black" Title="Selecione o departamento:" 
                             ItemsSource="{Binding ListDepartaments}" 
                             SelectedItem="{Binding Departaments, Mode=TwoWay}" />
-        </Frame>
-        <Frame Margin="0,0,0,5" OutlineColor="Black" BackgroundColor="LightGray" HeightRequest="10">
-            <control:BindablePicker Margin="0,-29,0,-28"  x:Name="pckOrders" TitleColor="Black" Title="Selecione a ordenação:" 
+                </Frame>
+                <Frame Margin="-10,0,-10,15" OutlineColor="Black" BackgroundColor="LightGray" HeightRequest="10">
+                    <control:BindablePicker Margin="0,-29,0,-28" x:Name="pckOrders" TitleColor="Black" Title="Selecione a ordenação:" 
                             ItemsSource="{Binding ListOrderBy}" 
                             SelectedItem="{Binding OrderBy, Mode=TwoWay}" />
+                </Frame>
+
+                <Button Margin="0,20,0,0" BorderColor="Black" TextColor="White" BorderWidth="2" BackgroundColor="#708090" CornerRadius="9" x:Name="btnItem" Text="Confirmar" Command="{Binding FilterCommand}" />
+                
+            </StackLayout>
+
+
         </Frame>
     </StackLayout>
     
+
 </ContentPage>
