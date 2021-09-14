@@ -9,18 +9,22 @@ namespace VENDAS_SUPERMERCADO.Models
     {
         public int pro_codigo { get; set; }
         public string pro_nome { get; set; }
-        public string descricaoTecnica { get; set; }
-        public string tipoEmbalagem { get; set; }
+        public string descricao_tecnica { get; set; }
+        public string tipo_embalagem { get; set; }
         public string secao { get; set; }
         public string categoria { get; set; }
         public string departamento { get; set; }
         public string ncm { get; set; }
         public string ean { get; set; }
         public double custo { get; set; }
-        public double Preco { get; set; }
-        public bool Promocao { get; set; }
-        public double Precopromocao { get; set; }
-        public decimal Estoque { get; set; }
+        public double preco { get; set; }
+        public bool promocao { get; set; }
+        public double preco_desconto { get; set; }
+        public decimal estoque { get; set; }
+
+        public double preco_promocao { get; set; }
+
+        public string precopromocao { get; set; }
 
         public double quantidade { get; set; }
         public int id { get; set; }

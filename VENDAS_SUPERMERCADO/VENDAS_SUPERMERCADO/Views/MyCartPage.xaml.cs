@@ -99,6 +99,16 @@ namespace VENDAS_SUPERMERCADO.Views
 
             MeuCarrinho.Lista.RemoveAt(item);
 
+            var produtoVM = ItemsOrderViewModel
+                .GetInstance().MyCartList
+                    .AsQueryable().Where(x => x.codigoProduto == codigo).FirstOrDefault();
+
+            var itens = ItemsOrderViewModel.GetInstance().MyCartList;
+            var index = itens.IndexOf(produtoVM);
+            ItemsOrderViewModel.GetInstance().MyCartList[index] = produtoVM;
+            ItemsOrderViewModel.GetInstance().MyCartList.RemoveAt(index);
+            ItemsOrderViewModel.GetInstance().OnPropertyChanged("MyCartList");
+
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

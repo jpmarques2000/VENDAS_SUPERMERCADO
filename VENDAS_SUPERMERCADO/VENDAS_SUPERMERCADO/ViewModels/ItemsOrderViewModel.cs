@@ -40,6 +40,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         {
             get
             {
+                somaPedido = GetOrderTotal();
                 return _myCartList;
             }
             set

@@ -54,8 +54,16 @@ namespace VENDAS_SUPERMERCADO.Views
                 novoProduto.codigoProduto = codigo;
                 novoProduto.qtde = 1;
                 novoProduto.pro_nome = produtoVM.pro_nome;
-                novoProduto.unitario = produtoVM.Preco;
-                novoProduto.valorTotal = produtoVM.Preco;
+                if(produtoVM.preco_promocao > 0)
+                {
+                    novoProduto.unitario = produtoVM.preco_promocao;
+                    novoProduto.valorTotal = produtoVM.preco_promocao;
+                }
+                else
+                { 
+                    novoProduto.unitario = produtoVM.preco;
+                    novoProduto.valorTotal = produtoVM.preco;
+                }
                 novoProduto.custo = produtoVM.custo;
                 novoProduto.id = produtoVM.id;
                 MeuCarrinho.Lista.Add(novoProduto);
