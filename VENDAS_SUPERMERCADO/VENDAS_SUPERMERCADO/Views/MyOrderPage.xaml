@@ -34,7 +34,7 @@
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="1" Grid.Row="2" FontSize="18" Margin="-60,-50,0,0" LineBreakMode="WordWrap" TextColor="Black" Text="{Binding numeroPedido, StringFormat='Numero do Pedido: {0}'}" FontAttributes="Bold"></Label>
-                            <Label Grid.Row="1" Grid.Column="1" Margin="-60,0,-8,0" FontSize="14" Text="{Binding valorTotal, StringFormat='Valor Total: R${0:F2}'}" TextColor="Red" VerticalOptions="Center"></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Margin="-60,0,-8,0" FontSize="14" Text="{Binding valor_total_pedido, StringFormat='Valor Total: R${0:F2}'}" TextColor="Red" VerticalOptions="Center"></Label>
                             <Label Grid.Row="2" Grid.Column="1" Text="{Binding pagamento, StringFormat='Forma de Pagamento: {0}'}" Margin="-60,0,0,0" FontSize="14" TextColor="Black" VerticalOptions="End"></Label>
                             <Label Grid.Row="2" Grid.Column="1" Text="{Binding data, StringFormat='Data do Pedido: {0}'}" Margin="200,-50,0,0" TextColor="Green"></Label>
                         </Grid>

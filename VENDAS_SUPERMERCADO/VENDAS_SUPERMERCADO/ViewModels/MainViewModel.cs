@@ -168,7 +168,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     ean = product.ean,
                     secao = product.secao,
                     tipoEmbalagem = product.tipoEmbalagem,
-                    departamento = product.departamento
+                    departamento = product.departamento,
+                    id = product.id
                 });
 
             }
@@ -203,7 +204,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     ean = product.ean,
                     secao = product.secao,
                     tipoEmbalagem = product.tipoEmbalagem,
-                    departamento = product.departamento
+                    departamento = product.departamento,
+                    id = product.id
                 });
             }
         }
@@ -344,7 +346,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     ean = product.ean,
                     secao = product.secao,
                     tipoEmbalagem = product.tipoEmbalagem,
-                    departamento = product.departamento
+                    departamento = product.departamento,
+                    id = product.id
                 });
             }
         }

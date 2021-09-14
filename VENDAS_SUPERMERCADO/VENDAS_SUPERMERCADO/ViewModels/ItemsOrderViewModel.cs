@@ -214,18 +214,18 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             //   order.numeroPedido = Verificar futuramente seqpedido
             order.data = DateTime.Now.ToString();
             order.email = UserLoggedIn.UserName;
-            order.nome = UserLogedDelivery.nome;
+            order.cliente = UserLogedDelivery.nome;
             order.observacao = Observacao;
             order.rua = UserLogedDelivery.rua;
-            order.valorTotal = GetOrderTotal();
+            order.valor_total_pedido = GetOrderTotal();
             order.telefone = UserLogedDelivery.telefone;
             order.pagamento = payment;
-            order.dataEntrega = schedule;
+            order.data_entrega = schedule;
 
             Task.Run(async () =>
             {
-                await orderService.CreateNewOrder(order.email, order.bairro, order.cep, order.data, order.nome,
-                    order.observacao, order.rua, order.valorTotal, order.telefone, order.pagamento, order.dataEntrega); 
+                await orderService.CreateNewOrder(order.email, order.bairro, order.cep, order.data, order.cliente,
+                    order.observacao, order.rua, order.valor_total_pedido, order.telefone, order.pagamento, order.data_entrega); 
 
             }).Wait();
 
@@ -459,12 +459,12 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             {
                 AllOrdersList.Add(new Order
                 {
-                    dataEntrega = order.dataEntrega,
-                    nome = order.nome,
+                    data_entrega = order.data_entrega,
+                    cliente = order.cliente,
                     numeroPedido = order.numeroPedido,
                     observacao = order.observacao,
                     pagamento = order.pagamento,
-                    valorTotal = order.valorTotal,
+                    valor_total_pedido = order.valor_total_pedido,
                     data = order.data,
                     email = order.email
                     

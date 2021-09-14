@@ -57,6 +57,7 @@ namespace VENDAS_SUPERMERCADO.Views
                 novoProduto.unitario = produtoVM.Preco;
                 novoProduto.valorTotal = produtoVM.Preco;
                 novoProduto.custo = produtoVM.custo;
+                novoProduto.id = produtoVM.id;
                 MeuCarrinho.Lista.Add(novoProduto);
 
                 RefreshList(1, produtoVM);

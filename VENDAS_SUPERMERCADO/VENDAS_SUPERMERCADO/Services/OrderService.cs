@@ -29,13 +29,13 @@ namespace VENDAS_SUPERMERCADO.Services
                      bairro = bairro,
                      cep = cep,
                      data = data,
-                     nome = nome,
+                     cliente = nome,
                      observacao = observacao,
                      rua = rua,
-                     valorTotal = valorTotal,
+                     valor_total_pedido = valorTotal,
                      telefone = telefone,
                      pagamento = pagamento,
-                     dataEntrega = dataEntrega,
+                     data_entrega = dataEntrega,
                  });
             return true;
         }
@@ -51,7 +51,8 @@ namespace VENDAS_SUPERMERCADO.Services
                      unitario = itemsOrder.unitario,
                      valorTotal = itemsOrder.qtde * itemsOrder.unitario,
                      data = DateTime.Now.ToString(),
-                     custo = itemsOrder.custo
+                     custo = itemsOrder.custo,
+                     id = itemsOrder.id
                  });
             }
             return true;
@@ -63,12 +64,12 @@ namespace VENDAS_SUPERMERCADO.Services
                 .Child("Order")
                 .OnceAsync<Order>()).Select(item => new Order
                 {
-                    dataEntrega = item.Object.dataEntrega,
-                    nome = item.Object.nome,
+                    data_entrega = item.Object.data_entrega,
+                    cliente = item.Object.cliente,
                     numeroPedido = item.Object.numeroPedido,
                     observacao = item.Object.observacao,
                     pagamento = item.Object.pagamento,
-                    valorTotal = item.Object.valorTotal,
+                    valor_total_pedido = item.Object.valor_total_pedido,
                     data = item.Object.data,
                     email = item.Object.email
                 }).ToList();

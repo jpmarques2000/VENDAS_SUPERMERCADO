@@ -18,12 +18,12 @@ namespace VENDAS_SUPERMERCADO.Models
         public string bairro { get; set; }
         public string numero { get; set; }
         public string complemento { get; set; }
-        public string dataEntrega { get; set; }
-        public string horarioEntrega { get; set; }
+        public string data_entrega { get; set; }
+        public string horario_entrega { get; set; }
         public string status { get; set; }
         public int codigo { get; set; }
-        public string nome { get; set; }
-        public double valorTotal
+        public string cliente { get; set; }
+        public double valor_total_pedido
         {
             get; set;
         }
