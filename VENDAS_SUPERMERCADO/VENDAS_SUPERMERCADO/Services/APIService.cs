@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using VENDAS_SUPERMERCADO.Models;
 
 namespace VENDAS_SUPERMERCADO.Services
 {
@@ -28,6 +29,23 @@ namespace VENDAS_SUPERMERCADO.Services
             catch
             {
                 return null;
+            }
+        }
+
+        public async Task Post(Order _order, List<ItemsOrder> itemsOrderList)
+        {
+            try
+            {
+                var client = new RestClient("https://products-mart-api.herokuapp.com/sales");
+                client.Timeout = -1;
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("Authorization", "super-secret");
+                IRestResponse response = client.Execute(request);
+                Console.WriteLine(response.Content);
+            }
+            catch
+            {
+                
             }
         }
     }

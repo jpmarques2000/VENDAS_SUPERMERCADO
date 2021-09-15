@@ -73,6 +73,9 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         //   public ObservableCollection<ItemsOrder> MyCartList { get; set; }
 
         public ObservableCollection<Order> AllOrdersList { get; set; }
+
+        private APIService apiService;
+
         public ItemsOrderViewModel()
         {
             instance = this;
@@ -93,7 +96,9 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             SelectCommand = new Command(SelectCmd);
 
-            if(MeuCarrinho.Lista != null)
+            apiService = new APIService();
+
+            if (MeuCarrinho.Lista != null)
                 MyCartList = new ObservableCollection<ItemsOrder>(MeuCarrinho.Lista);
 
             AllOrdersList = new ObservableCollection<Order>();

@@ -77,8 +77,16 @@ namespace VENDAS_SUPERMERCADO.Views
             var item = MeuCarrinho.Lista.FindIndex(x => x.codigoProduto == codigo);
             if (produto.qtde == 1)
             {
-                RefreshList(0, codigo);
+                //  RefreshList(0, codigo);
                 MeuCarrinho.Lista.RemoveAt(item);
+
+                var produtoVM = ItemsOrderViewModel
+                .GetInstance().MyCartList
+                    .AsQueryable().Where(x => x.codigoProduto == codigo).FirstOrDefault();
+                var itens = ItemsOrderViewModel.GetInstance().MyCartList;
+                var index = itens.IndexOf(produtoVM);
+                ItemsOrderViewModel.GetInstance().MyCartList.RemoveAt(index);
+                ItemsOrderViewModel.GetInstance().OnPropertyChanged("MyCartList");
             }
             else
             {
