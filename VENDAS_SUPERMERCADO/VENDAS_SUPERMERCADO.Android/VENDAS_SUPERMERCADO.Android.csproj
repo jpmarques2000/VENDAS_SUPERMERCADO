@@ -102,9 +102,6 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\image_Produto.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\VENDAS_SUPERMERCADO\VENDAS_SUPERMERCADO.csproj">
       <Project>{ACC55103-C28A-4423-8DBE-ACCB5ADA338F}</Project>
       <Name>VENDAS_SUPERMERCADO</Name>
@@ -123,13 +120,16 @@
     <AndroidResource Include="Resources\drawable\image_Perfil.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\image_Logout.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\image_Departamento.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\image_Lista.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\image_Produto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\image_Logout.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
