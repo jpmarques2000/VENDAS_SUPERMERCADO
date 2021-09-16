@@ -242,9 +242,10 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             }).Wait();
 
             if (!ok)
-            { 
+            {
+                Application.Current.MainPage.DisplayAlert("Erro", "Falha ao agendar pedido, tente novamente mais tarde", "Ok");
+                return;
             }
-
 
             Task.Run(async () =>
             {

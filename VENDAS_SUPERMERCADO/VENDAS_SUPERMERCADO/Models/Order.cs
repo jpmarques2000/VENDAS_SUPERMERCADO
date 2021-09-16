@@ -33,7 +33,7 @@ namespace VENDAS_SUPERMERCADO.Models
         [JsonIgnore]
         public string naomandaresse { get; set; }
 
-        [JsonProperty(PropertyName="products")]
+        [JsonProperty(PropertyName="product_ids")]
         public List<int> Products { get; set; }
         //public double valorTotalDB { get; set; }
 
