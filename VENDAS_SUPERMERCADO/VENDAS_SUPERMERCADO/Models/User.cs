@@ -16,7 +16,7 @@ namespace VENDAS_SUPERMERCADO.Models
         public string cep { get; set; }
         public string rua { get; set; }
         public string bairro { get; set; }
-        public int numero { get; set; }
+        public string numero { get; set; }
         public string cpf { get; set; }
         public Uri imagem { get; set; }
      //   public string username { get; set; }

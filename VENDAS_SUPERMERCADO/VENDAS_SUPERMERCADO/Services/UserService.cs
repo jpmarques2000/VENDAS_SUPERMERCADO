@@ -73,7 +73,7 @@ namespace VENDAS_SUPERMERCADO.Services
         }
 
         public async Task UpdateUser(string username, string dataNasc, string userTel, string userCEP, string userRua,
-            string userBairro, int UserNumero, string nome, string cpf)
+            string userBairro, string UserNumero, string nome, string cpf)
         {
             try
             {

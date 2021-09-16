@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -28,6 +29,12 @@ namespace VENDAS_SUPERMERCADO.Models
             get; set;
         }
         public string cpf { get; set; }
+
+        [JsonIgnore]
+        public string naomandaresse { get; set; }
+
+        [JsonProperty(PropertyName="products")]
+        public List<int> Products { get; set; }
         //public double valorTotalDB { get; set; }
 
 

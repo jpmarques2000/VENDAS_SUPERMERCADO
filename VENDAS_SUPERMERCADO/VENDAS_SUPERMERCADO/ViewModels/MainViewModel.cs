@@ -107,7 +107,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             Filter.filterOrder = OrderBy;
             if (Filter.filterDepartament != null)
             {
-                if(Filter.filterDepartament != "TODOS")
+                if (Filter.filterDepartament != "TODOS")
                 {
                     var products = new List<Products>();
                     products = await apiService.Get<Products>("products");
@@ -119,10 +119,17 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     await LoadProducts();
                     await this._navigationService.NavitaToProductFilter();
                 }
-                
+            }
+            else if(Filter.filterOrder != "Nome")
+            {
+                var products = new List<Products>();
+                products = await apiService.Get<Products>("products");
+                FilterOrders(products, Filter.filterOrder);
+                await this._navigationService.NavitaToProductFilter();
             }
             else
             {
+                await LoadProducts();
                 await this._navigationService.NavitaToProductFilter();
             }
             
@@ -173,6 +180,51 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 });
 
             }
+            ListDepartaments.Add("Todos");
+            foreach (var produto in products)
+            {
+                if (ListDepartaments.Contains(produto.departamento))
+                    continue;
+                ListDepartaments.Add(produto.departamento);
+            }
+
+            
+        }
+
+        public void FilterOrders(List<Products> products, string filter)
+        {
+
+            Products.Clear();
+
+            foreach (var product in products.OrderBy(p => p.pro_nome))
+            {
+                Products.Add(new ProductItemViewModel
+                {
+                    pro_codigo = product.pro_codigo,
+                    pro_nome = product.pro_nome,
+                    preco = product.preco,
+                    desconto = product.desconto,
+                    categoria = product.categoria,
+                    preco_desconto = product.preco_desconto,
+                    custo = product.custo,
+                    ean = product.ean,
+                    secao = product.secao,
+                    tipo_embalagem = product.tipo_embalagem,
+                    departamento = product.departamento,
+                    id = product.id
+                });
+
+            }
+
+            if(filter != "Preço Crescente")
+            {
+                products = products.OrderByDescending(p => p.preco).ToList();
+            }
+            else
+            {
+                products = products.OrderBy(p => p.preco).ToList();
+            }
+
         }
 
         private async void SearchProduct()
@@ -208,6 +260,9 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     id = product.id
                 });
             }
+
+            products = products.OrderByDescending(p => p.preco).ToList();
+
         }
 
         public void LoadUser(User user)
@@ -319,14 +374,14 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         private void loadFilter()
         {
-            ListDepartaments.Add("TODOS");
-            ListDepartaments.Add("HORTI FRUTI");
-            ListDepartaments.Add("BEBIDAS");
-            ListDepartaments.Add("PADARIA");
-            ListDepartaments.Add("FRIOS");
-            ListOrderBy.Add("NOME");
-            ListOrderBy.Add("MAIOR VALOR");
-            ListOrderBy.Add("MENOR VALOR");
+            
+            //ListDepartaments.Add("HORTI FRUTI");
+            //ListDepartaments.Add("BEBIDAS");
+            //ListDepartaments.Add("PADARIA");
+            //ListDepartaments.Add("FRIOS");
+            ListOrderBy.Add("Nome");
+            ListOrderBy.Add("Preço Crescente");
+            ListOrderBy.Add("Preço Decrescente");
         }
 
         public void filterDepartaments(List<Products> products, string filter)

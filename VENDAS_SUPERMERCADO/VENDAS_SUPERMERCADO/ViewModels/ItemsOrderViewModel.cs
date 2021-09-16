@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -199,16 +201,13 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         private void ClearPage()
         {
             MeuCarrinho.Lista.Clear();
-
-            //  for (int i = 0; i < MyCartList.Count; i++)
-            //  {
-            //     MyCartList[i] = null;
-            // }
             MyCartList.Clear();
 
-            
             ScheduleSelected = "Selecione uma previsao de entrega";
             PaymentSelected = "Selecione uma forma de pagamento";
+            Payments = "Selecione uma forma de pagamento";
+            Schedule = "Selecione uma previsao de entrega";
+            Observacao = "";
             
 
         }
@@ -228,6 +227,24 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             order.cpf = UserLogedDelivery.cpf;
             order.pagamento = payment;
             order.data_entrega = schedule;
+            order.numero = UserLogedDelivery.numero;
+
+            order.Products = new List<int>();
+            foreach (var produto in MeuCarrinho.Lista)
+            {
+                order.Products.Add(produto.id);
+            }
+
+            var ok = true;
+            Task.Run(async () =>
+            {
+                ok = await APIService.Post(order); 
+            }).Wait();
+
+            if (!ok)
+            { 
+            }
+
 
             Task.Run(async () =>
             {

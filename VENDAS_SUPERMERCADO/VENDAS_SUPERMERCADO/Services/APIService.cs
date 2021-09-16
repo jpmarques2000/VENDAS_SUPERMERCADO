@@ -2,6 +2,7 @@
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,20 +33,28 @@ namespace VENDAS_SUPERMERCADO.Services
             }
         }
 
-        public async Task Post(Order _order, List<ItemsOrder> itemsOrderList)
+        public static async Task<bool> Post(Order order)
         {
             try
             {
+                var json = JsonConvert.SerializeObject(order);
                 var client = new RestClient("https://products-mart-api.herokuapp.com/sales");
                 client.Timeout = -1;
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("Authorization", "super-secret");
-                IRestResponse response = client.Execute(request);
-                Console.WriteLine(response.Content);
+                request.AddHeader("Content-Type", "application/json");
+                var body = json;
+                request.AddParameter("application/json", body, ParameterType.RequestBody);
+                IRestResponse response = await client.ExecuteAsync(request);
+                if (response.StatusCode != HttpStatusCode.Created) 
+                {
+                    throw new Exception("Erro ao gravar os dados na api ! Tente novamente");
+                }
+                return true;
             }
-            catch
+            catch (Exception e)
             {
-                
+                return false;
             }
         }
     }
