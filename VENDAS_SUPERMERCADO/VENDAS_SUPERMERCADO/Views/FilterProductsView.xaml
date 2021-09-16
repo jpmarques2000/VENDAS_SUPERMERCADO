@@ -7,7 +7,7 @@
 
    
     <StackLayout BackgroundColor="LightBlue">
-        <Frame Margin="10,30,10,0" HeightRequest="500" BackgroundColor="LightGray" OutlineColor="Black">
+        <Frame Margin="10,30,10,0" HeightRequest="500" BackgroundColor="LightGray" OutlineColor="Black" HasShadow="False">
 
             <StackLayout>
 
@@ -26,7 +26,12 @@
                             SelectedItem="{Binding OrderBy, Mode=TwoWay}" />
                 </Frame>
 
-                <Button Margin="0,20,0,0" BorderColor="Black" TextColor="White" BorderWidth="2" BackgroundColor="#708090" CornerRadius="9" x:Name="btnItem" Text="Confirmar" Command="{Binding FilterCommand}" />
+                <Frame HasShadow="False" BackgroundColor="LightGray" Margin="-10,0,-10,0" HeightRequest="10">
+                    <CheckBox x:Name="checkBoxOfertas" Color="Green" Margin="-20,-8,0,0"></CheckBox>
+                </Frame>
+                <Label Text="Produtos em Oferta" Margin="30,-47,0,0" TextColor="Black" FontSize="18"></Label>
+
+                <Button Margin="0,60,0,0" BorderColor="Black" TextColor="White" BorderWidth="2" BackgroundColor="#708090" CornerRadius="9" x:Name="btnItem" Text="Confirmar" Command="{Binding FilterCommand}" />
                 
             </StackLayout>
 
