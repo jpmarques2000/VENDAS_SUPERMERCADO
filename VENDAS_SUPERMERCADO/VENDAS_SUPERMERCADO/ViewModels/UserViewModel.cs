@@ -91,7 +91,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 {
                     IsBusy = true;
                     var userService = new UserService();
-                    await userService.UpdateUser(username, dataNascimento, telefone, cep, rua, bairro, numero, nome );
+                    await userService.UpdateUser(username, dataNascimento, telefone, cep, rua, bairro, numero, nome, cpf );
                     await Application.Current.MainPage.DisplayAlert("Sucesso", "Dados atualizados", "Ok");
 
                 }
@@ -119,6 +119,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             rua = UserLoged.rua;
             bairro = UserLoged.bairro;
             numero = UserLoged.numero;
+            cpf = UserLoged.cpf;
         }
 
     }

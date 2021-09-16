@@ -18,13 +18,9 @@ namespace VENDAS_SUPERMERCADO.Models
         public string ean { get; set; }
         public double custo { get; set; }
         public double preco { get; set; }
-        public bool promocao { get; set; }
+        public bool desconto { get; set; }
         public double preco_desconto { get; set; }
         public decimal estoque { get; set; }
-
-        public double preco_promocao { get; set; }
-
-        public string precopromocao { get; set; }
 
         public double quantidade { get; set; }
         public int id { get; set; }

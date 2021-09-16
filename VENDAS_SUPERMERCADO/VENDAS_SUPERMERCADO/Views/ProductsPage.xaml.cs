@@ -54,10 +54,10 @@ namespace VENDAS_SUPERMERCADO.Views
                 novoProduto.codigoProduto = codigo;
                 novoProduto.qtde = 1;
                 novoProduto.pro_nome = produtoVM.pro_nome;
-                if(produtoVM.preco_promocao > 0)
+                if(produtoVM.preco_desconto > 0)
                 {
-                    novoProduto.unitario = produtoVM.preco_promocao;
-                    novoProduto.valorTotal = produtoVM.preco_promocao;
+                    novoProduto.unitario = produtoVM.preco_desconto;
+                    novoProduto.valorTotal = produtoVM.preco_desconto;
                 }
                 else
                 { 

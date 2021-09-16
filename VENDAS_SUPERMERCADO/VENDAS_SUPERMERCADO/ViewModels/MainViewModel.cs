@@ -161,7 +161,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     pro_codigo = product.pro_codigo,
                     pro_nome = product.pro_nome,
                     preco = product.preco,
-                    promocao = product.promocao,
+                    desconto = product.desconto,
                     categoria = product.categoria,
                     preco_desconto = product.preco_desconto,
                     custo = product.custo,
@@ -170,7 +170,6 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     tipo_embalagem = product.tipo_embalagem,
                     departamento = product.departamento,
                     id = product.id
-
                 });
 
             }
@@ -198,7 +197,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     pro_codigo = product.pro_codigo,
                     pro_nome = product.pro_nome,
                     preco = product.preco,
-                    promocao = product.promocao,
+                    desconto = product.desconto,
                     categoria = product.categoria,
                     preco_desconto = product.preco_desconto,
                     custo = product.custo,
@@ -318,20 +317,6 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             }
         }
 
-        double _promocao;
-        public double Promocao
-        {
-            get
-            {
-                return _promocao;
-            }
-            set
-            {
-                _promocao = value;
-                OnPropertyChanged();
-            }
-        }
-
         private void loadFilter()
         {
             ListDepartaments.Add("TODOS");
@@ -354,7 +339,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     pro_codigo = product.pro_codigo,
                     pro_nome = product.pro_nome,
                     preco = product.preco,
-                    promocao = product.promocao,
+                    desconto = product.desconto,
                     categoria = product.categoria,
                     preco_desconto = product.preco_desconto,
                     custo = product.custo,
@@ -371,14 +356,14 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             Products.Clear();
 
-            foreach(var product in products.Where(p => p.preco_promocao > 0).OrderBy(p => p.pro_nome))
+            foreach(var product in products.Where(p => p.preco_desconto > 0).OrderBy(p => p.pro_nome))
             {
                 Products.Add(new ProductItemViewModel
                 {
                     pro_codigo = product.pro_codigo,
                     pro_nome = product.pro_nome,
                     preco = product.preco,
-                    promocao = product.promocao,
+                    desconto = product.desconto,
                     categoria = product.categoria,
                     preco_desconto = product.preco_desconto,
                     custo = product.custo,

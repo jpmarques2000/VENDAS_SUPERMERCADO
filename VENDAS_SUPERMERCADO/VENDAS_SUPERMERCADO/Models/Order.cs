@@ -27,6 +27,7 @@ namespace VENDAS_SUPERMERCADO.Models
         {
             get; set;
         }
+        public string cpf { get; set; }
         //public double valorTotalDB { get; set; }
 
 

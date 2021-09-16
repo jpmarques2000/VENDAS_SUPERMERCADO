@@ -73,7 +73,7 @@ namespace VENDAS_SUPERMERCADO.Services
         }
 
         public async Task UpdateUser(string username, string dataNasc, string userTel, string userCEP, string userRua,
-            string userBairro, int UserNumero, string nome)
+            string userBairro, int UserNumero, string nome, string cpf)
         {
             try
             {
@@ -87,7 +87,7 @@ namespace VENDAS_SUPERMERCADO.Services
                         .Child(toUpdateUser.Key)
                            .PutAsync(new User()
                            { dataNascimento = dataNasc, telefone = userTel, cep = userCEP,
-                               rua = userRua, bairro = userBairro, numero = UserNumero, username = username, nome = nome });
+                               rua = userRua, bairro = userBairro, numero = UserNumero, username = username, nome = nome, cpf = cpf });
             }
             catch (System.Exception)
             {
@@ -110,7 +110,8 @@ namespace VENDAS_SUPERMERCADO.Services
                   rua = item.Object.rua,
                   bairro = item.Object.bairro,
                   numero = item.Object.numero,
-                  nome = item.Object.nome
+                  nome = item.Object.nome,
+                  cpf = item.Object.cpf
               }).ToList();
         }
         public async Task<User> GetUser(string username)

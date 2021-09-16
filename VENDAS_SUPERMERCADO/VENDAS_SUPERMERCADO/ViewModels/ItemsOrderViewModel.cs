@@ -225,13 +225,14 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             order.rua = UserLogedDelivery.rua;
             order.valor_total_pedido = GetOrderTotal();
             order.telefone = UserLogedDelivery.telefone;
+            order.cpf = UserLogedDelivery.cpf;
             order.pagamento = payment;
             order.data_entrega = schedule;
 
             Task.Run(async () =>
             {
                 await orderService.CreateNewOrder(order.email, order.bairro, order.cep, order.data, order.cliente,
-                    order.observacao, order.rua, order.valor_total_pedido, order.telefone, order.pagamento, order.data_entrega); 
+                    order.observacao, order.rua, order.valor_total_pedido, order.telefone, order.pagamento, order.data_entrega, order.cpf); 
 
             }).Wait();
 

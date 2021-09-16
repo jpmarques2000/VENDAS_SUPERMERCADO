@@ -20,6 +20,7 @@
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="45"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -44,9 +45,11 @@
                 <Entry Placeholder="Numero" Text="{Binding numero}" Keyboard="Numeric" Grid.Column="1" Grid.Row="6"></Entry>
                 <Label Text="CEP: " FontSize="15" FontAttributes="Bold" Grid.Column="0" Grid.Row="7" TextColor="Black"></Label>    
                 <Entry Placeholder="Cep" Text="{Binding cep}" Keyboard="Numeric" Grid.Column="1" Grid.Row="7"></Entry>
+                <Label Text="CPF: " FontSize="15" FontAttributes="Bold" Grid.Column="0" Grid.Row="8" TextColor="Black"></Label>
+                <Entry Placeholder="CPF" Text="{Binding cpf}" Keyboard="Numeric" Grid.Column="1" Grid.Row="8"></Entry>
 
                     <Button Text="Salvar" CornerRadius="30" BorderWidth="2" BorderColor="Black" BackgroundColor="#708090"  TextColor="White" 
-                        FontAttributes="Bold" FontSize="13" Margin="0,8,14,0" Command="{Binding GravarCommand}" Grid.Column="1" Grid.Row="8">
+                        FontAttributes="Bold" FontSize="13" Margin="0,8,14,0" Command="{Binding GravarCommand}" Grid.Column="1" Grid.Row="9">
                     </Button>
                 </Grid>
                 

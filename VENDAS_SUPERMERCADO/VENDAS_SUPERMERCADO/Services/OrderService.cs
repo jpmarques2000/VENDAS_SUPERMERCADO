@@ -20,7 +20,7 @@ namespace VENDAS_SUPERMERCADO.Services
         }
 
         public async Task<bool> CreateNewOrder(string emailUser, string bairro, string cep, string data, string nome, 
-            string observacao, string rua, double valorTotal, string telefone, string pagamento, string dataEntrega)
+            string observacao, string rua, double valorTotal, string telefone, string pagamento, string dataEntrega, string cpf)
         {
             await client.Child("Order")
                  .PostAsync(new Order()
@@ -36,6 +36,7 @@ namespace VENDAS_SUPERMERCADO.Services
                      telefone = telefone,
                      pagamento = pagamento,
                      data_entrega = dataEntrega,
+                     cpf = cpf
                  });
             return true;
         }
