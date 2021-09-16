@@ -46,7 +46,7 @@
                             <Label Grid.Row="2" Grid.Column="1" Margin="-15,-60,0,0" Text="{Binding preco, StringFormat='Valor: R${0:F2}'}" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center"></Label>
                             <Label Grid.Row="2" Grid.Column="1" Text="{Binding preco_desconto, StringFormat='Valor Promocional: R${0:F2}'}" IsVisible="{Binding desconto}" TextColor="Red" FontSize="17" FontAttributes="Bold" VerticalOptions="Center" Margin="-15,-15,0,0"></Label>
                             <Label Grid.Row="3" Grid.Column="1" Text="{Binding quantidade}" VerticalOptions="End" Margin="-35,0,0,0"></Label>
-                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding departamento, StringFormat='Categoria: {0}'}" VerticalOptions="Start" TextColor="Black" FontAttributes="None" Margin="-15,-15,0,0" HorizontalOptions="Start"></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding departamento, StringFormat='Departamento: {0}'}" VerticalOptions="Start" TextColor="Black" FontAttributes="None" Margin="-15,-15,0,0" HorizontalOptions="Start"></Label>
                             <Button Grid.Row="3" Grid.Column="0" x:Name="BtnAdicionar" Margin="15,0,0,0" Text="+" BindingContext="{Binding pro_codigo}" Clicked="OnButtonClicked" 
                                     FontAttributes="Bold" HorizontalOptions="Start" BackgroundColor="#708090"  TextColor="White" 
                                     WidthRequest="50" HeightRequest="28" FontSize="10" CornerRadius="9"/>
