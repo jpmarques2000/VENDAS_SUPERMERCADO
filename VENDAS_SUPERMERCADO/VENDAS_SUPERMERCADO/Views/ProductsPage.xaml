@@ -41,7 +41,7 @@
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.RowSpan="3" Grid.Row="0" Source="image_Lista.jpg" Aspect="Fill" HeightRequest="80" WidthRequest="80" Margin="-15,0,0,0"></Image>
+                            <Image Grid.RowSpan="3" Grid.Row="0" Source="image_Lista.jpg" Aspect="Fill" HeightRequest="80" WidthRequest="80" Margin="0,0,20,0"></Image>
                             <Label Grid.Column="1" HeightRequest="35" FontSize="14" Margin="-15,10,0,0" LineBreakMode="WordWrap" WidthRequest="300" FontAttributes="Bold" TextColor="Black"  Text="{Binding pro_nome}"></Label>
                             <Label Grid.Row="2" Grid.Column="1" Margin="-15,-60,0,0" Text="{Binding preco, StringFormat='Valor: R${0:F2}'}" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center"></Label>
                             <Label Grid.Row="2" Grid.Column="1" Text="{Binding preco_desconto, StringFormat='Valor Promocional: R${0:F2}'}" IsVisible="{Binding desconto}" TextColor="Red" FontSize="17" FontAttributes="Bold" VerticalOptions="Center" Margin="-15,-15,0,0"></Label>

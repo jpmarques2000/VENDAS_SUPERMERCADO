@@ -114,22 +114,22 @@
     <AndroidResource Include="Resources\drawable\image_Login.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\image_Carrinho.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\image_Pedidos.png" />
+    <AndroidResource Include="Resources\drawable\image_Logout.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\image_Perfil.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\image_Departamento.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\image_Produto.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\image_Logout.png" />
+    <AndroidResource Include="Resources\drawable\image_Pedidos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\image_Carrinho.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\image_Departamento.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\image_Lista.png" />
