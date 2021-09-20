@@ -40,7 +40,7 @@ namespace VENDAS_SUPERMERCADO.Services
                  });
             return true;
         }
-        public async Task<bool> SaveItemsOrder(List<ItemsOrder> itemsOrderList)
+        public async Task<bool> SaveItemsOrder(List<ItemsOrder> itemsOrderList, string dataPedido)
         {
             foreach(var itemsOrder in itemsOrderList)
             {
@@ -51,9 +51,10 @@ namespace VENDAS_SUPERMERCADO.Services
                      qtde = itemsOrder.qtde,
                      unitario = itemsOrder.unitario,
                      valorTotal = itemsOrder.qtde * itemsOrder.unitario,
-                     data = DateTime.Now.ToString(),
+                     data = dataPedido,
                      custo = itemsOrder.custo,
-                     id = itemsOrder.id
+                     id = itemsOrder.id,
+                     
                  });
             }
             return true;
@@ -88,6 +89,23 @@ namespace VENDAS_SUPERMERCADO.Services
 
         //    return umOrder;
         //}
+
+        public async Task<List<ItemsOrder>> GetOrderDetails()
+        {
+            return (await client
+                .Child("ItemsOrder")
+                .OnceAsync<ItemsOrder>()).Select(item => new ItemsOrder
+                {
+                    codigoProduto = item.Object.codigoProduto,
+                    custo = item.Object.custo,
+                    data = item.Object.data,
+                    desconto = item.Object.desconto,
+                    id = item.Object.id,
+                    qtde = item.Object.qtde,
+                    unitario = item.Object.unitario,
+                    valorTotal = item.Object.valorTotal
+                }).ToList();
+        }
 
     }
 }

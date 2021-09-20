@@ -1,29 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:VENDAS_SUPERMERCADO.ViewModels"
-             x:Class="VENDAS_SUPERMERCADO.Views.MyOrderPage" Title="Meus Pedidos">
+             x:Class="VENDAS_SUPERMERCADO.Views.ItemsOrderDetailPage" Title="Items do Pedido">
     <ContentPage.BindingContext>
         <vm:ItemsOrderViewModel/>
     </ContentPage.BindingContext>
-    <StackLayout BackgroundColor="LightBlue">
-
-        <StackLayout BackgroundColor="LightGray" Margin="10,10,10,-5">
-            <Frame BackgroundColor="#708090" HeightRequest="10" OutlineColor="Black">
-            <Label Margin="0,-5,0,-5" Text="Pedidos Realizados" TextColor="White" FontSize="Medium" HorizontalOptions="Center"></Label>
-            </Frame>
-        </StackLayout>
-    <ListView
+    <StackLayout>
+        <ListView
             Margin="10,0,10,0"
              HeightRequest="303"
             BackgroundColor="LightGray"
                 HasUnevenRows="True"
-                ItemsSource="{Binding AllOrdersList}">
+                ItemsSource="{Binding ItemsOrderDetailsList}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid Padding="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="20"></RowDefinition>
                                 <RowDefinition Height="15"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
@@ -33,14 +27,16 @@
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Row="1" Grid.Column="1" Margin="-60,-4,-8,0" FontSize="14" Text="{Binding valor_total_pedido, StringFormat='Valor Total do pedido: R${0:F2}'}" FontAttributes="Bold" TextColor="Red" VerticalOptions="Center"></Label>
-                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding pagamento, StringFormat='Forma de Pagamento: {0}'}" Margin="-60,0,0,0" FontSize="14" TextColor="Black" FontAttributes="Bold" VerticalOptions="End"></Label>
-                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding data, StringFormat='Data do Pedido: {0}'}" Margin="-60,-50,0,0" FontAttributes="Bold" TextColor="Green"></Label>
-                            <Button Text="Ver Detalhes" BindingContext="{Binding data}" Clicked="Button_Clicked"></Button>
+                            <Label Grid.Column="1" Grid.Row="2" FontSize="15" Margin="155,5,0,0" LineBreakMode="WordWrap" Text="{Binding valorTotal, StringFormat='Valor total: R${0:F2}'}" FontAttributes="Bold"></Label>
+                            <Label Grid.Column="1" Grid.Row="1" HeightRequest="35" FontSize="15" Margin="-60,-20,0,0" LineBreakMode="WordWrap" WidthRequest="300"  Text="{Binding pro_nome}"></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Margin="155,0,-8,0" Text="{Binding unitario, StringFormat='Valor unitário: R${0:F2}'}"  FontAttributes="Bold" VerticalOptions="Center"></Label>
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding qtde}" Margin="-25,0,0,0" VerticalOptions="End"></Label>
+
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
+    
 </ContentPage>

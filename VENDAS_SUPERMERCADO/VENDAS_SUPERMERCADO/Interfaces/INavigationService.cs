@@ -16,5 +16,6 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         Task NavigateToFilterView();
         Task userLogout();
         Task NavitaToProductFilter();
+        Task NavigateToDetailsPage();
     }
 }

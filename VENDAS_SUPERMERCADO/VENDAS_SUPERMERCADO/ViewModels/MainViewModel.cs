@@ -107,7 +107,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             Filter.filterOrder = OrderBy;
             if (Filter.filterDepartament != null)
             {
-                if (Filter.filterDepartament != "TODOS")
+                if (Filter.filterDepartament != "Todos")
                 {
                     var products = new List<Products>();
                     products = await apiService.Get<Products>("products");
@@ -120,7 +120,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     await this._navigationService.NavitaToProductFilter();
                 }
             }
-            else if(Filter.filterOrder != "Nome")
+            else if(Filter.filterOrder != "")
             {
                 var products = new List<Products>();
                 products = await apiService.Get<Products>("products");
@@ -368,6 +368,20 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             set
             {
                 _orderBySelected = value;
+                OnPropertyChanged();
+            }
+        }
+
+        bool _chkpromocao;
+        public bool chkPromocao
+        {
+            get
+            {
+                return _chkpromocao;
+            }
+            set
+            {
+                _chkpromocao = value;
                 OnPropertyChanged();
             }
         }

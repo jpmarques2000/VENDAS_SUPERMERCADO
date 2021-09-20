@@ -9,5 +9,7 @@ namespace VENDAS_SUPERMERCADO.Models
         public static string filterDepartament { get; set; }
 
         public static string filterOrder { get; set; }
+
+        public static string data { get; set; }
     }
 }

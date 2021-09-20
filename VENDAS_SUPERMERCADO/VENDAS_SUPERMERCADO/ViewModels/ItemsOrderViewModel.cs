@@ -33,6 +33,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         public Command MyOrderCommand { get; set; }
 
+        //public Command DetailsCommand { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
      
         public ICommand SelectCommand { get; set; }
@@ -76,6 +78,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         public ObservableCollection<Order> AllOrdersList { get; set; }
 
+        public ObservableCollection<ItemsOrder> ItemsOrderDetailsList { get; set; }
+
         private APIService apiService;
 
         public ItemsOrderViewModel()
@@ -92,6 +96,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             MyOrderCommand = new Command(() => OrderPageAsync());
 
+            //DetailsCommand = new Command((async) => LoadDetailsPage());
+
             ListSchedule = new ObservableCollection<string>();
 
             ListPayments = new ObservableCollection<string>();
@@ -104,6 +110,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 MyCartList = new ObservableCollection<ItemsOrder>(MeuCarrinho.Lista);
 
             AllOrdersList = new ObservableCollection<Order>();
+
+            ItemsOrderDetailsList = new ObservableCollection<ItemsOrder>();
 
             netService = new NetService();
 
@@ -143,6 +151,21 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             }).Wait();
 
+        }
+
+        public async void LoadDetailsPage(string dataPedido)
+        {
+            if(netService.IsConnected())
+            {
+                var ItemsDetailsList = new List<ItemsOrder>();
+                ItemsDetailsList = await orderService.GetOrderDetails();
+                LoadItemsDetails(ItemsDetailsList, dataPedido);
+                await this._navigationService.NavigateToDetailsPage();
+            }
+            else
+            {
+                Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
+            }
         }
 
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -256,7 +279,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             Task.Run(async () =>
             {
-                await orderService.SaveItemsOrder(MeuCarrinho.Lista);
+                await orderService.SaveItemsOrder(MeuCarrinho.Lista, order.data);
 
             }).Wait();
 
@@ -493,6 +516,27 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     data = order.data,
                     email = order.email
                     
+                });
+            }
+        }
+
+        public void LoadItemsDetails(List<ItemsOrder> itemsOrderList, string dataPedido)
+        {
+            ItemsOrderDetailsList.Clear();
+
+            foreach (var item in itemsOrderList.Where(o => o.data.Contains(dataPedido)))
+            {
+                ItemsOrderDetailsList.Add(new ItemsOrder
+                {
+                    codigoProduto = item.codigoProduto,
+                    custo = item.custo,
+                    data = item.data,
+                    desconto = item.desconto,
+                    id = item.id,
+                    qtde = item.qtde,
+                    unitario = item.unitario,
+                    valorTotal = item.valorTotal
+
                 });
             }
         }
