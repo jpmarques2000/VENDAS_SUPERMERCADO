@@ -160,6 +160,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         {
 
             Products.Clear();
+            ListDepartaments.Clear();
 
             foreach (var product in products.OrderBy(p => p.pro_nome))
             {
@@ -185,7 +186,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             {
                 if (ListDepartaments.Contains(produto.departamento))
                     continue;
-                ListDepartaments.Add(produto.departamento);
+                if(produto.departamento != "ACOGUE")
+                    ListDepartaments.Add(produto.departamento);
             }
 
             
