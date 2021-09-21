@@ -5,17 +5,13 @@
     <ContentPage.BindingContext>
         <vm:ItemsOrderViewModel/>
     </ContentPage.BindingContext>
-    <StackLayout BackgroundColor="LightBlue">
+    <StackLayout BackgroundColor="White">
 
-        <StackLayout BackgroundColor="LightGray" Margin="10,10,10,-5">
-            <Frame BackgroundColor="#708090" HeightRequest="10" OutlineColor="Black">
-            <Label Margin="0,-5,0,-5" Text="Pedidos Realizados" TextColor="White" FontSize="Medium" HorizontalOptions="Center"></Label>
-            </Frame>
-        </StackLayout>
+        
     <ListView
-            Margin="10,0,10,0"
+            Margin="0,10,0,0"
              HeightRequest="303"
-            BackgroundColor="LightGray"
+            BackgroundColor="White"
                 HasUnevenRows="True"
                 ItemsSource="{Binding AllOrdersList}">
             <ListView.ItemTemplate>
@@ -23,20 +19,20 @@
                     <ViewCell>
                         <Grid Padding="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="30"></RowDefinition>
-                                <RowDefinition Height="15"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="65"></ColumnDefinition>
+                                <ColumnDefinition Width="280"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Row="1" Grid.Column="1" Margin="-60,-4,-8,0" FontSize="14" Text="{Binding valor_total_pedido, StringFormat='Valor Total do pedido: R${0:F2}'}" FontAttributes="Bold" TextColor="Red" VerticalOptions="Center"></Label>
-                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding pagamento, StringFormat='Forma de Pagamento: {0}'}" Margin="-60,0,0,0" FontSize="14" TextColor="Black" FontAttributes="Bold" VerticalOptions="End"></Label>
-                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding data, StringFormat='Data do Pedido: {0}'}" Margin="-60,-50,0,0" FontAttributes="Bold" TextColor="Green"></Label>
-                            <Button Text="Ver Detalhes" BindingContext="{Binding data}" Clicked="Button_Clicked"></Button>
+                            <Label Grid.Row="1" Grid.Column="0" Margin="15,-48,0,0" FontSize="14" Text="{Binding valor_total_pedido, StringFormat='Valor Total do pedido: R${0:F2}'}" FontAttributes="None" TextColor="Red" VerticalOptions="Center"></Label>
+                            <Label Grid.Row="2" Grid.Column="0" Text="{Binding pagamento, StringFormat='Forma de Pagamento: {0}'}" Margin="15,-18,0,20" FontSize="14" TextColor="Black" FontAttributes="None" VerticalOptions="End"></Label>
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding data, StringFormat='Data do Pedido: {0}'}" Margin="15,0,0,0" FontAttributes="None" TextColor="Green"></Label>
+                            <Button Grid.Row="0" Grid.Column="1" Margin="5,15,0,0" TextColor="White" BackgroundColor="LightSlateGray" CornerRadius="9" FontSize="12" HeightRequest="35" FontAttributes="None" TextTransform="None" BorderWidth="2" BorderColor="Black" Text="VER DETALHES" BindingContext="{Binding data}" Clicked="Button_Clicked"></Button>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

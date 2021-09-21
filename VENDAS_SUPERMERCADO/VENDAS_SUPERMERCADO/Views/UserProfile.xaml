@@ -8,7 +8,7 @@
     </ContentPage.BindingContext>
     
     <StackLayout BackgroundColor="LightBlue">
-        <Frame OutlineColor="Black" BackgroundColor="LightGray" HeightRequest="540"  Margin="5,15,5,10">
+        <Frame OutlineColor="Black" BackgroundColor="White" HeightRequest="565"  Margin="0,0,0,0">
             <ScrollView>
                 <Grid Margin="0,30,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
                     <Grid.RowDefinitions>
@@ -49,7 +49,7 @@
                 
 
                     <Button Text="Salvar" CornerRadius="30" BorderWidth="2" BorderColor="Black" BackgroundColor="#708090"  TextColor="White" 
-                        FontAttributes="Bold" FontSize="13" Margin="0,8,14,0" Command="{Binding GravarCommand}" Grid.Column="1" Grid.Row="9">
+                        FontAttributes="Bold" FontSize="13" Margin="0,25,14,-20" Command="{Binding GravarCommand}" Grid.Column="1" Grid.Row="9">
                     </Button>
                 </Grid>
                 
