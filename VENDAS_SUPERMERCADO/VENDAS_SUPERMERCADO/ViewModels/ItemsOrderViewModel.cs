@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,7 +55,20 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
+        private ObservableCollection<ItemsOrder> _itemsOrderDetailsList;
+        public ObservableCollection<ItemsOrder> ItemsOrderDetailsList
+        {
+            get
+            {
+                return _itemsOrderDetailsList;
+            }
+            set
+            {
+                _itemsOrderDetailsList = value;
+                OnPropertyChanged();
+            }
+        }
 
         public User UserLogedDelivery { get; set; }
 
@@ -78,7 +93,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         public ObservableCollection<Order> AllOrdersList { get; set; }
 
-        public ObservableCollection<ItemsOrder> ItemsOrderDetailsList { get; set; }
+        
 
         private APIService apiService;
 
@@ -121,8 +136,6 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             somaPedido = GetOrderTotal();
 
-            //   ReloadItems();
-
             LoadPayments();
 
             Task.Run(async () =>
@@ -153,14 +166,14 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         }
 
-        public async void LoadDetailsPage(string dataPedido)
+        public async Task LoadDetailsPage(string dataPedido)
         {
             if(netService.IsConnected())
             {
                 var ItemsDetailsList = new List<ItemsOrder>();
                 ItemsDetailsList = await orderService.GetOrderDetails();
                 LoadItemsDetails(ItemsDetailsList, dataPedido);
-                await this._navigationService.NavigateToDetailsPage();
+                this._navigationService.NavigateToDetailsPage();
             }
             else
             {
@@ -283,11 +296,40 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             }).Wait();
 
+            SendEmail();
+
             Application.Current.MainPage.DisplayAlert("Sucesso", "Seu pedido foi agendado", "Ok");
+
             ClearPage();
 
         }
 
+        private void SendEmail()
+        {
+            try
+            { 
+                MailMessage mail = new MailMessage("tccvendassupermercado@gmail.com", "tccRecebedorEmailSups@gmail.com");
+
+                //mail.From = new MailAddress("tccvendassupermercado@gmail.com");
+                //mail.To.Add("tccRecebedorEmailSups@gmail.com");
+                mail.Subject = ("Novo Pedido");
+                mail.Body = ("Você recebeu um novo pedido em seu sistema, verifique!");
+                mail.SubjectEncoding = Encoding.GetEncoding("UTF-8");
+                mail.BodyEncoding = Encoding.GetEncoding("UTF-8");
+
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("tccvendassupermercado@gmail.com", "123456tcc");
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
+            }
+            catch (Exception)
+            {
+                Application.Current.MainPage.DisplayAlert("Erro", "Falha ao enviar pedido", "Ok");
+                return;
+            }
+        }
 
         private double GetOrderTotal()
         {
@@ -498,12 +540,11 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         {
             MyCartList.Clear();
         }
-
         public void filterOrders(List<Order> orders, string username)
         {
             AllOrdersList.Clear();
 
-            foreach (var order in orders.Where(o => o.email.ToUpper().Contains(username.ToUpper())))
+            foreach (var order in orders.Where(o => o.email.ToUpper().Contains(username.ToUpper())).OrderBy(o => o.data))
             {
                 AllOrdersList.Add(new Order
                 {
