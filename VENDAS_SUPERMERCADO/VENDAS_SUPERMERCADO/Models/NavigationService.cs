@@ -72,5 +72,10 @@ namespace VENDAS_SUPERMERCADO.Views
         {
             await App.Current.MainPage.Navigation.PushAsync(new ItemsOrderDetailPage());
         }
+
+        public async Task NavitaToTermsPage()
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new TermsOfServicePage());
+        }
     }
 }

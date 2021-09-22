@@ -170,10 +170,11 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         {
             if(netService.IsConnected())
             {
+                this._navigationService.NavigateToDetailsPage();
                 var ItemsDetailsList = new List<ItemsOrder>();
                 ItemsDetailsList = await orderService.GetOrderDetails();
                 LoadItemsDetails(ItemsDetailsList, dataPedido);
-                this._navigationService.NavigateToDetailsPage();
+                
             }
             else
             {
@@ -213,7 +214,17 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 }
                 if (MeuCarrinho.Lista!= null)
                 {
-                    MontarPedido(ScheduleSelected, PaymentSelected);
+                    var ok = true;
+                    ok = VerificaDadosEntrega();
+                    if(ok == true)
+                    {
+                        MontarPedido(ScheduleSelected, PaymentSelected);
+                    }
+                    else
+                    {
+                        Application.Current.MainPage.DisplayAlert("Aviso", "Necessário cadastrar todos os dados de entrega antes de finalizar o pedido", "Ok");
+                    }
+                    
                 }
                 else
                 {
@@ -225,6 +236,21 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             {
                 Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
             }
+        }
+
+        private bool VerificaDadosEntrega()
+        {
+            if(UserLoged.cpf == "" || UserLoged.cep == "" || UserLoged.username == "" || 
+                UserLogedDelivery.bairro == "" || UserLoged.rua == "" || UserLoged.telefone == ""
+                || UserLoged.nome == "" || UserLoged.dataNascimento == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
         }
 
         private async Task Buscar()

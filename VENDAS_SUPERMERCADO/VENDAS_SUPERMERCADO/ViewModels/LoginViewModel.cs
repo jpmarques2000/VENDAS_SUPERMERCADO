@@ -22,6 +22,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         public Command GoogleLoginCommand { get; set; }
         public Command GoogleLogoutCommand { get; set; }
         private NetService netService;
+        public Command TermsCommand { get; set; }
 
         private bool _Result;
         public bool Result
@@ -77,8 +78,14 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             //RegisterCommand = new Command(async () => await RegisterCommandAsync());
             GoogleLoginCommand = new Command( async () => await GoogleLoginCommandAsync());
             GoogleLogoutCommand = new Command( () =>  GoogleLogoutCommandAsync());
+            TermsCommand = new Command(TermsOfServiceCmd);
             netService = new NetService();
             CheckUserLoggedIn();
+        }
+
+        private void TermsOfServiceCmd()
+        {
+            this._navigationService.NavitaToTermsPage();
         }
 
         //private async Task RegisterCommandAsync()
@@ -92,12 +99,12 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         //        Result = await userService.RegisterUser(username, password);
         //        if (Result)
         //        {
-                    
+
         //            await Application.Current.MainPage.DisplayAlert("Sucesso", "Usuario Registrado", "Ok");
-                   
+
 
         //        }
-                
+
         //        else
         //            await Application.Current.MainPage.DisplayAlert("Erro", "Falha ao registrar usuario", "Ok");
         //    }
@@ -156,14 +163,21 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             if (netService.IsConnected())
             {
-                _googleManager.Login(OnLoginComplete);
-               
-
+                if(ChkTerms == true)
+                { 
+                    _googleManager.Login(OnLoginComplete);
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Aviso", "Necessário concordar com os termos de uso, para realizar o login", "Ok");
+                    Aguarde = false;
+                }
 
             }
             else
             {
                 await Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
+                Aguarde = false;
             }
             
         }
@@ -218,6 +232,20 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             {
                 Aguarde = false;
                 Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
+            }
+        }
+
+        bool _chkterms;
+        public bool ChkTerms
+        {
+            get
+            {
+                return _chkterms;
+            }
+            set
+            {
+                _chkterms = value;
+                OnPropertyChanged();
             }
         }
 

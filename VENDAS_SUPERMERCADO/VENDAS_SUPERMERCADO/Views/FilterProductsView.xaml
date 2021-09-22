@@ -26,8 +26,8 @@
                             SelectedItem="{Binding OrderBy, Mode=TwoWay}" />
                 </Frame>
 
-                
-                    <CheckBox x:Name="checkBoxOfertas" Color="Green" Margin="0,8,0,10"></CheckBox>
+
+                <CheckBox x:Name="checkBoxOfertas" Color="Green" Margin="0,8,0,10" IsChecked="{Binding chkPromocao}"></CheckBox>
                
                 <Label Text="Produtos em Oferta" Margin="45,-45,0,0" TextColor="Black" FontSize="18"></Label>
 

@@ -56,7 +56,7 @@
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Column="1" Grid.Row="2" FontSize="15" Margin="155,5,0,0" LineBreakMode="WordWrap" Text="{Binding valorTotal, StringFormat='Valor total: R${0:F2}'}" TextColor="Black" FontAttributes="Bold"></Label>
+                                <Label Grid.Column="1" Grid.Row="2" FontSize="15" Margin="155,5,0,0" LineBreakMode="WordWrap" Text="{Binding valorTotal, StringFormat='Valor total: R${0:F2}'}" TextColor="Black" FontAttributes="Bold" IsVisible="false"></Label>
                                 <Label Grid.Column="1" Grid.Row="1" HeightRequest="35" FontSize="15" Margin="-60,-20,0,0" LineBreakMode="WordWrap" WidthRequest="300" TextColor="Black"  Text="{Binding pro_nome}"></Label>
                                 <Label Grid.Row="1" Grid.Column="1" Margin="155,0,-8,0" Text="{Binding unitario, StringFormat='Valor unitário: R${0:F2}'}" TextColor="Black"  FontAttributes="Bold" VerticalOptions="Center"></Label>
                                 <Label Grid.Row="2" Grid.Column="1" Text="{Binding qtde}" TextColor="Black" Margin="-25,0,0,0" VerticalOptions="End"></Label>

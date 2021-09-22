@@ -23,11 +23,9 @@
                         FontAttributes="Bold" FontSize="12" Margin="40,8,40,0" x:Name="btnLogout" Command="{Binding GoogleLogoutCommand}"/>
         </StackLayout>
 
-        <CheckBox Color="Green" Margin="40,23,0,0"></CheckBox>
+        <CheckBox Color="Green" Margin="40,23,0,0" IsChecked="{Binding ChkTerms}"></CheckBox>
         <Label Margin="80,-32,0,0" Text="Concordo com os Termos de Uso" TextColor="Black"></Label>
         
-        
-
         <StackLayout>
             <ActivityIndicator Margin="0,10,0,0" IsRunning="{Binding Aguarde}" IsVisible="{Binding Aguarde}" Color="Red">
 
