@@ -107,7 +107,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             Filter.filterOrder = OrderBy;
             if (Filter.filterDepartament != null)
             {
-                if (Filter.filterDepartament != "Todos")
+                if (Filter.filterDepartament != "TODOS")
                 {
                     var products = new List<Products>();
                     products = await apiService.Get<Products>("products");
@@ -120,13 +120,13 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     await this._navigationService.NavitaToProductFilter();
                 }
             }
-            else if(Filter.filterOrder != "")
-            {
-                var products = new List<Products>();
-                products = await apiService.Get<Products>("products");
-                FilterOrders(products, Filter.filterOrder);
-                await this._navigationService.NavitaToProductFilter();
-            }
+            //else if(Filter.filterOrder != "")
+            //{
+            //    var products = new List<Products>();
+            //    products = await apiService.Get<Products>("products");
+            //    FilterOrders(products, Filter.filterOrder);
+            //    await this._navigationService.NavitaToProductFilter();
+            //}
             else
             {
                 await LoadProducts();
@@ -162,26 +162,52 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             Products.Clear();
             ListDepartaments.Clear();
 
-            foreach (var product in products.OrderBy(p => p.pro_nome))
+            if (chkPromocao != true)
             {
-                Products.Add(new ProductItemViewModel
+
+                foreach (var product in products.OrderBy(p => p.pro_nome))
                 {
-                    pro_codigo = product.pro_codigo,
-                    pro_nome = product.pro_nome,
-                    preco = product.preco,
-                    desconto = product.desconto,
-                    categoria = product.categoria,
-                    preco_desconto = product.preco_desconto,
-                    custo = product.custo,
-                    ean = product.ean,
-                    secao = product.secao,
-                    tipo_embalagem = product.tipo_embalagem,
-                    departamento = product.departamento,
-                    id = product.id
-                });
+                    Products.Add(new ProductItemViewModel
+                    {
+                        pro_codigo = product.pro_codigo,
+                        pro_nome = product.pro_nome,
+                        preco = product.preco,
+                        desconto = product.desconto,
+                        categoria = product.categoria,
+                        preco_desconto = product.preco_desconto,
+                        custo = product.custo,
+                        ean = product.ean,
+                        secao = product.secao,
+                        tipo_embalagem = product.tipo_embalagem,
+                        departamento = product.departamento,
+                        id = product.id
+                    });
+
+                }
 
             }
-            ListDepartaments.Add("Todos");
+            else
+            {
+                foreach (var product in products.OrderBy(p => p.pro_nome).Where(p => p.preco_desconto > 0))
+                {
+                    Products.Add(new ProductItemViewModel
+                    {
+                        pro_codigo = product.pro_codigo,
+                        pro_nome = product.pro_nome,
+                        preco = product.preco,
+                        desconto = product.desconto,
+                        categoria = product.categoria,
+                        preco_desconto = product.preco_desconto,
+                        custo = product.custo,
+                        ean = product.ean,
+                        secao = product.secao,
+                        tipo_embalagem = product.tipo_embalagem,
+                        departamento = product.departamento,
+                        id = product.id
+                    });
+                }
+            }
+            ListDepartaments.Add("TODOS");
             foreach (var produto in products)
             {
                 if (ListDepartaments.Contains(produto.departamento))
@@ -235,7 +261,15 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             products = await apiService.Get<Products>("products");
             if (products != null)
             {
-                filterProducts(products, ProductFilter);
+                if(chkPromocao != true)
+                {
+                    filterProducts(products, ProductFilter);
+                }
+                else
+                {
+                    filterProductsOffer(products, ProductFilter);
+                }
+                
             }
             
         }
@@ -263,7 +297,35 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 });
             }
 
-            products = products.OrderByDescending(p => p.preco).ToList();
+            //products = products.OrderByDescending(p => p.preco).ToList();
+
+        }
+
+        public void filterProductsOffer(List<Products> products, string filter)
+        {
+            Products.Clear();
+
+            foreach (var product in products.Where(p => p.pro_nome.ToUpper().Contains(filter.ToUpper()))
+                .Where(p => p.preco_desconto > 0).OrderBy(p => p.pro_nome))
+            {
+                Products.Add(new ProductItemViewModel
+                {
+                    pro_codigo = product.pro_codigo,
+                    pro_nome = product.pro_nome,
+                    preco = product.preco,
+                    desconto = product.desconto,
+                    categoria = product.categoria,
+                    preco_desconto = product.preco_desconto,
+                    custo = product.custo,
+                    ean = product.ean,
+                    secao = product.secao,
+                    tipo_embalagem = product.tipo_embalagem,
+                    departamento = product.departamento,
+                    id = product.id
+                });
+            }
+
+            //products = products.OrderByDescending(p => p.preco).ToList();
 
         }
 
@@ -403,52 +465,50 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         public void filterDepartaments(List<Products> products, string filter)
         {
             Products.Clear();
-            foreach (var product in products.Where(p => p.departamento.ToUpper().Contains(filter.ToUpper())).OrderBy(p => p.pro_nome))
+            if (chkPromocao != true)
             {
-                Products.Add(new ProductItemViewModel
+                foreach (var product in products.Where(p => p.departamento.ToUpper().Contains(filter.ToUpper())).OrderBy(p => p.pro_nome))
                 {
-                    pro_codigo = product.pro_codigo,
-                    pro_nome = product.pro_nome,
-                    preco = product.preco,
-                    desconto = product.desconto,
-                    categoria = product.categoria,
-                    preco_desconto = product.preco_desconto,
-                    custo = product.custo,
-                    ean = product.ean,
-                    secao = product.secao,
-                    tipo_embalagem = product.tipo_embalagem,
-                    departamento = product.departamento,
-                    id = product.id
-                });
+                    Products.Add(new ProductItemViewModel
+                    {
+                        pro_codigo = product.pro_codigo,
+                        pro_nome = product.pro_nome,
+                        preco = product.preco,
+                        desconto = product.desconto,
+                        categoria = product.categoria,
+                        preco_desconto = product.preco_desconto,
+                        custo = product.custo,
+                        ean = product.ean,
+                        secao = product.secao,
+                        tipo_embalagem = product.tipo_embalagem,
+                        departamento = product.departamento,
+                        id = product.id
+                    });
+                }
+            }
+            else
+            {
+                foreach (var product in products.Where(p => p.departamento.ToUpper().Contains(filter.ToUpper()))
+                    .Where(p => p.preco_desconto > 0).OrderBy(p => p.pro_nome))
+                {
+                    Products.Add(new ProductItemViewModel
+                    {
+                        pro_codigo = product.pro_codigo,
+                        pro_nome = product.pro_nome,
+                        preco = product.preco,
+                        desconto = product.desconto,
+                        categoria = product.categoria,
+                        preco_desconto = product.preco_desconto,
+                        custo = product.custo,
+                        ean = product.ean,
+                        secao = product.secao,
+                        tipo_embalagem = product.tipo_embalagem,
+                        departamento = product.departamento,
+                        id = product.id
+                    });
+                }
             }
         }
-        public void LoadOffers(List<Products> products)
-        {
-
-            Products.Clear();
-
-            foreach(var product in products.Where(p => p.preco_desconto > 0).OrderBy(p => p.pro_nome))
-            {
-                Products.Add(new ProductItemViewModel
-                {
-                    pro_codigo = product.pro_codigo,
-                    pro_nome = product.pro_nome,
-                    preco = product.preco,
-                    desconto = product.desconto,
-                    categoria = product.categoria,
-                    preco_desconto = product.preco_desconto,
-                    custo = product.custo,
-                    ean = product.ean,
-                    secao = product.secao,
-                    tipo_embalagem = product.tipo_embalagem,
-                    departamento = product.departamento,
-                    id = product.id
-
-                });
-
-            }
-        }
-
 
     }
 }

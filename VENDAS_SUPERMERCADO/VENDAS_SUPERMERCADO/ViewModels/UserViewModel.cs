@@ -89,11 +89,15 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     return;
                 try
                 {
-                    IsBusy = true;
-                    var userService = new UserService();
-                    await userService.UpdateUser(username, dataNascimento, telefone, cep, rua, bairro, numero, nome, cpf );
-                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Dados atualizados", "Ok");
-
+                    var ok = true;
+                    ok = ValidaDados();
+                    if(ok == true)
+                    { 
+                        IsBusy = true;
+                        var userService = new UserService();
+                        await userService.UpdateUser(username, dataNascimento, telefone, cep, rua, bairro, numero, nome, cpf );
+                        await Application.Current.MainPage.DisplayAlert("Sucesso", "Dados atualizados", "Ok");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -107,6 +111,20 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             else
             {
                 await Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
+            }
+        }
+
+        private bool ValidaDados()
+        {
+            
+            if(cpf.Length != 11)
+            {
+                Application.Current.MainPage.DisplayAlert("Erro", "Cpf invalido, digitar apenas os números do cpf", "Ok");
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
