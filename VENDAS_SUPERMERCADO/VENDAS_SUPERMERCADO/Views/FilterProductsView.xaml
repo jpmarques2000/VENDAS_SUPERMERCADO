@@ -20,7 +20,7 @@
                             ItemsSource="{Binding ListDepartaments}" 
                             SelectedItem="{Binding Departaments, Mode=TwoWay}" />
                 </Frame>
-                <Frame Margin="-10,0,-10,15" OutlineColor="Black" BackgroundColor="White" HeightRequest="10">
+                <Frame Margin="-10,0,-10,15" OutlineColor="Black" BackgroundColor="White" HeightRequest="10" IsVisible="false">
                     <control:BindablePicker Margin="0,-29,0,-28" x:Name="pckOrders" TitleColor="Black" Title="Selecione a ordenação:" 
                             ItemsSource="{Binding ListOrderBy}" 
                             SelectedItem="{Binding OrderBy, Mode=TwoWay}" />

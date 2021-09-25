@@ -111,8 +111,16 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 {
                     var products = new List<Products>();
                     products = await apiService.Get<Products>("products");
-                    filterDepartaments(products, Filter.filterDepartament);
-                    await this._navigationService.NavitaToProductFilter();
+                    if (products != null)
+                    { 
+                        filterDepartaments(products, Filter.filterDepartament);
+                        await this._navigationService.NavitaToProductFilter();
+                    }
+                    else
+                    {
+
+                    }
+                    
                 }
                 else
                 {
