@@ -23,7 +23,7 @@
 
             <StackLayout Margin="15,110,15,0">
 
-                <Frame BackgroundColor="#DCDCDC" HasShadow="True" HeightRequest="580" Margin="-20,-120,-20,0">
+                <Frame BackgroundColor="#E3F2FD" HasShadow="True" HeightRequest="580" Margin="-20,-120,-20,0">
                     <StackLayout HorizontalOptions="CenterAndExpand">
 
                         

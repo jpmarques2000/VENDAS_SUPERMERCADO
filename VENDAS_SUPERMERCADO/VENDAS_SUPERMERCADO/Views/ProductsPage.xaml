@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VENDAS_SUPERMERCADO.Views.ProductsPage" Title="Produtos"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+             BindingContext="{Binding Main, Source={StaticResource Locator}}" BackgroundColor="White">
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="Produtos" IconImageSource="image_Departamento.png"  Order="Primary" Priority="1"
@@ -29,30 +29,32 @@
                     <ViewCell>
                         <Grid Padding="10">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                
+                                <RowDefinition Height="23"></RowDefinition>
+                                <RowDefinition Height="20"></RowDefinition>
+                                <RowDefinition Height="20"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="46"></RowDefinition>
+
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.RowSpan="3" Grid.Row="0" Source="image_Lista.jpg" Aspect="Fill" HeightRequest="80" WidthRequest="80" Margin="-50,-20,-15,-30"></Image>
-                            <Label Grid.Column="1" HeightRequest="35" FontSize="14" Margin="-15,10,0,0" LineBreakMode="WordWrap" WidthRequest="300" FontAttributes="Bold" TextColor="Black"  Text="{Binding pro_nome}"></Label>
-                            <Label Grid.Row="2" Grid.Column="1" Margin="-15,-60,0,0" Text="{Binding preco, StringFormat='Valor: R${0:F2}'}" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center"></Label>
-                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding preco_desconto, StringFormat='Valor Promocional: R${0:F2}'}" IsVisible="{Binding desconto}" TextColor="Red" FontSize="17" FontAttributes="Bold" VerticalOptions="Center" Margin="-15,-15,0,0"></Label>
-                            <Label Grid.Row="3" Grid.Column="1" Text="{Binding quantidade}" VerticalOptions="End" Margin="-35,0,0,0"></Label>
-                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding departamento, StringFormat='Departamento: {0}'}" VerticalOptions="Start" TextColor="Black" FontAttributes="None" Margin="-15,-15,0,0" HorizontalOptions="Start"></Label>
-                            <Button Grid.Row="3" Grid.Column="0" x:Name="BtnAdicionar" Margin="15,0,0,0" Text="+" BindingContext="{Binding pro_codigo}" Clicked="OnButtonClicked" 
-                                    FontAttributes="Bold" HorizontalOptions="Start" BackgroundColor="#708090"  TextColor="White" 
-                                    WidthRequest="50" HeightRequest="28" FontSize="10" CornerRadius="9"/>
-                            <Button Grid.Row="3" Grid.Column="1" Margin="-15,0,0,0" x:Name="BtnRemover" Text="-" BindingContext="{Binding pro_codigo}" Clicked="OnButtonClicked2" 
-                                    FontAttributes="Bold" BackgroundColor="#708090" TextColor="White" 
-                                    WidthRequest="50" HorizontalOptions="Start" HeightRequest="28" FontSize="10" CornerRadius="9"/>
+                            <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Margin="-58,-40,-38,-30"  Source="image_Lista.jpg" Aspect="Fill" HeightRequest="80" WidthRequest="80" ></Image>
+                            <Label Grid.Row="0" Grid.Column="1" Margin="5,0,0,0"  Text="{Binding pro_nome}" FontSize="15" FontAttributes="Bold" HeightRequest="35" LineBreakMode="WordWrap" WidthRequest="300"  TextColor="Black" ></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Margin="5,0,0,0"  Text="{Binding departamento, StringFormat='Departamento: {0}'}" FontSize="13"  VerticalOptions="Start" TextColor="Black" HorizontalOptions="Start"></Label>
+                            <Label Grid.Row="2" Grid.Column="1" Margin="5,0,0,0"  Text="Valor: " TextColor="Black" VerticalOptions="Center"></Label>
+                            <Label Grid.Row="2" Grid.Column="1" Margin="45,0,0,0" Text="{Binding preco, StringFormat='R${0:F2}'}" TextColor="Green" FontAttributes="Bold" VerticalOptions="Center"></Label>
+                            <Label Grid.Row="3" Grid.Column="1" Margin="5,0,0,0"  Text="OFERTA: " IsVisible="{Binding desconto}" FontSize="16" TextColor="Black"  FontAttributes="Bold" VerticalOptions="Center" ></Label>
+                            <Label Grid.Row="3" Grid.Column="1" Margin="72,0,0,0" Text="{Binding preco_desconto, StringFormat='R${0:F2}'}" FontSize="16" IsVisible="{Binding desconto}"  TextColor="Red"  FontAttributes="Bold" VerticalOptions="Center" ></Label>
+                            <Label Grid.Row="4" Grid.Column="1" Margin="-58,15,0,0" Text="{Binding quantidade}" FontSize="15"></Label>
+                            
+                            <Button Grid.Row="4" Grid.Column="1" x:Name="BtnAdicionar" Margin="-35,0,0,0" Text="+" BindingContext="{Binding pro_codigo}" Clicked="OnButtonClicked" 
+                                    FontAttributes="Bold" HorizontalOptions="Start" BackgroundColor="WhiteSmoke" BorderColor="Green" BorderWidth="2"  TextColor="Green" 
+                                    WidthRequest="50" HeightRequest="50" FontSize="21" CornerRadius="40"/>
+                            <Button Grid.Row="4" Grid.Column="0" x:Name="BtnRemover" Margin="-10,0,0,0"  Text="-" BindingContext="{Binding pro_codigo}" Clicked="OnButtonClicked2" 
+                                    FontAttributes="Bold" BackgroundColor="White" TextColor="Red" BorderColor="Red" BorderWidth="2" 
+                                    WidthRequest="50" HeightRequest="50" HorizontalOptions="Start"  FontSize="21" CornerRadius="40"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

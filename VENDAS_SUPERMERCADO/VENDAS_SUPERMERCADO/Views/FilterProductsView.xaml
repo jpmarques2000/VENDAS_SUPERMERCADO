@@ -5,13 +5,13 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
 
-   
-    <StackLayout BackgroundColor="LightGray">
+
+    <StackLayout BackgroundColor="#B3E5FC">
         <Frame Margin="5,30,5,0" HeightRequest="400" BackgroundColor="White" OutlineColor="Black" HasShadow="False">
 
             <StackLayout>
 
-                <Frame Margin="-20,-20,-20,15" OutlineColor="Black" BackgroundColor="#708090" HeightRequest="30">
+                <Frame Margin="-20,-20,-20,15" OutlineColor="Black" BackgroundColor="#424242" HeightRequest="30">
                     <Label Margin="0,-8,0,0" Text="Filtrar Produtos" TextColor="White" FontAttributes="Bold" FontSize="30" HorizontalOptions="Center"></Label>
                 </Frame>
                 
@@ -31,7 +31,7 @@
                
                 <Label Text="Produtos em Oferta" Margin="45,-45,0,0" TextColor="Black" FontSize="18"></Label>
 
-                <Button Margin="0,60,0,0" BorderColor="Black" TextColor="White" BorderWidth="2" BackgroundColor="#708090" CornerRadius="9" x:Name="btnItem" Text="Confirmar" Command="{Binding FilterCommand}" />
+                <Button Margin="0,60,0,0" BorderColor="Black" TextColor="White" BorderWidth="2" BackgroundColor="#424242" CornerRadius="9" x:Name="btnItem" Text="Confirmar" Command="{Binding FilterCommand}" />
                 
             </StackLayout>
 
