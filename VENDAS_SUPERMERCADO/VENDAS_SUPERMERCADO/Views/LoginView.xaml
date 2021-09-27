@@ -8,7 +8,7 @@
         <vm:LoginViewModel/>
     </ContentPage.BindingContext>
 
-    <StackLayout Padding="0" BackgroundColor="White">
+    <StackLayout Padding="0" BackgroundColor="#E3F2FD">
         <Image Source="image_Icone.png" HeightRequest="120" Margin="0,40,0,0"></Image>
         <StackLayout>
             <Label Margin="0,0,0,0" Text="Bem vindo!" TextColor="Black" FontSize="40" FontAttributes="Italic" HorizontalOptions="Center"></Label>

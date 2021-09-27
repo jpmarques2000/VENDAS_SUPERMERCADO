@@ -8,7 +8,7 @@
     </ContentPage.BindingContext>
     
     <StackLayout BackgroundColor="LightBlue">
-        <Frame OutlineColor="Black" BackgroundColor="White" HeightRequest="565"  Margin="0,0,0,0">
+        <Frame OutlineColor="Black" BackgroundColor="#E3F2FD" HeightRequest="565"  Margin="0,0,0,0">
             <ScrollView>
                 <Grid Margin="0,30,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="0">
                     <Grid.RowDefinitions>
@@ -46,10 +46,10 @@
                 <Entry Placeholder="Numero" Text="{Binding numero}" Keyboard="Numeric" Grid.Column="1" Grid.Row="7"></Entry>
                 <Label Text="CEP: " FontSize="15" FontAttributes="Bold" Grid.Column="0" Grid.Row="8" TextColor="Black" Margin="0,10,0,0"></Label>    
                 <Entry Placeholder="Cep" Text="{Binding cep}" Keyboard="Numeric" Grid.Column="1" Grid.Row="8"></Entry>
-                
 
-                    <Button Text="Salvar" CornerRadius="30" BorderWidth="2" BorderColor="Black" BackgroundColor="#708090"  TextColor="White" 
-                        FontAttributes="Bold" FontSize="13" Margin="0,25,14,-20" Command="{Binding GravarCommand}" Grid.Column="1" Grid.Row="9">
+
+                    <Button Text="Salvar" CornerRadius="30" BorderWidth="2" BorderColor="Black" BackgroundColor="#43A047"  TextColor="White" 
+                        FontAttributes="Bold" FontSize="17" Margin="0,25,14,-20" Command="{Binding GravarCommand}" Grid.Column="1" Grid.Row="9">
                     </Button>
                 </Grid>
                 
