@@ -35,6 +35,9 @@ namespace VENDAS_SUPERMERCADO.Models
 
         [JsonProperty(PropertyName="product_ids")]
         public List<int> Products { get; set; }
+
+        [JsonIgnore]
+        public DateTime dateFB { get; set; }
         //public double valorTotalDB { get; set; }
 
 

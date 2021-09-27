@@ -108,6 +108,8 @@
                 </Frame>
             </StackLayout>
 
+            <CheckBox Color="Red" Margin="40,23,0,0" IsChecked="{Binding UsaCPF}"></CheckBox>
+            <Label Margin="80,-32,0,0" Text="Utiliza CPF na nota" TextColor="Black"></Label>
 
             <StackLayout>
                 <Frame BackgroundColor="#B3E5FC" Margin="0,0,0,0">

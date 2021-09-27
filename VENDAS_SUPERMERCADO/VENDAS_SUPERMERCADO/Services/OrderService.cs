@@ -20,7 +20,8 @@ namespace VENDAS_SUPERMERCADO.Services
         }
 
         public async Task<bool> CreateNewOrder(string emailUser, string bairro, string cep, string data, string nome, 
-            string observacao, string rua, double valorTotal, string telefone, string pagamento, string dataEntrega, string cpf)
+            string observacao, string rua, double valorTotal, string telefone, string pagamento, 
+            string dataEntrega, string cpf, DateTime dateFB)
         {
             await client.Child("Order")
                  .PostAsync(new Order()
@@ -36,7 +37,8 @@ namespace VENDAS_SUPERMERCADO.Services
                      telefone = telefone,
                      pagamento = pagamento,
                      data_entrega = dataEntrega,
-                     cpf = cpf
+                     cpf = cpf,
+                     dateFB = dateFB
                  });
             return true;
         }
@@ -54,6 +56,7 @@ namespace VENDAS_SUPERMERCADO.Services
                      data = dataPedido,
                      custo = itemsOrder.custo,
                      id = itemsOrder.id,
+                     pro_nome = itemsOrder.pro_nome
                      
                  });
             }
@@ -103,7 +106,8 @@ namespace VENDAS_SUPERMERCADO.Services
                     id = item.Object.id,
                     qtde = item.Object.qtde,
                     unitario = item.Object.unitario,
-                    valorTotal = item.Object.valorTotal
+                    valorTotal = item.Object.valorTotal,
+                    pro_nome = item.Object.pro_nome
                 }).ToList();
         }
 
