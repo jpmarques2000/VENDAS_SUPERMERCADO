@@ -164,6 +164,17 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             }).Wait();
 
+            if(Filter.data != null)
+            {
+                Task.Run(async () =>
+                {
+                    var ItemsDetailsList = new List<ItemsOrder>();
+                    ItemsDetailsList = await orderService.GetOrderDetails();
+                    LoadItemsDetails(ItemsDetailsList, Filter.data);
+                }).Wait();
+            }
+            Filter.data = null;
+
         }
 
         public async Task LoadDetailsPage(string dataPedido)
@@ -171,10 +182,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             if(netService.IsConnected())
             {
                 this._navigationService.NavigateToDetailsPage();
-                var ItemsDetailsList = new List<ItemsOrder>();
-                ItemsDetailsList = await orderService.GetOrderDetails();
-                LoadItemsDetails(ItemsDetailsList, dataPedido);
                 
+
             }
             else
             {
@@ -240,7 +249,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         private bool VerificaDadosEntrega()
         {
-            if(UserLoged.cpf == "" || UserLoged.cep == "" || UserLoged.username == "" || 
+            if( UserLoged.cep == "" || UserLoged.username == "" || 
                 UserLogedDelivery.bairro == "" || UserLoged.rua == "" || UserLoged.telefone == ""
                 || UserLoged.nome == "" || UserLoged.dataNascimento == "")
             {
@@ -280,13 +289,21 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             order.cep = UserLogedDelivery.cep;
             //   order.numeroPedido = Verificar futuramente seqpedido
             order.data = DateTime.Now.ToString();
+            order.dateFB = DateTime.Now;
             order.email = UserLoggedIn.UserName;
             order.cliente = UserLogedDelivery.nome;
             order.observacao = Observacao;
             order.rua = UserLogedDelivery.rua;
             order.valor_total_pedido = GetOrderTotal();
             order.telefone = UserLogedDelivery.telefone;
-            order.cpf = UserLogedDelivery.cpf;
+            if (UsaCPF == true)
+            { 
+                order.cpf = UserLogedDelivery.cpf;
+            }
+            else
+            {
+                order.cpf = "";
+            }
             order.pagamento = payment;
             order.data_entrega = schedule;
             order.numero = UserLogedDelivery.numero;
@@ -312,7 +329,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             Task.Run(async () =>
             {
                 await orderService.CreateNewOrder(order.email, order.bairro, order.cep, order.data, order.cliente,
-                    order.observacao, order.rua, order.valor_total_pedido, order.telefone, order.pagamento, order.data_entrega, order.cpf); 
+                    order.observacao, order.rua, order.valor_total_pedido, order.telefone, order.pagamento, order.data_entrega, 
+                    order.cpf, order.dateFB); 
 
             }).Wait();
 
@@ -554,6 +572,20 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             }
         }
 
+        bool _usaCPF;
+        public bool UsaCPF
+        {
+            get
+            {
+                return _usaCPF;
+            }
+            set
+            {
+                _usaCPF = value;
+                OnPropertyChanged();
+            }
+        }
+
         private async Task RefreshItemsAsync()
         {
             IsRefreshing = true;
@@ -602,7 +634,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     id = item.id,
                     qtde = item.qtde,
                     unitario = item.unitario,
-                    valorTotal = item.valorTotal
+                    valorTotal = item.valorTotal,
+                    pro_nome = item.pro_nome
 
                 });
             }

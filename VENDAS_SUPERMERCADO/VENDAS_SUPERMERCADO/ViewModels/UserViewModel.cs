@@ -117,7 +117,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         private bool ValidaDados()
         {
             
-            if(cpf.Length != 11)
+            if(cpf.Length != 11 & cpf != "")
             {
                 Application.Current.MainPage.DisplayAlert("Erro", "Cpf invalido, digitar apenas os números do cpf", "Ok");
                 return false;
