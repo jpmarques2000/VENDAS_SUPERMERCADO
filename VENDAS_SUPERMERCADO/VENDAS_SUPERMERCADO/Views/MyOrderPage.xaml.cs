@@ -20,11 +20,11 @@ namespace VENDAS_SUPERMERCADO.Views
             _navigationService = DependencyService.Get<INavigationService>();
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
-            var dataPedido = ((Button)sender).BindingContext.ToString();
-            Filter.data = dataPedido;
-            ItemsOrderViewModel.GetInstance().LoadDetailsPage(dataPedido);
+            var obj = ((Button)sender).BindingContext;
+            var pedido = (OrderFirebase)obj;
+            await ItemsOrderViewModel.GetInstance().LoadDetailsPage(pedido);
         }
     }
 }

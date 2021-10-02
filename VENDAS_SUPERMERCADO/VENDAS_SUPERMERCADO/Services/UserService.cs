@@ -126,9 +126,5 @@ namespace VENDAS_SUPERMERCADO.Services
 
             return umUser;
         }
-
-        
-
-
     }
 }

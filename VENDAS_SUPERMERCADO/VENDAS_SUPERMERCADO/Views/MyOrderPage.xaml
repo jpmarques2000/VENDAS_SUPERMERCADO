@@ -32,7 +32,7 @@
                             <Label Grid.Row="1" Grid.Column="0" Margin="15,-48,0,0" FontSize="14" Text="{Binding valor_total_pedido, StringFormat='Valor Total do pedido: R${0:F2}'}" FontAttributes="None" TextColor="Red" VerticalOptions="Center"></Label>
                             <Label Grid.Row="2" Grid.Column="0" Text="{Binding pagamento, StringFormat='Forma de Pagamento: {0}'}" Margin="15,-18,0,20" FontSize="14" TextColor="Black" FontAttributes="None" VerticalOptions="End"></Label>
                             <Label Grid.Row="0" Grid.Column="0" Text="{Binding data, StringFormat='Data do Pedido: {0}'}" Margin="15,0,0,0" FontAttributes="None" TextColor="Green"></Label>
-                            <Button Grid.Row="0" Grid.Column="1" Margin="5,15,0,0" TextColor="White" BackgroundColor="LightSlateGray" CornerRadius="9" FontSize="12" HeightRequest="35" FontAttributes="None" TextTransform="None" BorderWidth="2" BorderColor="Black" Text="VER DETALHES" BindingContext="{Binding data}" Clicked="Button_Clicked"></Button>
+                            <Button Grid.Row="0" Grid.Column="1" Margin="5,15,0,0" TextColor="White" BackgroundColor="LightSlateGray" CornerRadius="9" FontSize="12" HeightRequest="35" FontAttributes="None" TextTransform="None" BorderWidth="2" BorderColor="Black" Text="VER DETALHES" BindingContext="{Binding .}" Clicked="Button_Clicked"></Button>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
