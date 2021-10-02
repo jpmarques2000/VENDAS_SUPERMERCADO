@@ -242,9 +242,9 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         private bool VerificaDadosEntrega()
         {
-            if( UserLoged.cep == "" || UserLoged.username == "" || 
-                UserLogedDelivery.bairro == "" || UserLoged.rua == "" || UserLoged.telefone == ""
-                || UserLoged.nome == "" || UserLoged.dataNascimento == "")
+            if( UserLoged.cep == null || UserLoged.username == null || 
+                UserLogedDelivery.bairro == null || UserLoged.rua == null || UserLoged.telefone == null
+                || UserLoged.nome == null || UserLoged.dataNascimento == null)
             {
                 return false;
             }
