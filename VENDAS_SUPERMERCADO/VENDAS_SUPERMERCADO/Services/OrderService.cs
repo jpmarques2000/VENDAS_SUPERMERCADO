@@ -19,55 +19,42 @@ namespace VENDAS_SUPERMERCADO.Services
                 new FirebaseClient("https://tcc-vendas-supermercado-default-rtdb.firebaseio.com/");
         }
 
-        public async Task<bool> CreateNewOrder(string emailUser, string bairro, string cep, string data, string nome, 
-            string observacao, string rua, double valorTotal, string telefone, string pagamento, 
-            string dataEntrega, string cpf, DateTime dateFB)
+        public OrderFirebase CreateOrder(Order orderApi, List<ItemsOrder> itemsOrderList)
         {
-            await client.Child("Order")
-                 .PostAsync(new Order()
-                 {
-                     email = emailUser,
-                     bairro = bairro,
-                     cep = cep,
-                     data = data,
-                     cliente = nome,
-                     observacao = observacao,
-                     rua = rua,
-                     valor_total_pedido = valorTotal,
-                     telefone = telefone,
-                     pagamento = pagamento,
-                     data_entrega = dataEntrega,
-                     cpf = cpf,
-                     dateFB = dateFB
-                 });
-            return true;
-        }
-        public async Task<bool> SaveItemsOrder(List<ItemsOrder> itemsOrderList, string dataPedido)
-        {
-            foreach(var itemsOrder in itemsOrderList)
+            var order = new OrderFirebase
             {
-                await client.Child("ItemsOrder")
-                 .PostAsync(new ItemsOrder()
-                 {
-                     codigoProduto = itemsOrder.codigoProduto,
-                     qtde = itemsOrder.qtde,
-                     unitario = itemsOrder.unitario,
-                     valorTotal = itemsOrder.qtde * itemsOrder.unitario,
-                     data = dataPedido,
-                     custo = itemsOrder.custo,
-                     id = itemsOrder.id,
-                     pro_nome = itemsOrder.pro_nome
-                     
-                 });
-            }
-            return true;
+                email = orderApi.email,
+                bairro = orderApi.bairro,
+                cep = orderApi.cep,
+                data = orderApi.data,
+                cliente = orderApi.cliente,
+                observacao = orderApi.observacao,
+                rua = orderApi.rua,
+                valor_total_pedido = orderApi.valor_total_pedido,
+                telefone = orderApi.telefone,
+                pagamento = orderApi.pagamento,
+                data_entrega = orderApi.data_entrega,
+                cpf = orderApi.cpf,
+                dateFB = orderApi.dateFB,
+                ItemsOrder = itemsOrderList
+            };
+            return order;
         }
 
-        public async Task<List<Order>> GetAllOrders()
+       
+
+        public async Task<bool> InserteNewOrder(OrderFirebase order)
         {
-            return (await client
+            var response = await client.Child("Order").PostAsync(order);
+            return true;
+        }
+       
+
+        public async Task<List<OrderFirebase>> GetAllOrders()
+        {
+            var lista =  (await client
                 .Child("Order")
-                .OnceAsync<Order>()).Select(item => new Order
+                .OnceAsync<OrderFirebase>()).Select(item => new OrderFirebase
                 {
                     data_entrega = item.Object.data_entrega,
                     cliente = item.Object.cliente,
@@ -76,8 +63,10 @@ namespace VENDAS_SUPERMERCADO.Services
                     pagamento = item.Object.pagamento,
                     valor_total_pedido = item.Object.valor_total_pedido,
                     data = item.Object.data,
-                    email = item.Object.email
+                    email = item.Object.email,
+                    ItemsOrder = item.Object.ItemsOrder
                 }).ToList();
+            return lista;
         }
         //public async Task<Order> GetOrderList(string username)
         //{

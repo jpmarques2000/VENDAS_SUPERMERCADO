@@ -38,8 +38,10 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         //public Command DetailsCommand { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
-     
+
         public ICommand SelectCommand { get; set; }
+
+        public static OrderFirebase OrderChoosed { get; set; }
 
         private ObservableCollection<ItemsOrder> _myCartList;
         public ObservableCollection<ItemsOrder> MyCartList
@@ -70,6 +72,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             }
         }
 
+
         public User UserLogedDelivery { get; set; }
 
         public Order order;
@@ -99,13 +102,15 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         public ItemsOrderViewModel()
         {
+          
             instance = this;
+          
             _messageService = DependencyService.Get<IMessageService>();
             _navigationService = DependencyService.Get<INavigationService>();
 
             var userService = new UserService();
 
-            AlterarDadosCommand = new Command( () =>  AlterarDadosAsync());
+            AlterarDadosCommand = new Command(() => AlterarDadosAsync());
 
             ProductCommand = new Command(() => ProductPageAsync());
 
@@ -133,6 +138,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             order = new Order();
 
             orderService = new OrderService();
+          
 
             somaPedido = GetOrderTotal();
 
@@ -157,37 +163,24 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             Task.Run(async () =>
             {
-
-                var ordersList = new List<Order>();
-                ordersList = await orderService.GetAllOrders();
+                var ordersList = await orderService.GetAllOrders();
                 filterOrders(ordersList, UserLoggedIn.UserName);
 
             }).Wait();
 
-            if(Filter.data != null)
-            {
-                Task.Run(async () =>
-                {
-                    var ItemsDetailsList = new List<ItemsOrder>();
-                    ItemsDetailsList = await orderService.GetOrderDetails();
-                    LoadItemsDetails(ItemsDetailsList, Filter.data);
-                }).Wait();
-            }
-            Filter.data = null;
 
         }
 
-        public async Task LoadDetailsPage(string dataPedido)
+        public async Task LoadDetailsPage(OrderFirebase pedido)
         {
-            if(netService.IsConnected())
+            MeuCarrinho.ListaItens = pedido.ItemsOrder;
+            if (netService.IsConnected())
             {
-                this._navigationService.NavigateToDetailsPage();
-                
-
+                 await this._navigationService.NavigateToDetailsPage();
             }
             else
             {
-                Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
+                 Application.Current.MainPage.DisplayAlert("Erro", "Necessário conexão com a internet", "Ok");
             }
         }
 
@@ -249,9 +242,9 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         private bool VerificaDadosEntrega()
         {
-            if( UserLoged.cep == "" || UserLoged.username == "" || 
-                UserLogedDelivery.bairro == "" || UserLoged.rua == "" || UserLoged.telefone == ""
-                || UserLoged.nome == "" || UserLoged.dataNascimento == "")
+            if( UserLoged.cep == null || UserLoged.username == null || 
+                UserLogedDelivery.bairro == null || UserLoged.rua == null || UserLoged.telefone == null
+                || UserLoged.nome == null || UserLoged.dataNascimento == null)
             {
                 return false;
             }
@@ -326,19 +319,15 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                 return;
             }
 
+            ok = false;
+            var orderFb = orderService.CreateOrder(order, MeuCarrinho.Lista);
             Task.Run(async () =>
             {
-                await orderService.CreateNewOrder(order.email, order.bairro, order.cep, order.data, order.cliente,
-                    order.observacao, order.rua, order.valor_total_pedido, order.telefone, order.pagamento, order.data_entrega, 
-                    order.cpf, order.dateFB); 
+                ok = await orderService.InserteNewOrder(orderFb);
 
             }).Wait();
 
-            Task.Run(async () =>
-            {
-                await orderService.SaveItemsOrder(MeuCarrinho.Lista, order.data);
-
-            }).Wait();
+           
 
             SendEmail();
 
@@ -598,13 +587,13 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         {
             MyCartList.Clear();
         }
-        public void filterOrders(List<Order> orders, string username)
+        public void filterOrders(List<OrderFirebase> orders, string username)
         {
             AllOrdersList.Clear();
 
             foreach (var order in orders.Where(o => o.email.ToUpper().Contains(username.ToUpper())).OrderBy(o => o.data))
             {
-                AllOrdersList.Add(new Order
+                AllOrdersList.Add(new OrderFirebase
                 {
                     data_entrega = order.data_entrega,
                     cliente = order.cliente,
@@ -613,32 +602,12 @@ namespace VENDAS_SUPERMERCADO.ViewModels
                     pagamento = order.pagamento,
                     valor_total_pedido = order.valor_total_pedido,
                     data = order.data,
-                    email = order.email
+                    email = order.email,
+                    ItemsOrder = order.ItemsOrder
                     
                 });
             }
         }
-
-        public void LoadItemsDetails(List<ItemsOrder> itemsOrderList, string dataPedido)
-        {
-            ItemsOrderDetailsList.Clear();
-
-            foreach (var item in itemsOrderList.Where(o => o.data.Contains(dataPedido)))
-            {
-                ItemsOrderDetailsList.Add(new ItemsOrder
-                {
-                    codigoProduto = item.codigoProduto,
-                    custo = item.custo,
-                    data = item.data,
-                    desconto = item.desconto,
-                    id = item.id,
-                    qtde = item.qtde,
-                    unitario = item.unitario,
-                    valorTotal = item.valorTotal,
-                    pro_nome = item.pro_nome
-
-                });
-            }
-        }
+        
     }
 }
