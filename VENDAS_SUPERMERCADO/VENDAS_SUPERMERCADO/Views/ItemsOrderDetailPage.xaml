@@ -1,33 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:VENDAS_SUPERMERCADO.ViewModels"
-             x:Class="VENDAS_SUPERMERCADO.Views.ItemsOrderDetailPage" Title="Items do Pedido">
-    <StackLayout>
+             x:Class="VENDAS_SUPERMERCADO.Views.ItemsOrderDetailPage" Title="Items do Pedido" BackgroundColor="#FFECEA">
+    <StackLayout Margin="10,0,10,0">
         <ListView
             x:Name="listView"
-            Margin="10,0,10,0"
+            Margin="0,0,0,0"
              HeightRequest="303"
-            BackgroundColor="LightGray"
+            BackgroundColor="White"
                 HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid Padding="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="20"></RowDefinition>
-                                <RowDefinition Height="15"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="40"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="65"></ColumnDefinition>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="1" Grid.Row="2" FontSize="15" Margin="155,5,0,0" LineBreakMode="WordWrap" Text="{Binding valorTotal,Mode=TwoWay, StringFormat='Valor total: R${0:F2}'}" FontAttributes="Bold"></Label>
-                            <Label Grid.Column="1" Grid.Row="1" HeightRequest="35" FontSize="15" Margin="-60,-20,0,0" LineBreakMode="WordWrap" WidthRequest="300"  Text="{Binding pro_nome, Mode=TwoWay}"></Label>
-                            <Label Grid.Row="1" Grid.Column="1" Margin="155,0,-8,0" Text="{Binding unitario,Mode=TwoWay, StringFormat='Valor unitário: R${0:F2}'}"  FontAttributes="Bold" VerticalOptions="Center"></Label>
-                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding qtde, Mode=TwoWay}" Margin="-25,0,0,0" VerticalOptions="End"></Label>
+                            <Label Grid.Column="1" Grid.Row="0" HeightRequest="35" FontSize="16" Margin="-60,0,0,0" LineBreakMode="WordWrap" WidthRequest="300" TextColor="Black" FontAttributes="Bold"  Text="{Binding pro_nome, Mode=TwoWay}"></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Margin="35,-45,0,0" Text="{Binding unitario,Mode=TwoWay, StringFormat='R${0:F2}'}"  FontAttributes="Bold" TextColor="Green" VerticalOptions="Center"></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Margin="-60,-45,0,0" Text="Valor Unitário: " TextColor="#56423D"  FontAttributes="Bold" VerticalOptions="Center"></Label>
+                            <Label Grid.Row="2" Grid.Column="1" TextColor="Red" FontAttributes="Bold" Text="{Binding qtde, Mode=TwoWay, StringFormat='{0}'}" Margin="23,-35,0,0"></Label>
+                            <Label Grid.Row="2" Grid.Column="1" TextColor="#56423D" FontAttributes="Bold" Text="Quantidade: " Margin="-60,-35,0,0"></Label>
 
                         </Grid>
                     </ViewCell>
