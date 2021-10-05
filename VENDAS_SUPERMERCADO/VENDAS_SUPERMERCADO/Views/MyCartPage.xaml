@@ -15,21 +15,21 @@
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <StackLayout BackgroundColor="#B3E5FC">
-            <StackLayout Padding="0" HeightRequest="170" Margin="5,5,5,8" BackgroundColor="#E3F2FD">
-                <Label Margin="0,0,0,0" Text="Dados de entrega" TextColor="Black" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center"></Label>
-                <Label Margin="10,0,0,0" Text="{Binding UserLoged.nome}" TextColor="Black" HorizontalOptions="Start"></Label>
-                <Label Margin="10,0,0,0" Text="{Binding UserLoged.rua}" TextColor="Black" HorizontalOptions="Start"></Label>
-                <Label Margin="10,0,0,0" Text="{Binding UserLoged.bairro}" TextColor="Black" HorizontalOptions="Start"></Label>
-                <Label Margin="10,0,0,0" Text="{Binding UserLoged.cep}" TextColor="Black" HorizontalOptions="Start"></Label>
-                <Button HeightRequest="40" BackgroundColor="#424242"  TextColor="White" BorderColor="Black" FontAttributes="None" BorderWidth="3" CornerRadius="0" Margin="0,2,0,0" Text="Alterar Dados" Command="{Binding AlterarDadosCommand}">
+        <StackLayout BackgroundColor="#FFECEA">
+            <StackLayout Padding="0" HeightRequest="170" Margin="5,5,5,8" BackgroundColor="White">
+                <Label Margin="0,0,0,0" Text="Dados de entrega" TextColor="#4A271E" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center"></Label>
+                <Label Margin="10,0,0,0" Text="{Binding UserLoged.nome}" TextColor="#4A271E" HorizontalOptions="Start"></Label>
+                <Label Margin="10,0,0,0" Text="{Binding UserLoged.rua}" TextColor="#4A271E" HorizontalOptions="Start"></Label>
+                <Label Margin="10,0,0,0" Text="{Binding UserLoged.bairro}" TextColor="#4A271E" HorizontalOptions="Start"></Label>
+                <Label Margin="10,0,0,0" Text="{Binding UserLoged.cep}" TextColor="#4A271E" HorizontalOptions="Start"></Label>
+                <Button HeightRequest="40" BackgroundColor="#D89684"  TextColor="#4A271E" FontSize="16" BorderColor="Black" FontAttributes="Bold" BorderWidth="3" CornerRadius="0" Margin="0,2,0,0" Text="Alterar Dados" Command="{Binding AlterarDadosCommand}">
                 </Button>
             </StackLayout>
            
 
             <StackLayout BackgroundColor="LightGray" Margin="5,10,5,-5">
-                <Frame BackgroundColor="#424242" HeightRequest="-10" OutlineColor="Black">
-                <Label Margin="0,-19,0,0" Text="Items do Pedido" TextColor="White" FontSize="Medium" FontAttributes="None"  HorizontalOptions="Center"></Label>
+                <Frame BackgroundColor="#56423D" HeightRequest="-10" OutlineColor="Black">
+                <Label Margin="0,-19,0,0" Text="Items do Pedido" TextColor="White" FontSize="Medium" FontAttributes="Bold"  HorizontalOptions="Center"></Label>
                 </Frame>
             </StackLayout>
             
@@ -59,10 +59,10 @@
                                 <Label Grid.Row="1" Grid.Column="1" Margin="155,5,-8,0" Text="Valor Unitário: " TextColor="Black"  FontAttributes="Bold" FontSize="15" VerticalOptions="Center"></Label>
                                 <Label Grid.Row="1" Grid.Column="1" Margin="-23,12,0,0" Text="{Binding qtde}" TextColor="Black" ></Label>
 
-                                <Button Grid.Row="1" Grid.Column="0" x:Name="BtnAdicionar" Margin="3,0,0,0" Text="+" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked" 
+                                <Button Grid.Row="1" Grid.Column="1" x:Name="BtnAdicionar" Margin="-2,0,0,0" Text="+" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked" 
                                     FontAttributes="Bold" HorizontalOptions="Start" BackgroundColor="White"  TextColor="Green" BorderWidth="2" BorderColor="Green" 
                                     WidthRequest="40" HeightRequest="40" FontSize="16" CornerRadius="30"/>
-                                <Button Grid.Row="1" Grid.Column="1" x:Name="BtnRemover" Margin="-2,0,0,0"  Text="-" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked2" 
+                                <Button Grid.Row="1" Grid.Column="0" x:Name="BtnRemover" Margin="3,0,0,0"  Text="-" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked2" 
                                     FontAttributes="Bold" BackgroundColor="White" TextColor="Red" BorderWidth="2" BorderColor="Red" 
                                     WidthRequest="40" HorizontalOptions="Start" HeightRequest="40" FontSize="17" CornerRadius="30"/>
                                 <Button  Grid.Row="1" Grid.Column="1" x:Name="BtnExcluir"  Text="Excluir" BindingContext="{Binding codigoProduto}" Clicked="OnButtonClicked3" 
@@ -76,23 +76,23 @@
 
 
             <StackLayout HeightRequest="190" Margin="5,-4,5,10">
-                <Frame BackgroundColor="#424242" OutlineColor="Black" Margin="0,0,0,0" HeightRequest="8">
-                    <Label Margin="0,-15,0,0" Text="{Binding somaPedido, StringFormat='Valor Total do Pedido: R${0:F2}'}" TextColor="White" FontSize="Medium" FontAttributes="None" HorizontalOptions="Center"></Label>
+                <Frame BackgroundColor="#56423D" OutlineColor="Black" Margin="0,0,0,0" HeightRequest="8">
+                    <Label Margin="0,-15,0,0" Text="{Binding somaPedido, StringFormat='Valor Total do Pedido: R${0:F2}'}" TextColor="White" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center"></Label>
                 </Frame>
             </StackLayout>
 
 
 
             <StackLayout Margin="5,-130,5,10">
-                <Frame Margin="0,0,0,10" OutlineColor="Black" BackgroundColor="#E3F2FD" HeightRequest="10">
-            <control:BindablePicker Margin="0,-29,0,-28" x:Name="pckPayments" TitleColor="Black" Title="Selecione a forma de pagamento:" 
+                <Frame Margin="0,0,0,10" OutlineColor="Black" BackgroundColor="#D89684" HeightRequest="10">
+                    <control:BindablePicker Margin="0,-29,0,-28" x:Name="pckPayments" TitleColor="#4A271E" FontAttributes="Bold" Title="Selecione a forma de pagamento:" 
                             ItemsSource="{Binding ListPayments}" 
                             SelectedItem="{Binding Payments, Mode=TwoWay}" />
                 </Frame>
 
 
-                <Frame Margin="0,0,0,0" OutlineColor="Black" BackgroundColor="#E3F2FD" HeightRequest="10">
-                    <control:BindablePicker Margin="0,-29,0,-28"  x:Name="pckSchedules" TitleColor="Black" Title="Selecione a previsão de entrega:" 
+                <Frame Margin="0,0,0,0" OutlineColor="Black" BackgroundColor="#D89684" HeightRequest="10">
+                    <control:BindablePicker Margin="0,-29,0,-28"  x:Name="pckSchedules" TitleColor="#4A271E" FontAttributes="Bold" Title="Selecione a previsão de entrega:" 
                             ItemsSource="{Binding ListSchedule}" 
                             SelectedItem="{Binding Schedule, Mode=TwoWay}" />
                 </Frame>
@@ -104,15 +104,15 @@
             <StackLayout>
                 <Frame BackgroundColor="White" HeightRequest="50" OutlineColor="Black" Margin="5,0,5,-5">
 
-                    <Entry HeightRequest="100" PlaceholderColor="Black" Margin="-10,-79,0,-28" Placeholder="Adicionar observação: " Text="{Binding Observacao}"></Entry>
+                    <Entry HeightRequest="100" PlaceholderColor="#4A271E" Margin="-10,-79,0,-28" Placeholder="Adicionar observação: " Text="{Binding Observacao}"></Entry>
                 </Frame>
             </StackLayout>
 
-            <CheckBox Color="Red" Margin="40,23,0,0" IsChecked="{Binding UsaCPF}"></CheckBox>
-            <Label Margin="80,-32,0,0" Text="Utiliza CPF na nota" TextColor="Black"></Label>
+            <CheckBox Color="Green" Margin="10,23,0,0" IsChecked="{Binding UsaCPF}"></CheckBox>
+            <Label Margin="50,-35,0,0" Text="Desejo utilizar meu CPF na Nota Fiscal" FontAttributes="Bold" FontSize="16" TextColor="#4A271E"></Label>
 
             <StackLayout>
-                <Frame BackgroundColor="#B3E5FC" Margin="0,0,0,0">
+                <Frame BackgroundColor="#FFECEA" Margin="0,0,0,0">
                     <Button BorderColor="Black" TextColor="White" BorderWidth="2" BackgroundColor="#43A047" CornerRadius="15" FontAttributes="Bold" x:Name="btnItem" Text="Confirmar Pedido" Command="{Binding SelectCommand}" />
                 </Frame>
             </StackLayout>

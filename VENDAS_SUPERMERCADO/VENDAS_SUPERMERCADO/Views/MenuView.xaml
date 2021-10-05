@@ -16,29 +16,29 @@
     </ContentPage.ToolbarItems>
 
 
-    <StackLayout Padding="0" BackgroundColor="#ADD8E6">
+    <StackLayout Padding="0" BackgroundColor="White">
 
         <Grid>
 
 
             <StackLayout Margin="15,110,15,0">
 
-                <Frame BackgroundColor="#E3F2FD" HasShadow="True" HeightRequest="580" Margin="-20,-120,-20,0">
+                <Frame BackgroundColor="White" HasShadow="True" HeightRequest="580" Margin="-20,-120,-20,0">
                     <StackLayout HorizontalOptions="CenterAndExpand">
 
-                        
+
                         <Label Margin="0,0,0,20" Text="Sobre nós" TextColor="Black" FontSize="35" FontAttributes="Bold" HorizontalOptions="Center"></Label>
 
-                        <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut augue lobortis, laoreet leo vitae, maximus tellus. Mauris a fringilla augue. Vivamus lectus massa, vehicula nec quam tincidunt, varius ultricies tortor. Quisque ac commodo eros. Ut non volutpat sapien. Aenean hendrerit lobortis purus, a convallis est. Maecenas sodales pellentesque nisi. Nam accumsan vulputate velit, et euismod enim mollis at. Quisque sit amet ante venenatis, volutpat nisl a, ultricies ante. Phasellus pretium turpis vel justo ornare, eu tincidunt augue ultricies. Sed non ornare nibh, et condimentum lacus. Etiam a ante accumsan, viverra libero sed, varius magna. Donec augue nibh, accumsan scelerisque risus non, dapibus convallis quam. " TextColor="Black" FontSize="Small"  FontAttributes="Italic" HorizontalOptions="Center"></Label>
-                        <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut augue lobortis, laoreet leo vitae, maximus tellus. Mauris a fringilla augue. Vivamus lectus massa, vehicula nec quam tincidunt, varius ultricies tortor. Quisque ac commodo eros. Ut non volutpat sapien. Aenean hendrerit lobortis purus, a convallis est. Maecenas sodales pellentesque nisi. Nam accumsan vulputate velit, et euismod enim mollis at. Quisque sit amet ante venenatis, volutpat nisl a, ultricies ante." TextColor="Black" FontSize="Small" FontAttributes="Italic" HorizontalOptions="Center"></Label>
-                      
-                        
-                        
-                        <Frame OutlineColor="Black" BackgroundColor="#708090" Margin="10,50,10,0">
+                        <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut augue lobortis, laoreet leo vitae, maximus tellus. Mauris a fringilla augue. Vivamus lectus massa, vehicula nec quam tincidunt, varius ultricies tortor. Quisque ac commodo eros. Ut non volutpat sapien. Aenean hendrerit lobortis purus, a convallis est. Maecenas sodales pellentesque nisi. Nam accumsan vulputate velit, et euismod enim mollis at. Quisque sit amet ante venenatis, volutpat nisl a, ultricies ante. Phasellus pretium turpis vel justo ornare, eu tincidunt augue ultricies. Sed non ornare nibh, et condimentum lacus. Etiam a ante accumsan, viverra libero sed, varius magna. Donec augue nibh, accumsan scelerisque risus non, dapibus convallis quam. " TextColor="#56423D" FontSize="Small"  FontAttributes="Italic" HorizontalOptions="Center"></Label>
+                        <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut augue lobortis, laoreet leo vitae, maximus tellus. Mauris a fringilla augue. Vivamus lectus massa, vehicula nec quam tincidunt, varius ultricies tortor. Quisque ac commodo eros. Ut non volutpat sapien. Aenean hendrerit lobortis purus, a convallis est. Maecenas sodales pellentesque nisi. Nam accumsan vulputate velit, et euismod enim mollis at. Quisque sit amet ante venenatis, volutpat nisl a, ultricies ante." TextColor="#56423D" FontSize="Small" FontAttributes="Italic" HorizontalOptions="Center"></Label>
+
+
+
+                        <Frame OutlineColor="Black" BackgroundColor="#BEA6A0" Margin="10,50,10,0">
                             
                         <StackLayout>
-                            <Label Text="Telefone: (00) 0000-0000" TextColor="White" HorizontalOptions="CenterAndExpand"></Label>
-                            <Label Margin="0,0,0,0" Text="Email: Loremipsum@Lorem.com " TextColor="White" HorizontalOptions="Center"></Label>
+                                <Label Text="Telefone: (00) 0000-0000" TextColor="#4A271E" HorizontalOptions="CenterAndExpand"></Label>
+                                <Label Margin="0,0,0,0" Text="Email: Loremipsum@Lorem.com " TextColor="#4A271E" HorizontalOptions="Center"></Label>
                         </StackLayout>
                         </Frame>
                         
