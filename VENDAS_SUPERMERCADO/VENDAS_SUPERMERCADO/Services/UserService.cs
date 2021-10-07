@@ -47,6 +47,7 @@ namespace VENDAS_SUPERMERCADO.Services
         }
 
         public async Task<bool> RegisterUserGoogle(string name)
+        
         {
             if (await IsUserExists(name) == false)
             {

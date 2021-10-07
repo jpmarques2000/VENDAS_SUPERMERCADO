@@ -30,9 +30,6 @@ namespace VENDAS_SUPERMERCADO.Models
         }
         public string cpf { get; set; }
 
-        [JsonIgnore]
-        public string naomandaresse { get; set; }
-
         [JsonProperty(PropertyName="product_ids")]
         public List<int> Products { get; set; }
 

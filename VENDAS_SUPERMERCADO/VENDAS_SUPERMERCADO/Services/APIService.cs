@@ -57,5 +57,24 @@ namespace VENDAS_SUPERMERCADO.Services
                 return false;
             }
         }
+
+        public async Task<List<T>> GetSchedules<T>()
+        {
+            try
+            {
+                var client = new RestClient("https://shrouded-plains-66019.herokuapp.com");
+                client.Timeout = -1;
+                var request = new RestRequest(Method.GET);
+                IRestResponse response = await client.ExecuteAsync(request);
+                var result = response.Content;
+                var list = JsonConvert.DeserializeObject<List<T>>(result);
+                return list;
+
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

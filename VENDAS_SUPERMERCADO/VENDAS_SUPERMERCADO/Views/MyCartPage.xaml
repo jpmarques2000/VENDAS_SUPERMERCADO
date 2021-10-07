@@ -108,6 +108,12 @@
                 </Frame>
             </StackLayout>
 
+            <StackLayout>
+                <Frame>
+                    <Label Text="Insira o valor a ser pago para o troco, caso for dinheiro" HeightRequest="35" FontSize="16" WidthRequest="300" TextColor="Black" FontAttributes="Bold" ></Label>
+                </Frame>
+            </StackLayout>
+
             <CheckBox Color="Green" Margin="10,23,0,0" IsChecked="{Binding UsaCPF}"></CheckBox>
             <Label Margin="50,-35,0,0" Text="Desejo utilizar meu CPF na Nota Fiscal" FontAttributes="Bold" FontSize="16" TextColor="#4A271E"></Label>
 

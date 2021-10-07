@@ -289,6 +289,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             order.rua = UserLogedDelivery.rua;
             order.valor_total_pedido = GetOrderTotal();
             order.telefone = UserLogedDelivery.telefone;
+            order.complemento = ValorDinheiro;
             if (UsaCPF == true)
             { 
                 order.cpf = UserLogedDelivery.cpf;
@@ -403,6 +404,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         public async Task LoadSchedules()
         {
+            var listSchedule = await apiService.GetSchedules<List<string>>();
             ListSchedule.Add("09:00 - 12:00");
             ListSchedule.Add("12:00 - 15:00");
             ListSchedule.Add("15:00 - 18:00");
@@ -415,31 +417,6 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             ListPayments.Add("CARTAO DEBITO");
             ListPayments.Add("CARTAO CREDITO");
             ListPayments.Add("PIX");
-        }
-
-        public void ReloadItems()
-        {
-            //ItemsOrderList.Add(new ItemsOrder
-            //{
-            //    numeroPedido = ("1"),
-            //    codigoProduto = (00055555),
-            //    qtde = (2.00),
-            //    unitario = (6.99),
-            //    valorTotal = (13.98),
-            //    custo = (4.99),
-            //    desconto = (0.00)
-            //});
-
-            //ItemsOrderList.Add(new ItemsOrder
-            //{
-            //    numeroPedido = ("1"),
-            //    codigoProduto = (00054555),
-            //    qtde = (3.00),
-            //    unitario = (7.99),
-            //    valorTotal = (13.98),
-            //    custo = (4.99),
-            //    desconto = (0.00)
-            //});
         }
 
         ObservableCollection<string> _listSchedule;
@@ -465,6 +442,20 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             set
             {
                 _schedule = value;
+                OnPropertyChanged();
+            }
+        }
+
+        string _valorDinheiro;
+        public string ValorDinheiro
+        {
+            get
+            {
+                return _valorDinheiro;
+            }
+            set
+            {
+                _valorDinheiro = value;
                 OnPropertyChanged();
             }
         }

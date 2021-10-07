@@ -36,7 +36,9 @@ namespace VENDAS_SUPERMERCADO.Services
                 data_entrega = orderApi.data_entrega,
                 cpf = orderApi.cpf,
                 dateFB = orderApi.dateFB,
+                complemento = orderApi.complemento,
                 ItemsOrder = itemsOrderList
+                
             };
             return order;
         }
