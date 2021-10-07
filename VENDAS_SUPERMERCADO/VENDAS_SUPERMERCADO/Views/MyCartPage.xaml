@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:vm="clr-namespace:VENDAS_SUPERMERCADO.ViewModels" xmlns:control="clr-namespace:VENDAS_SUPERMERCADO.Controls"
-             x:Class="VENDAS_SUPERMERCADO.Views.MyCartPage" Title="Meu Carrinho">
+             x:Class="VENDAS_SUPERMERCADO.Views.MyCartPage" Title="Meu Carrinho" BackgroundColor="#FFECEA">
     <ContentPage.BindingContext>
         <vm:ItemsOrderViewModel/>
     </ContentPage.BindingContext>
@@ -108,18 +108,22 @@
                 </Frame>
             </StackLayout>
 
-            <StackLayout>
-                <Frame>
-                    <Label Text="Insira o valor a ser pago para o troco, caso for dinheiro" HeightRequest="35" FontSize="16" WidthRequest="300" TextColor="Black" FontAttributes="Bold" ></Label>
-                </Frame>
-            </StackLayout>
-
             <CheckBox Color="Green" Margin="10,23,0,0" IsChecked="{Binding UsaCPF}"></CheckBox>
             <Label Margin="50,-35,0,0" Text="Desejo utilizar meu CPF na Nota Fiscal" FontAttributes="Bold" FontSize="16" TextColor="#4A271E"></Label>
 
-            <StackLayout>
-                <Frame BackgroundColor="#FFECEA" Margin="0,0,0,0">
-                    <Button BorderColor="Black" TextColor="White" BorderWidth="2" BackgroundColor="#43A047" CornerRadius="15" FontAttributes="Bold" x:Name="btnItem" Text="Confirmar Pedido" Command="{Binding SelectCommand}" />
+            <CheckBox Color="Green" Margin="10,10,10,0" IsChecked="{Binding UsaTroco}"></CheckBox>
+            <Label Text="Solicito Troco" Margin="50,-35,0,0" TextColor="#4A271E" FontSize="16" FontAttributes="Bold"></Label>
+            <Label Text="para o valor:" IsVisible="{Binding UsaTroco}" Margin="155,-28,0,0" TextColor="#4A271E" FontSize="16" FontAttributes="Bold"></Label>
+
+            <Frame IsVisible="{Binding UsaTroco}" HeightRequest="1" Margin="255,-35,90,0" OutlineColor="Black" BackgroundColor="White">
+                <Entry FontSize="14" Placeholder="" Margin="-10,-19,0,-18" IsVisible="{Binding UsaTroco}" Text="{Binding ValorDinheiro}" TextColor="Red" PlaceholderColor="Red" FontAttributes="Bold" BackgroundColor="White"></Entry>
+            </Frame>
+
+
+
+            <StackLayout Margin="0,0,0,0" HeightRequest="108" BackgroundColor="#FFECEA">
+                <Frame BackgroundColor="#FFECEA" Margin="0,0,0,0" HeightRequest="50" HasShadow="False">
+                    <Button BorderColor="Black" TextColor="White" BorderWidth="2" HeightRequest="90"  BackgroundColor="#43A047" CornerRadius="15" FontAttributes="Bold" x:Name="btnItem" Text="Confirmar Pedido" Command="{Binding SelectCommand}" />
                 </Frame>
             </StackLayout>
 

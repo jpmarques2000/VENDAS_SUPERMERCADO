@@ -566,6 +566,20 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             }
         }
 
+        bool _usaTroco;
+        public bool UsaTroco
+        {
+            get
+            {
+                return _usaTroco;
+            }
+            set
+            {
+                _usaTroco = value;
+                OnPropertyChanged();
+            }
+        }
+
         private async Task RefreshItemsAsync()
         {
             IsRefreshing = true;
