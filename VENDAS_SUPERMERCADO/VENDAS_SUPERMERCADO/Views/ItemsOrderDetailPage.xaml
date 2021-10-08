@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:VENDAS_SUPERMERCADO.ViewModels"
-             x:Class="VENDAS_SUPERMERCADO.Views.ItemsOrderDetailPage" Title="Items do Pedido" BackgroundColor="#00D5E9">
+             x:Class="VENDAS_SUPERMERCADO.Views.ItemsOrderDetailPage" Title="Items do Pedido" BackgroundColor="#C3FCF1">
     <StackLayout Margin="10,0,10,0">
         <ListView
             x:Name="listView"

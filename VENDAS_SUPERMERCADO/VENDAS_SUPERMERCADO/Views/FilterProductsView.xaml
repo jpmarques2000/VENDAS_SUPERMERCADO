@@ -6,7 +6,7 @@
 
 
 
-    <StackLayout BackgroundColor="#00D5E9">
+    <StackLayout BackgroundColor="#C3FCF1">
         <Frame Margin="5,30,5,0" HeightRequest="400" BackgroundColor="White" OutlineColor="Black" HasShadow="False">
 
             <StackLayout>

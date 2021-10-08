@@ -332,7 +332,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             SendEmail();
 
-            Application.Current.MainPage.DisplayAlert("Sucesso", "Seu pedido foi agendado!                                  Caso algum dos produtos escolhidos não esteja disponível, entraremos em contato para a substituição do mesmo.", "Ok");
+            Application.Current.MainPage.DisplayAlert("Sucesso", "Seu pedido foi Realizado com Sucesso! Agradecemos a preferencia! ", "Ok");
 
             ClearPage();
 

@@ -34,11 +34,11 @@
 
 
 
-                        <Frame OutlineColor="Black" BackgroundColor="#00B3A7" Margin="10,50,10,0">
+                        <Frame OutlineColor="Black" BackgroundColor="#C3FCF1" Margin="10,50,10,0">
                             
                         <StackLayout>
-                                <Label Text="Telefone: (00) 0000-0000" TextColor="White" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"></Label>
-                                <Label Margin="0,0,0,0" Text="Email: Loremipsum@Lorem.com " TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"></Label>
+                                <Label Text="Telefone: (00) 0000-0000" TextColor="#406493" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"></Label>
+                                <Label Margin="0,0,0,0" Text="Email: Loremipsum@Lorem.com " TextColor="#406493" FontAttributes="Bold" HorizontalOptions="Center"></Label>
                         </StackLayout>
                         </Frame>
                         
