@@ -30,11 +30,11 @@
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Row="1" Grid.Column="0" Margin="155,-48,0,0" FontSize="14" Text="{Binding valor_total_pedido, StringFormat='R${0:F2}'}" FontAttributes="Bold" TextColor="Red" VerticalOptions="Center"></Label>
-                            <Label Grid.Row="1" Grid.Column="0" Margin="15,-48,0,0" FontSize="14" Text="Valor Total do Pedido: " FontAttributes="Bold" TextColor="#56423D" VerticalOptions="Center"></Label>
+                            <Label Grid.Row="1" Grid.Column="0" Margin="15,-48,0,0" FontSize="14" Text="Valor Total do Pedido: " FontAttributes="Bold" TextColor="#406493" VerticalOptions="Center"></Label>
                             <Label Grid.Row="2" Grid.Column="0" Text="{Binding pagamento}" Margin="155,-18,0,20" FontSize="14" TextColor="Green" FontAttributes="Bold" VerticalOptions="End"></Label>
-                            <Label Grid.Row="2" Grid.Column="0" Text="Forma de Pagamento: " Margin="15,-18,0,20" FontSize="14" TextColor="#56423D" FontAttributes="Bold" VerticalOptions="End"></Label>
-                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding data, StringFormat='Data do Pedido: {0}'}" Margin="15,0,0,0" FontAttributes="Bold" TextColor="#56423D"></Label>
-                            <Button Grid.Row="0" Grid.Column="1" Margin="5,15,0,0" TextColor="#4A271E" BackgroundColor="#D89684" CornerRadius="9" FontSize="12" HeightRequest="35" FontAttributes="Bold" TextTransform="None" BorderWidth="2" BorderColor="Black" Text="VER DETALHES" BindingContext="{Binding .}" Clicked="Button_Clicked"></Button>
+                            <Label Grid.Row="2" Grid.Column="0" Text="Forma de Pagamento: " Margin="15,-18,0,20" FontSize="14" TextColor="#406493" FontAttributes="Bold" VerticalOptions="End"></Label>
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding data, StringFormat='Data do Pedido: {0}'}" Margin="15,0,0,0" FontAttributes="Bold" TextColor="#406493"></Label>
+                            <Button Grid.Row="0" Grid.Column="1" Margin="5,15,0,0" TextColor="White" BackgroundColor="#00B3A7" CornerRadius="9" FontSize="12" HeightRequest="35" FontAttributes="Bold" TextTransform="None" BorderWidth="2" BorderColor="Black" Text="VER DETALHES" BindingContext="{Binding .}" Clicked="Button_Clicked"></Button>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

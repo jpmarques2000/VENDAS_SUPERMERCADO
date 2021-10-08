@@ -11,24 +11,24 @@
     <StackLayout Padding="0" BackgroundColor="White">
         <Image Source="image_Icone.png" HeightRequest="120" Margin="0,40,0,0"></Image>
         <StackLayout>
-            <Label Margin="0,0,0,0" Text="Bem vindo!" TextColor="#56423D" FontSize="40" FontAttributes="Italic" HorizontalOptions="Center"></Label>
-            <Label Text="Por favor, identifique-se" TextColor="#56423D" FontSize="20" FontAttributes="Italic" HorizontalOptions="Center"></Label>
+            <Label Margin="0,0,0,0" Text="Bem vindo!" TextColor="Black" FontSize="40" FontAttributes="Italic" HorizontalOptions="Center"></Label>
+            <Label Text="Por favor, identifique-se" TextColor="Blue" FontSize="20" FontAttributes="Italic" HorizontalOptions="Center"></Label>
         </StackLayout>
 
         <StackLayout Margin="0,20,0,0">
-            <Button Text="Fazer Login com Google" BorderWidth="3" BorderColor="Black" CornerRadius="10" HeightRequest="45" BackgroundColor="#D89684" TextColor="#4A271E" 
+            <Button Text="Fazer Login com Google" BorderWidth="3" BorderColor="Black" CornerRadius="10" HeightRequest="45" BackgroundColor="#0099FF" TextColor="White" 
                         FontAttributes="Bold" FontSize="15" Margin="40,8,40,15" x:Name="btnLogin" Command="{Binding GoogleLoginCommand}"/>
 
-            <Button Text="Desconectar" CornerRadius="10" BorderWidth="3" BorderColor="Black" HeightRequest="45" BackgroundColor="#D89684"  TextColor="#4A271E" 
+            <Button Text="Desconectar" CornerRadius="10" BorderWidth="3" BorderColor="Black" HeightRequest="45" BackgroundColor="#0099FF"  TextColor="White" 
                         FontAttributes="Bold" FontSize="15" Margin="40,8,40,0" x:Name="btnLogout" Command="{Binding GoogleLogoutCommand}"/>
         </StackLayout>
 
         <CheckBox Color="Green" Margin="40,23,0,0" IsChecked="{Binding ChkTerms}"></CheckBox>
-        <Label Margin="80,-32,0,0" Text="Concordo com os" TextColor="#56423D"></Label>
-        <Label Margin="193,-24,0,0">
+        <Label Margin="80,-32,0,0" Text="Concordo com os" TextColor="Black" FontAttributes="Bold"></Label>
+        <Label Margin="193,-26,0,0">
             <Label.FormattedText>
                 <FormattedString>
-                    <Span Text="Termos de Uso" TextColor="Blue" TextDecorations="Underline">
+                    <Span Text="Termos de Uso" FontAttributes="Bold" TextColor="Blue" TextDecorations="Underline">
                         <Span.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding TermsCommand}"/>
                         </Span.GestureRecognizers>
