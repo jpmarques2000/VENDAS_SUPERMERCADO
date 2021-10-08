@@ -42,10 +42,10 @@
                             </Grid.ColumnDefinitions>
                             <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Margin="-58,-40,-38,-30"  Source="image_Lista.jpg" Aspect="Fill" HeightRequest="80" WidthRequest="80" ></Image>
                             <Label Grid.Row="0" Grid.Column="1" Margin="5,0,0,0"  Text="{Binding pro_nome}" FontSize="15" FontAttributes="Bold" HeightRequest="35" LineBreakMode="WordWrap" WidthRequest="300"  TextColor="Black" ></Label>
-                            <Label Grid.Row="1" Grid.Column="1" Margin="5,0,0,0"  Text="{Binding departamento, StringFormat='Departamento: {0}'}" FontSize="13" FontAttributes="Bold"  VerticalOptions="Start" TextColor="#56423D" HorizontalOptions="Start"></Label>
-                            <Label Grid.Row="2" Grid.Column="1" Margin="5,0,0,0"  Text="Valor: " TextColor="#56423D" FontAttributes="Bold" VerticalOptions="Center"></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Margin="5,0,0,0"  Text="{Binding departamento, StringFormat='Departamento: {0}'}" FontSize="13" FontAttributes="Bold"  VerticalOptions="Start" TextColor="#406493" HorizontalOptions="Start"></Label>
+                            <Label Grid.Row="2" Grid.Column="1" Margin="5,0,0,0"  Text="Valor: " TextColor="#406493" FontAttributes="Bold" VerticalOptions="Center"></Label>
                             <Label Grid.Row="2" Grid.Column="1" Margin="45,0,0,0" Text="{Binding preco, StringFormat='R${0:F2}'}" TextColor="Green" FontAttributes="Bold" VerticalOptions="Center"></Label>
-                            <Label Grid.Row="3" Grid.Column="1" Margin="5,0,0,0"  Text="OFERTA: " IsVisible="{Binding desconto}" FontSize="16" TextColor="#56423D"  FontAttributes="Bold" VerticalOptions="Center" ></Label>
+                            <Label Grid.Row="3" Grid.Column="1" Margin="5,0,0,0"  Text="OFERTA: " IsVisible="{Binding desconto}" FontSize="16" TextColor="#406493"  FontAttributes="Bold" VerticalOptions="Center" ></Label>
                             <Label Grid.Row="3" Grid.Column="1" Margin="72,0,0,0" Text="{Binding preco_desconto, StringFormat='R${0:F2}'}" FontSize="16" IsVisible="{Binding desconto}"  TextColor="Red"  FontAttributes="Bold" VerticalOptions="Center" ></Label>
                             <Label Grid.Row="4" Grid.Column="1" Margin="-58,15,0,0" Text="{Binding quantidade}" FontSize="15"></Label>
                             

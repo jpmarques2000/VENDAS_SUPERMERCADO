@@ -6,32 +6,32 @@
 
 
 
-    <StackLayout BackgroundColor="White">
+    <StackLayout BackgroundColor="#C3FCF1">
         <Frame Margin="5,30,5,0" HeightRequest="400" BackgroundColor="White" OutlineColor="Black" HasShadow="False">
 
             <StackLayout>
 
-                <Frame Margin="-20,-20,-20,15" OutlineColor="Black" BackgroundColor="#56423D" HeightRequest="30">
+                <Frame Margin="-20,-20,-20,15" OutlineColor="Black" BackgroundColor="#406493" HeightRequest="30">
                     <Label Margin="0,-8,0,0" Text="Filtrar Produtos" TextColor="White" FontAttributes="Bold" FontSize="30" HorizontalOptions="Center"></Label>
                 </Frame>
                 
                 <Frame Margin="-10,15,-10,15" OutlineColor="Black" BackgroundColor="White" HeightRequest="10">
-                    <control:BindablePicker Margin="0,-29,0,-28"  x:Name="pckDepartaments" TitleColor="#56423D" Title="Selecione o departamento:" 
+                    <control:BindablePicker Margin="0,-29,0,-28"  x:Name="pckDepartaments" TitleColor="#406493" TextColor="#406493" Title="Selecione o departamento:" 
                             ItemsSource="{Binding ListDepartaments}" 
                             SelectedItem="{Binding Departaments, Mode=TwoWay}" />
                 </Frame>
                 <Frame Margin="-10,0,-10,15" OutlineColor="Black" BackgroundColor="White" HeightRequest="10" IsVisible="false">
-                    <control:BindablePicker Margin="0,-29,0,-28" x:Name="pckOrders" TitleColor="#56423D" Title="Selecione a ordenação:" 
+                    <control:BindablePicker Margin="0,-29,0,-28" x:Name="pckOrders" TitleColor="#406493" TextColor="#406493" Title="Selecione a ordenação:" 
                             ItemsSource="{Binding ListOrderBy}" 
                             SelectedItem="{Binding OrderBy, Mode=TwoWay}" />
                 </Frame>
 
 
-                <CheckBox x:Name="checkBoxOfertas" Color="Green" Margin="0,8,0,10" IsChecked="{Binding chkPromocao}"></CheckBox>
-               
-                <Label Text="Produtos em Oferta" Margin="45,-45,0,0" TextColor="Black" FontSize="18"></Label>
+                <CheckBox x:Name="checkBoxOfertas" Color="#43A047" Margin="0,8,0,10" IsChecked="{Binding chkPromocao}"></CheckBox>
 
-                <Button Margin="0,60,0,0" BorderColor="Black" TextColor="#4A271E" FontAttributes="Bold" BorderWidth="2" BackgroundColor="#D89684" CornerRadius="9" x:Name="btnItem" Text="Confirmar" Command="{Binding FilterCommand}" />
+                <Label Text="Produtos em Oferta" Margin="45,-45,0,0" TextColor="#406493" FontSize="18"></Label>
+
+                <Button Margin="0,60,0,0" BorderColor="Black" TextColor="White" FontAttributes="Bold" BorderWidth="2" BackgroundColor="Green" CornerRadius="9" x:Name="btnItem" Text="Confirmar" Command="{Binding FilterCommand}" />
                 
             </StackLayout>
 

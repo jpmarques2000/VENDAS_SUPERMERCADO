@@ -6,12 +6,12 @@
         <StackLayout Margin="10,10,10,0">
 
 
-            <Label Text="1 - OBRIGAÇÕES DO USUÁRIO" FontSize="20" TextColor="#4A271E" FontAttributes="Bold" Margin="0,10,0,0"/>
-            <Label Text="1.1 - É dever do usuário fornecer todas as suas informações cadastrais verídicas, responsabilizando-se integralmente por todo o conteúdo informado." TextColor="#56423D" FontSize="20"></Label>
-            <Label Text="1.2 - É dever do usuário aceitar o compartilhamento de todos os seus dados pessoais com a empresa varejista X " TextColor="#56423D" FontSize="20"></Label>
-            <Label Margin="0,30,0,0" Text="2 - OBRIGAÇÕES DA EMPRESA X" FontSize="20" TextColor="#4A271E" FontAttributes="Bold"></Label>
-            <Label Text="2.1 - Permitir que ao utilizar o aplicativo móvel, o usuário consiga realizar a compra de todos os produtos cadastrados" TextColor="#56423D" FontSize="20"></Label>
-            <Label Text="2.2 - Garantir que todas as informações e dados dos usuários sejam armazenadas de forma segura, permitindo suas exclusões imediatas caso o mesmo solicite" TextColor="#56423D" FontSize="20"></Label>
+            <Label Text="1 - OBRIGAÇÕES DO USUÁRIO" FontSize="20" TextColor="Red" FontAttributes="None" Margin="0,10,0,0"/>
+            <Label Text="1.1 - É dever do usuário fornecer todas as suas informações cadastrais verídicas, responsabilizando-se integralmente por todo o conteúdo informado." TextColor="Black" FontSize="20"></Label>
+            <Label Text="1.2 - É dever do usuário aceitar o compartilhamento de todos os seus dados pessoais com a empresa varejista X " TextColor="Black" FontSize="20"></Label>
+            <Label Margin="0,30,0,0" Text="2 - OBRIGAÇÕES DA EMPRESA X" FontSize="20" TextColor="Red" FontAttributes="None"></Label>
+            <Label Text="2.1 - Permitir que ao utilizar o aplicativo móvel, o usuário consiga realizar a compra de todos os produtos cadastrados" TextColor="Black" FontSize="20"></Label>
+            <Label Text="2.2 - Garantir que todas as informações e dados dos usuários sejam armazenadas de forma segura, permitindo suas exclusões imediatas caso o mesmo solicite" TextColor="Black" FontSize="20"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

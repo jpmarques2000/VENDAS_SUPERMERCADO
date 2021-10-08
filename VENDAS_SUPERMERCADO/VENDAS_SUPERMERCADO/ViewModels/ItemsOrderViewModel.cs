@@ -332,7 +332,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
             SendEmail();
 
-            Application.Current.MainPage.DisplayAlert("Sucesso", "Seu pedido foi agendado!                                  Caso algum dos produtos escolhidos não esteja disponível, entraremos em contato para a substituição do mesmo.", "Ok");
+            Application.Current.MainPage.DisplayAlert("Sucesso", "Seu pedido foi Realizado com Sucesso! Agradecemos a preferencia! ", "Ok");
 
             ClearPage();
 
@@ -562,6 +562,20 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             set
             {
                 _usaCPF = value;
+                OnPropertyChanged();
+            }
+        }
+
+        bool _usaTroco;
+        public bool UsaTroco
+        {
+            get
+            {
+                return _usaTroco;
+            }
+            set
+            {
+                _usaTroco = value;
                 OnPropertyChanged();
             }
         }
