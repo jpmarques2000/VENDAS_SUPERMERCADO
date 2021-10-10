@@ -1,17 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VENDAS_SUPERMERCADO.Views.TermsOfServicePage" Title="Termos de Uso" BackgroundColor="White">
-    <ContentPage.Content>
+             x:Class="VENDAS_SUPERMERCADO.Views.TermsOfServicePage" Title="Termos de Uso e Privacidade" BackgroundColor="White">
+
+    <ScrollView>
         <StackLayout Margin="10,10,10,0">
 
 
             <Label Text="1 - OBRIGAÇÕES DO USUÁRIO" FontSize="20" TextColor="Red" FontAttributes="None" Margin="0,10,0,0"/>
             <Label Text="1.1 - É dever do usuário fornecer todas as suas informações cadastrais verídicas, responsabilizando-se integralmente por todo o conteúdo informado." TextColor="Black" FontSize="20"></Label>
-            <Label Text="1.2 - É dever do usuário aceitar o compartilhamento de todos os seus dados pessoais com a empresa varejista X " TextColor="Black" FontSize="20"></Label>
+            <Label Text="1.2 - É dever do usuário aceitar o compartilhamento de todas as suas informações pessoais necessarias para a realização do pedido com a EMPRESA X." TextColor="Black" FontSize="20"></Label>
+            <Label Text="1.3 - Caso o usuário seja menor de 18 anos de idade, não poderá adquirir, em hipótese alguma, produtos alcoólicos, responsabilizando-se pela correta informação de sua idade na realização do cadastro. " TextColor="Black" FontSize="20"></Label>
+            <Label Text="1.4 - É dever do usuário, pagar integralmente o preço de todos os produtos por si encomendados a EMPRESA X e efetivamente entregues." LineBreakMode="CharacterWrap"  TextColor="Black" FontSize="20"></Label>
             <Label Margin="0,30,0,0" Text="2 - OBRIGAÇÕES DA EMPRESA X" FontSize="20" TextColor="Red" FontAttributes="None"></Label>
-            <Label Text="2.1 - Permitir que ao utilizar o aplicativo móvel, o usuário consiga realizar a compra de todos os produtos cadastrados" TextColor="Black" FontSize="20"></Label>
-            <Label Text="2.2 - Garantir que todas as informações e dados dos usuários sejam armazenadas de forma segura, permitindo suas exclusões imediatas caso o mesmo solicite" TextColor="Black" FontSize="20"></Label>
+            <Label Text="2.1 - Permitir que ao utilizar o aplicativo móvel, o usuário consiga realizar a compra de todos os produtos cadastrados." TextColor="Black" FontSize="20"></Label>
+            <Label Text="2.2 - Permitir que o usuário aceite ou não o uso de seu CPF na realização do pedido." TextColor="Black" FontSize="20"></Label>
+            <Label Text="2.3 - Garantir que todos os dados pessoais fornecidos pelo usuário sejam utilizados apenas para a realização do pedido." TextColor="Black" FontSize="20"></Label>
+            <Label Margin="0,30,0,0" Text="3 - MODIFICAÇÕES DESTE TERMO" FontSize="20" TextColor="Red" FontAttributes="None"></Label>
+            <Label TextColor="Black" FontSize="20" Text="3.1 - O presente Termo de Uso poderá, a qualquer momento, ter o seu conteúdo, ou parte dele, modificados para adequações e inserções, com vista no aprimoramento dos serviços disponibilizados."></Label>
+            <Label TextColor="Black" FontSize="20" Text="3.2 - As novas condições definidas entrarão em vigor assim que veiculada no aplicativo, permitindo ao usuário manifestar oposição a quaisquer dos termos modificados, desde que entre em contato para realizar a exclusão de seu cadastro."></Label>
+         
+            <Label Text="4 - TERMOS DE PRIVACIDADE" FontSize="20" TextColor="Red" FontAttributes="None" Margin="0,10,0,0"/>
+            <Label Text="4.1 As informações como Nome, CPF, Data de nascimento, Telefone, Email e Endereço serão coletadas no ato do cadastro de dados do usuário." TextColor="Black" FontSize="20"></Label>
+            <Label Text="4.2 Todas as informações coletadas no ato de cadastro do usuário serão utilizadas apenas para a realização do pedido, não sendo utilizado por terceiros." TextColor="Black" FontSize="20"></Label>
+            <Label Text="4.3 Para qualquer necessidade de alteração nos dados pessoais, o usuário poderá realizar diretamente pelo aplicativo." TextColor="Black" FontSize="20"></Label>
+            <Label Margin="0,30,0,0" Text="5 - ACEITAÇÃO DOS TERMOS DE USO E PRIVACIDADE" FontSize="20" TextColor="Red" FontAttributes="None"></Label>
+            <Label Text="5.1 - O usuário declara ter lido, entendido e aceitado, todas as condições e obrigações estabelecidas no presente Termo de Uso e privacidade." TextColor="Black" FontSize="20"></Label>
+
+
+
         </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
 </ContentPage>

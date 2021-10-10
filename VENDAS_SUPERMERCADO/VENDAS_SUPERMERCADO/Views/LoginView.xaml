@@ -28,7 +28,7 @@
         <Label Margin="193,-26,0,0">
             <Label.FormattedText>
                 <FormattedString>
-                    <Span Text="Termos de Uso" FontAttributes="Bold" TextColor="Blue" TextDecorations="Underline">
+                    <Span Text="Termos de Uso e Privacidade" FontAttributes="Bold" TextColor="Blue" TextDecorations="Underline">
                         <Span.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding TermsCommand}"/>
                         </Span.GestureRecognizers>
