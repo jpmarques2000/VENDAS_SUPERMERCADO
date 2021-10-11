@@ -58,7 +58,7 @@ namespace VENDAS_SUPERMERCADO.Services
             }
         }
 
-        public async Task<List<T>> GetSchedules<T>()
+        public async Task<List<Horarios>> GetSchedules()
         {
             try
             {
@@ -67,7 +67,7 @@ namespace VENDAS_SUPERMERCADO.Services
                 var request = new RestRequest(Method.GET);
                 IRestResponse response = await client.ExecuteAsync(request);
                 var result = response.Content;
-                var list = JsonConvert.DeserializeObject<List<T>>(result);
+                var list = JsonConvert.DeserializeObject<List<Horarios>>(result);
                 return list;
 
             }

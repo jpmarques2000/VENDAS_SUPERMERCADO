@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -341,13 +342,87 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         private void SendEmail()
         {
             try
-            { 
+            {
+
+                var qtdItens = 0;
+                var body = new StringBuilder();
+
+                body.Append("<html>");
+                body.Append("<body>");
+                body.Append("<h4>");
+                body.Append("Você tem um novo pedido");
+                body.Append("</h4>");
+
+                body.Append("<table>");
+
+                body.Append("<tr>");
+                body.Append("<th>");
+                body.Append("Descrição do produto");
+                body.Append("</th>");
+                body.Append("<th>");
+                body.Append("Quantidade");
+                body.Append("</th>");
+                body.Append("<th>");
+                body.Append("Valor Unitário");
+                body.Append("</th>");
+                body.Append("<th>");
+                body.Append("Total do item");
+                body.Append("</th>");
+                body.Append("</tr>");
+
+                foreach (var item in MeuCarrinho.Lista)
+                {
+                    body.Append("<tr>");
+
+                    body.Append("<td>");
+                    body.Append(item.pro_nome);
+                    body.Append("</td>");
+
+                    body.Append("<td style=\"text-align:right;\">");
+                    body.Append(item.qtde);
+                    body.Append("</td>");
+
+                    body.Append("<td style=\"text-align:right;\">");
+                    var unitario = string.Format(new CultureInfo("pt-BR", false), "{0:0.00}", item.unitario);
+                    
+                    body.Append(unitario);
+                    body.Append("</td>");
+
+                    var totalDoItem = string.Format(new CultureInfo("pt-BR", false), "{0:0.00}", item.qtde * item.unitario);
+
+                    body.Append("<td style=\"text-align:right;\">");
+                    body.Append(totalDoItem);
+                    body.Append("</td>");
+
+                    body.Append("</tr>");
+
+                    qtdItens++;
+                    
+                }
+                body.Append("</table>");
+
+                var totalDoPedido = string.Format(new CultureInfo("pt-BR", false), "{0:0.00}", somaPedido);
+
+                body.Append("<hr>");
+                body.Append("<strong>");
+                body.Append($"Quantidade de itens: {qtdItens}");
+                body.Append("<br>");
+                body.Append($"Total do pedido....: {totalDoPedido}");
+                body.Append("</strong>");
+
+                body.Append("</hr>");
+
+               
+                body.Append("</body>");
+                body.Append("</html>");
+
+
                 MailMessage mail = new MailMessage("tccvendassupermercado@gmail.com", "tccRecebedorEmailSups@gmail.com");
 
-                //mail.From = new MailAddress("tccvendassupermercado@gmail.com");
-                //mail.To.Add("tccRecebedorEmailSups@gmail.com");
                 mail.Subject = ("Novo Pedido");
-                mail.Body = ("Você recebeu um novo pedido em seu sistema, verifique!");
+                mail.IsBodyHtml = true;
+                mail.Body = body.ToString();
+                    // "Você recebeu um novo pedido em seu sistema, verifique!";
                 mail.SubjectEncoding = Encoding.GetEncoding("UTF-8");
                 mail.BodyEncoding = Encoding.GetEncoding("UTF-8");
 
@@ -404,11 +479,12 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         public async Task LoadSchedules()
         {
-            var listSchedule = await apiService.GetSchedules<List<string>>();
-            ListSchedule.Add("09:00 - 12:00");
-            ListSchedule.Add("12:00 - 15:00");
-            ListSchedule.Add("15:00 - 18:00");
-            ListSchedule.Add("18:00 - 20:00");
+            var lista = await apiService.GetSchedules();
+            foreach (var item in lista)
+            {
+                ListSchedule.Add(item.Hora);
+            }
+
         }
 
         public void LoadPayments()
@@ -592,27 +668,75 @@ namespace VENDAS_SUPERMERCADO.ViewModels
         {
             MyCartList.Clear();
         }
+
+        private static DateTime ToDataApp(string valor)
+        {
+            var chr32 = (char)32;
+            var dados = valor.Split(chr32);
+            var barra = (char)47;
+
+            var aData = dados[0].Split(barra);
+
+            var dia = int.Parse(aData[1]);
+            var mes = int.Parse(aData[0]);
+            var ano = int.Parse(aData[2]);
+
+            var pontos = (char)58;
+
+            var horas = dados[1].Split(pontos);
+
+            var hora = int.Parse(horas[0]);
+            var minuto = int.Parse(horas[1]);
+            var segundo = int.Parse(horas[2]);
+
+            var novaData = new DateTime(ano, mes, dia, hora, minuto, segundo);
+
+            if (dados[2].Trim().Equals("PM"))
+            {
+                novaData = novaData.AddHours(12);
+            }
+            return novaData;
+        }
         public void filterOrders(List<OrderFirebase> orders, string username)
         {
             AllOrdersList.Clear();
 
-            foreach (var order in orders.Where(o => o.email.ToUpper().Contains(username.ToUpper())).OrderBy(o => o.data))
+            try
             {
-                AllOrdersList.Add(new OrderFirebase
+
+                var filtradas = orders
+                                    .Where(o => o.email.ToUpper()
+                                    .Contains(username.ToUpper()))
+                                    .OrderByDescending(o => ToDataApp(o.data)).ToList();
+
+                foreach (var order in filtradas)
                 {
-                    data_entrega = order.data_entrega,
-                    cliente = order.cliente,
-                    numeroPedido = order.numeroPedido,
-                    observacao = order.observacao,
-                    pagamento = order.pagamento,
-                    valor_total_pedido = order.valor_total_pedido,
-                    data = order.data,
-                    email = order.email,
-                    ItemsOrder = order.ItemsOrder
-                    
-                });
+
+
+
+
+                    AllOrdersList.Add(new OrderFirebase
+                    {
+                        data_entrega = order.data_entrega,
+                        cliente = order.cliente,
+                        numeroPedido = order.numeroPedido,
+                        observacao = order.observacao,
+                        pagamento = order.pagamento,
+                        valor_total_pedido = order.valor_total_pedido,
+                        data = order.data,
+                        email = order.email,
+                        ItemsOrder = order.ItemsOrder
+
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+
+                var lixao = e.Message;
             }
         }
+
         
     }
 }
