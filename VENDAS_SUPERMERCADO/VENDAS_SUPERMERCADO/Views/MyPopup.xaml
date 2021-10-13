@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xct:Popup xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VENDAS_SUPERMERCADO.Views.MyPopup"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+           Size="360,190">
+   
+        <StackLayout>
+            <Label Margin="0,10,0,10" Text="Exibindo todos os produtos em oferta!" FontSize="20" TextColor="Red" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" />
+        <Label Margin="5,0,0,0" Text="Para visualizar todos os produtos disponiveis, utilize a barra de busca ou o botão de filtro, disponivel no menu superior!" FontSize="18" FontAttributes="Bold" TextColor="Black"></Label>
+        <Button Text="CONFIRMAR" TextColor="Green" FontSize="18" FontAttributes="Bold" Clicked="Button_Clicked" VerticalOptions="EndAndExpand" BackgroundColor="White"></Button>
+        </StackLayout>
+   
+</xct:Popup>

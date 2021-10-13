@@ -11,5 +11,7 @@ namespace VENDAS_SUPERMERCADO.Models
         public static string filterOrder { get; set; }
 
         public static string data { get; set; }
+
+        public static bool showOffer { get; set; }
     }
 }

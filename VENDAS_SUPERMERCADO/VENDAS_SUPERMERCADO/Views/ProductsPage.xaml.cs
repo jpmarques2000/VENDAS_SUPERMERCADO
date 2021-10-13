@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using VENDAS_SUPERMERCADO.Models;
 using VENDAS_SUPERMERCADO.Services;
 using VENDAS_SUPERMERCADO.ViewModels;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -24,6 +25,11 @@ namespace VENDAS_SUPERMERCADO.Views
         {
             
             InitializeComponent();
+            if (Filter.showOffer == true)
+            {
+                Navigation.ShowPopup(new MyPopup());
+            }
+            
 
         }
 

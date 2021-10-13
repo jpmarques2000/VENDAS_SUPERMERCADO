@@ -80,6 +80,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             GoogleLogoutCommand = new Command( () =>  GoogleLogoutCommandAsync());
             TermsCommand = new Command(TermsOfServiceCmd);
             netService = new NetService();
+            Filter.showOffer = true;
             CheckUserLoggedIn();
         }
 
@@ -209,7 +210,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
         private async Task loadMenu()
         {
-            await MainViewModel.GetInstance().LoadProducts();
+            await MainViewModel.GetInstance().LoadProductsOffer();
             Application.Current.MainPage =  new NavigationPage( new MenuView());
             
         }
