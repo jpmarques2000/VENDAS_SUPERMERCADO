@@ -405,6 +405,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
 
                 body.Append("<hr>");
                 body.Append("<strong>");
+                body.Append($"Consumidor: {UserLoged.nome}");
+                body.Append("<br>");
                 body.Append($"Quantidade de itens: {qtdItens}");
                 body.Append("<br>");
                 body.Append($"Total do pedido....: {totalDoPedido}");
