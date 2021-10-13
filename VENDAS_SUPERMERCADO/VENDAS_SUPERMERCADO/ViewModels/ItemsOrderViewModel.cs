@@ -733,7 +733,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             catch (Exception e)
             {
 
-                var lixao = e.Message;
+                var erro = e.Message;
             }
         }
 

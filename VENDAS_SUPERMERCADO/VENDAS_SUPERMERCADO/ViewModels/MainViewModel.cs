@@ -518,5 +518,62 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             }
         }
 
+
+        public async Task LoadProductsOffer()
+        {
+
+            var products = new List<Products>();
+
+            if (netService.IsConnected())
+            {
+                products = await apiService.Get<Products>("products");
+
+                if (products != null)
+                {
+                    ReloadProductsOffer(products);
+                }
+
+            }
+            else
+            {
+
+            }
+
+        }
+
+        public void ReloadProductsOffer(List<Products> products)
+        {
+
+            Products.Clear();
+            ListDepartaments.Clear();
+
+            foreach (var product in products.OrderBy(p => p.pro_nome).Where(p => p.preco_desconto > 0))
+            {
+                Products.Add(new ProductItemViewModel
+                {
+                    pro_codigo = product.pro_codigo,
+                    pro_nome = product.pro_nome,
+                    preco = product.preco,
+                    desconto = product.desconto,
+                    categoria = product.categoria,
+                    preco_desconto = product.preco_desconto,
+                    custo = product.custo,
+                    ean = product.ean,
+                    secao = product.secao,
+                    tipo_embalagem = product.tipo_embalagem,
+                    departamento = product.departamento,
+                    id = product.id
+                });
+            }
+            ListDepartaments.Add("TODOS");
+            foreach (var produto in products)
+            {
+                if (ListDepartaments.Contains(produto.departamento))
+                    continue;
+                if (produto.departamento != "ACOGUE")
+                    ListDepartaments.Add(produto.departamento);
+            }
+        }
+
     }
 }
