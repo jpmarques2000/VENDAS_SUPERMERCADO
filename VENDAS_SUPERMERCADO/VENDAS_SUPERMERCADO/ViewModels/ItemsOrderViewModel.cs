@@ -273,7 +273,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             Payments = "Selecione uma forma de pagamento";
             Schedule = "Selecione uma previsao de entrega";
             Observacao = "";
-            
+            ValorDinheiro = 0;
 
         }
 
@@ -290,7 +290,7 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             order.rua = UserLogedDelivery.rua;
             order.valor_total_pedido = GetOrderTotal();
             order.telefone = UserLogedDelivery.telefone;
-            order.complemento = ValorDinheiro;
+            order.complemento = ValorDinheiro.ToString();
             if (UsaCPF == true)
             { 
                 order.cpf = UserLogedDelivery.cpf;
@@ -302,6 +302,12 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             order.pagamento = payment;
             order.data_entrega = schedule;
             order.numero = UserLogedDelivery.numero;
+
+            if (ValorDinheiro < order.valor_total_pedido)
+            {
+                Application.Current.MainPage.DisplayAlert("Erro", "Confira o valor do troco e tente novamente", "Ok");
+                return;
+            }
 
             order.Products = new List<int>();
             foreach (var produto in MeuCarrinho.Lista)
@@ -524,8 +530,8 @@ namespace VENDAS_SUPERMERCADO.ViewModels
             }
         }
 
-        string _valorDinheiro;
-        public string ValorDinheiro
+        double _valorDinheiro;
+        public double ValorDinheiro
         {
             get
             {
